@@ -1,43 +1,32 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
+# 使用远程主题，无需下载文件
+remote_theme: mmistakes/minimal-mistakes
 
-title: aTinyKalami的空间
-description:  找个能一直用的地方，记录生活中的点滴...
-github_username: 
+# 基本配置
+title: "Atiny Kalami's Blog"
+description: "技术分享与生活随笔"
+url: "https://atinykalami.github.io"
 
-# Email and twitter are optional:
-email:
-twitter_username:
+# 主题设置
+minimal_mistakes_skin: "default"  # 可选：default, air, aqua, contrast等
+search: true
 
-# Set this to true to get LaTeX math equation support
-use_math:
+# 作者信息
+author:
+  name: "Atiny Kalami"
+  avatar: "/assets/images/bio-photo.jpg"  # 把你的头像放在这里
+  bio: "热爱技术的开发者"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/atinykalami"
 
-# Add your Google Analytics ID here if you have one and want to use it
-google_analytics:
-
-# Everything below here can be ignored, unless you want to change the theme entirely
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-gist
-  - jekyll-octicons
-  - jekyll-github-metadata
-
-titles_from_headings:
-  enabled:     false
-  strip_title: false
-  collections: false
-
-highlighter: rouge
-markdown: kramdown
-kramdown:
-  math_engine: katex
-  input: GFM
-  auto_ids: false
-  hard_wrap: false
-  syntax_highlighter: rouge
+# 导航菜单
+navigation:
+  - title: "首页"
+    url: /
+  - title: "文章分类"
+    url: /categories/
+  - title: "标签"
+    url: /tags/
+  - title: "关于我"
+    url: /about/
