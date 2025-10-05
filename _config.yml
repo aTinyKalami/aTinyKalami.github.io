@@ -8,7 +8,7 @@
 
 title: aTinyKalami的空间
 description:  找个能一直用的地方，记录生活中的点滴...
-github_username: aTinyKalami
+github_username: 
 
 # Email and twitter are optional:
 email:
@@ -30,8 +30,8 @@ plugins:
 
 titles_from_headings:
   enabled:     false
-  strip_title: true
-  collections: true
+  strip_title: false
+  collections: false
 
 highlighter: rouge
 markdown: kramdown
