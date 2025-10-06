@@ -6,6 +6,10 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
 title: aTinyKalami的空间
 description:  找个能一直用的地方，记录生活中的点滴...
 github_username: 
@@ -42,6 +46,6 @@ kramdown:
   hard_wrap: false
   syntax_highlighter: rouge
 
-remote_theme: pages-themes/minimal@v0.2.0
-plugins:
-  - jekyll-remote-theme
+
+
+  
