@@ -12,7 +12,7 @@ search: true
 
 # 作者信息
 author:
-  name: "Atiny Kalami"
+  name: "A tiny Kalami"
   avatar: "/assets/images/bio-photo.jpg"  # 把你的头像放在这里
   bio: "热爱技术的开发者"
   links:
