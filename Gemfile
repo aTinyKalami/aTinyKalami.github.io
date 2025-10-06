@@ -18,7 +18,7 @@ group :jekyll_plugins do
   gem 'jekyll-octicons'
 end
 
-gem "jekyll-github-metadata"
+# gem "jekyll-github-metadata"
 
 gem "github-pages", group: :jekyll_plugins
 gem "minimal-mistakes-jekyll"
