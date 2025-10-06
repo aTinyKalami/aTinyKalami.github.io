@@ -2,7 +2,7 @@
 layout: default
 title: Home
 ---
-# 个人知识学习笔记归档
+# 个人学习笔记归档
 
 ## Recent Posts
 <!-- 这里未来可以自动列出您的博客文章 -->
