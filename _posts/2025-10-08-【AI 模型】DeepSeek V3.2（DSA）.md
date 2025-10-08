@@ -1,1 +1,113 @@
 
+# DeepSeek V3.2 及核心技术DSA（DeepSeek Sparse Attention，一种细粒度稀疏注意力机制，fine-grained sparse attention）
+
+//【时间】20251005
+
+//【地点】马来西亚，吉隆坡
+
+//【事件】学习DeepSeek模型相关内容的笔记
+
+//【分类】AI学习
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 一. DeepSeek V3与R1
+
+### 原始代码与论文
+1.[**DeepSeek-V3 (671B) Huggingface模型入口**](https://huggingface.co/deepseek-ai/DeepSeek-V3 "模型链接")
+
+2.[**DeepSeek-V3 官方论文**](https://arxiv.org/abs/2412.19437 "自发论文")
+
+### 学习文章：
+1.[**DeepSeek-V3 (671B) 模型参数量分解计算**](https://zhuanlan.zhihu.com/p/21455638257)
+
+### 主要内容：
+
+#### 1.DeepSeek-V3 模型结构
+
+【DeepSeek-V3 的模型结构图】
+
+![DeepSeek模型架构](https://picx.zhimg.com/70/v2-5746c49795433b5086652911404b65a3_1440w.avis?source=172ae18b&biz_tag=Post)
+
+DeepSeek-V3的模型是一个典型的Decode Only架构的Transformer模型，其中FFN部分是MoE架构，不是稠密模型。
+
+整体可以分解为4个部分：Embedding层；（MLA+MoE）*61层；Output输出层。其中的 MLA+MoE 有61 层。
+
+### 2.DeepSeek-V3 参数分布
+
+【DeepSeek-V3的671B的参数分布图】
+
+![DeepSeek-V3模型参数分布](https://pic1.zhimg.com/v2-72f1febc947a53aff985614ec2cc1cfe_1440w.jpg)
+
+汇总表格可以看到，DeepSeek-V3主要参数都集中在MoE部分（FFN），即MoE专家，占657B。尤其是其中的256个路由专家，参数量占到了651B。  
+但推理时只激活其中一小部分专家（8个路由+1个共享），所以MoE部分的activated Parameter会少很多（大概24B），比稠密模型的FFN在运行时的参数量负载低很多。  
+另外，虽然DeepSeek-V3是256路由专家MOE架构，但是并不是所有层都是256个路由专家。前3层路由专家也只有8个，运行时全激活。后面58层才是256个路由专家，运行时激活8个路由专家。
+而共享专家是每层1个，61层全贯通。
+
+详细的671B的参数是如何算出来的，可以参考上面的学习文章 **【1.DeepSeek-V3（671B）模型参数量分解计算】**
+
+------------------------------------------------------------------------------------------------------------------------------
+
+## 二. DeepSeek V3.2-Exp (推出时间：2025年9月29日）
+
+### 原始代码与论文
+1.[**DeepSeek V3.2官方API文档介绍 on DeepSeek**](https://api-docs.deepseek.com/news/news250929)；
+
+2.[**DeepSeek V3.2官方代码仓 on Github**](https://github.com/deepseek-ai/DeepSeek-V3.2-Exp)，含完整PDF论文。
+
+3.[**DeepSeek V3.2官方论文 on Github**](https://github.com/deepseek-ai/DeepSeek-V3.2-Exp/blob/main/DeepSeek_V3_2.pdf);
+
+4.[**DeepSeek V3.2 介绍 on Huggingface**](https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Exp);
+
+### 关键技术
+
+#### DSA（DeepSeek Sparse Attention (DeepSeek 细粒度稀疏注意力 机制， fine-grained sparse attention)
+
+DeepSeek-V3.2-Exp是一个实验性（Experimental）的版本，作为迈向新一代架构的中间步骤。
+
+DeepSeek-V3.2-Exp在 V3.1-Terminus 的基础上引入了 DeepSeek Sparse Attention（一种稀疏注意力机制）。
+
+【**方案：细粒度稀疏注意力机制(DSA)**】
+
+【DSA原理图】
+
+![DSA原理图](https://pica.zhimg.com/v2-95639b472024f757b50062f4bd8d51de_1440w.jpg)
+
+DSA 的设计包括两个关键组件：
+
+**组件1.Lightning Indexer**
+
+这是一个高效的索引计算模块。对于每个查询token hth_tht，它会与之前的所有历史token H(s) 计算索引分数 I(t,s)，用于判断哪些历史token 需要被关注。
+
+Lightning Indexer 支持 FP8 实现，进一步提升计算效率。
+
+**组件2.细粒度Top-k选择机制**
+
+对于每个查询 token，仅选择 index 分数排名前 k 的 key-value 对参与注意力计算。这样显著减少了参与注意力的 token 数量，将复杂度从 O(L²）降低到O(Lk)，其中 k≪L。L为历史查询的Token的总长度，k为选择靠前排名的数量。
+
+其余技术创新、训练实现等详细内容可参见：[**分析文章**](https://zhuanlan.zhihu.com/p/1956280388277245345)。
+【**效果：推理价格大幅下降**】
+
+在几乎不影响模型输出效果的前提下，DSA实现了长文本训练和推理效率的大幅提升。在各领域的公开评测集上，DeepSeek-V3.2-Exp 的表现与 V3.1-Terminus 基本持平。
+
+【DeepSeek-V3.2与V3.1推理成本对比图】
+
+![DeepSeek-V3.2与V3.1推理成本对比图](https://api-docs.deepseek.com/zh-cn/img/v3_2_cost_compare.webp)
+
+**复杂度降低**：主注意力由O(L²)降为O(Lk)。
+
+**Lightning Indexer** :仍为O(L²)，但因其头数少、FP8 实现，计算量远小于原主注意力。
+
+**实测结果（H800 GPU 集群）**：在 128K 上下文中，V3.2-Exp 的推理 token 成本显著低于 V3.1，prefill 和 decode 阶段均有明显收益。
+
+V3.2的效率大幅提升对应带来调价，模型Token API调用的成本降低：
+
+![DeepSeek-V3.2价格变化图](https://api-docs.deepseek.com/zh-cn/img/v3_2_price_zh.webp)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+（本文完）
+
+
+
+
