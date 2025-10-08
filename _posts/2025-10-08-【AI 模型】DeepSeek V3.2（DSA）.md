@@ -1,5 +1,5 @@
 
-# DeepSeek V3.2 及核心技术DSA（DeepSeek Sparse Attention，一种细粒度稀疏注意力机制，fine-grained sparse attention）
+# DeepSeek V3.2 及核心技术DSA（DeepSeek Sparse Attention，细粒度稀疏注意力机制）
 
 //【时间】20251008
 
