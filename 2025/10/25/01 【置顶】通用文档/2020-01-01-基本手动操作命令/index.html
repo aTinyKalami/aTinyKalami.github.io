@@ -523,6 +523,13 @@ git push origin main	#推到远端代码仓
 <pre><code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
 </code></pre>
 <h2 id="【云端→本地】命令合成一行代码，打开git直接输入："><a href="#【云端→本地】命令合成一行代码，打开git直接输入：" class="headerlink" title="【云端→本地】命令合成一行代码，打开git直接输入："></a>【云端→本地】命令合成一行代码，打开git直接输入：</h2><p><code>cd /d/handson/github/blog &amp;&amp;git pull origin main &amp;&amp;	hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</code></p>
+<h1 id="3-【如果云端和本地都修改了，就要同时拉取和推送】"><a href="#3-【如果云端和本地都修改了，就要同时拉取和推送】" class="headerlink" title="3.【如果云端和本地都修改了，就要同时拉取和推送】"></a>3.【如果云端和本地都修改了，就要同时拉取和推送】</h1><p>3.1. 先拉取云端修改（可能会产生冲突）</p>
+<pre><code>git pull origin main
+</code></pre>
+<p>3.2. 如果有冲突，手动解决冲突</p>
+<p>3.3. 然后推送本地修改</p>
+<pre><code>git push origin main
+</code></pre>
 <hr>
 <p>&lt;本文完&gt;</p>
 
