@@ -378,31 +378,20 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">
+									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE-old/">
                      
-										    00 AI知识地图
+										    AI知识地图
                      
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										04 AI学习
-									</a>
-									
 							<ul>
 								<li class="file">
-									<a href="/2025/05/05/04%20AI%E5%AD%A6%E4%B9%A0/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">
+									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">
                      
-										    AI知识地图
+										    00 AI知识地图
                      
 									</a>
 								</li>
@@ -536,14 +525,14 @@
 <p><code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</code></p>
 <p>3.推送源码文件夹到 blog-code-folder 仓库，包括同步文章、配置变更等到云端:</p>
 <p><code>git add .	#添加新文件</code><br><code>git commit -m &quot;本地内容变更&quot;	#提交更改</code><br><code>git push origin main	#推到远端代码仓</code></p>
-<h2 id="【本地-→-云端】命令合成一行代码，打开git直接输入："><a href="#【本地-→-云端】命令合成一行代码，打开git直接输入：" class="headerlink" title="【本地 → 云端】命令合成一行代码，打开git直接输入："></a>【本地 → 云端】命令合成一行代码，打开git直接输入：</h2><p><code>cd /d/handson/github/blog&amp;&amp;git status&amp;&amp;git add .&amp;&amp;git commit -m &quot;本地内容变更&quot;&amp;&amp; git push origin main&amp;&amp;hexo clean &amp;&amp; hexo generate&amp;&amp;hexo deploy</code></p>
+<h2 id="【本地-→-云端】命令合成一行代码，打开git直接输入："><a href="#【本地-→-云端】命令合成一行代码，打开git直接输入：" class="headerlink" title="【本地 → 云端】命令合成一行代码，打开git直接输入："></a>【本地 → 云端】命令合成一行代码，打开git直接输入：</h2><p>cd &#x2F;d&#x2F;handson&#x2F;github&#x2F;blog&amp;&amp;git status&amp;&amp;git add .&amp;&amp;git commit -m “本地内容变更”&amp;&amp; git push origin main&amp;&amp;hexo clean &amp;&amp; hexo generate&amp;&amp;hexo deploy</p>
 <h1 id="2-【云端→本地-文件同步加页面发布】"><a href="#2-【云端→本地-文件同步加页面发布】" class="headerlink" title="2.【云端→本地 文件同步加页面发布】"></a>2.【云端→本地 文件同步加页面发布】</h1><p>如果我在Github网页侧更新代码托管仓中的Source文件夹的文章内容，要同步到本地并且发布：</p>
 <p>1.进入Hexo项目文件夹:</p>
 <p><code>cd /d/handson/github/blog 	#切换目录到项目文件夹</code></p>
 <p>2.拉取远程最新更改到本地:<br>	<br><code>git pull origin main	#拉取云端最新文件到本地</code></p>
 <p>3.生成静态页面并通过Hexo部署网站（即发布到 .io 仓库）</p>
 <p><code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</code></p>
-<h2 id="【云端→本地】命令合成一行代码，打开git直接输入："><a href="#【云端→本地】命令合成一行代码，打开git直接输入：" class="headerlink" title="【云端→本地】命令合成一行代码，打开git直接输入："></a>【云端→本地】命令合成一行代码，打开git直接输入：</h2><p><code>cd /d/handson/github/blog &amp;&amp;git pull origin main &amp;&amp;	hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</code></p>
+<h2 id="【云端→本地】命令合成一行代码，打开git直接输入："><a href="#【云端→本地】命令合成一行代码，打开git直接输入：" class="headerlink" title="【云端→本地】命令合成一行代码，打开git直接输入："></a>【云端→本地】命令合成一行代码，打开git直接输入：</h2><p>cd &#x2F;d&#x2F;handson&#x2F;github&#x2F;blog &amp;&amp;git pull origin main &amp;&amp;	hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</p>
 <h1 id="3-【如果云端和本地都修改了，就要同时拉取和推送】"><a href="#3-【如果云端和本地都修改了，就要同时拉取和推送】" class="headerlink" title="3.【如果云端和本地都修改了，就要同时拉取和推送】"></a>3.【如果云端和本地都修改了，就要同时拉取和推送】</h1><p>3.1. 先拉取云端修改（可能会产生冲突）</p>
 <p><code>git pull origin main</code></p>
 <p>3.2. 如果有冲突，手动解决冲突</p>
