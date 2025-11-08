@@ -591,7 +591,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/洞察/">洞察</a>
+                    <a href="/tags/技术/">技术</a>
                     </i>
                 </span>
             
@@ -599,7 +599,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/技术/">技术</a>
+                    <a href="/tags/洞察/">洞察</a>
                     </i>
                 </span>
             
@@ -671,7 +671,7 @@
 <td align="left"><strong>预训练</strong>：通常只过1个epoch，因为数据量极大。<br><strong>指令微调</strong>：通常需要3-10个epoch。<br><strong>下游任务微调</strong>：可能需要10-50个epoch，需根据验证集性能早停，防止过拟合。</td>
 </tr>
 </tbody></table>
-<h2 id="超参数详细解释"><a href="#超参数详细解释" class="headerlink" title="超参数详细解释"></a>超参数详细解释</h2><h3 id="1-训练优化类超参数"><a href="#1-训练优化类超参数" class="headerlink" title="1. 训练优化类超参数"></a>1. 训练优化类超参数</h3><h4 id="学习率（Learning-Rate）"><a href="#学习率（Learning-Rate）" class="headerlink" title="学习率（Learning Rate）"></a>学习率（Learning Rate）</h4><p><strong>学习率（learning rate）</strong>：学习率是每次模型反向传播时更新神经网络参数的比例。用于控制大模型参数更新的幅度。</p>
+<h2 id="超参数详细解释"><a href="#超参数详细解释" class="headerlink" title="超参数详细解释"></a>超参数详细解释</h2><h3 id="1-训练优化类超参数"><a href="#1-训练优化类超参数" class="headerlink" title="1. 训练优化类超参数"></a>1. 训练优化类超参数</h3><h4 id="学习率（Learning-Rate）"><a href="#学习率（Learning-Rate）" class="headerlink" title="学习率（Learning Rate）"></a>学习率（Learning Rate）</h4><p>学习率是每次模型反向传播时更新神经网络参数的比例。用于控制大模型参数更新的幅度。</p>
 <p>学习率与模型规模（神经网络参数总量）、数据量、批量大小相关。 需根据模型规模和数据量、批大小等进行动态调整。</p>
 <p>比如：</p>
 <p>1）模型规模：大模型通常采用较小学习率（如1e-6至1e-4）以避免过拟合，而小模型可尝试更大值（如1e-3）。例如，Llama2-70B在材料领域微调时，最优学习率范围为8e-7至8e-5，其中8e-5表现最佳。</p>
@@ -680,7 +680,7 @@
 <p>一个简单的判断方法是看训练过程的 loss值，如果 loss 下降很慢，说明学习率太小，如果 loss 反复横跳，说明学习率太大。</p>
 <p>3）批量大小：有研究表明，学习率应该和批大小匹配，批大小增加 n 倍时学习率也增大 n 倍。</p>
 <p>学习率与调度器：大模型训练的目标就是为了基于给定数据集找出来在高维空间的神经网络参数配置的局部最优解。所以可以把学习率想象成“下山时的步长”。一开始步长可以大一些（高学习率），快到山底时步长要变小（低学习率）以免迈过最低点。调度器就是控制这个步长变化规律的。</p>
-<h4 id="迭代次数（epoch）"><a href="#迭代次数（epoch）" class="headerlink" title="迭代次数（epoch）"></a>迭代次数（epoch）</h4><p><strong>迭代次数（epoch）</strong>：每过完一次所有数据就代表一个 epoch，所以 2 个 epoch 意味着相同数据会训练两次，这个值过大会导致模型过拟合，一般不超过 4.</p>
+<h4 id="迭代次数（epoch）"><a href="#迭代次数（epoch）" class="headerlink" title="迭代次数（epoch）"></a>迭代次数（epoch）</h4><p>每过完一次所有数据就代表一个 epoch，所以 2 个 epoch 意味着相同数据会训练两次，这个值过大会导致模型过拟合，一般不超过 4.</p>
 <p>但在 OpenAI 论文里提到他们用的 16，过拟合反而能提升后续 RM 的效果。需根据数据量和模型拟合程度调整。Llama2微调实验显示，4个epoch在多数任务上优于2个epoch，但需警惕过拟合。</p>
 <p>步数（Step）与迭代次数（Epoch）：</p>
 <pre><code>Step（步数）：每进行一次参数更新（处理完一个batch）就算一步。
@@ -689,15 +689,15 @@ Epoch（迭代次数）：模型完整遍历一遍整个训练集算一个epoch�
 
 总步数 = (总训练样本数 / 批量大小) * 迭代次数。
 </code></pre>
-<h4 id="预热比例（warmup-ratio）"><a href="#预热比例（warmup-ratio）" class="headerlink" title="预热比例（warmup_ratio）"></a>预热比例（warmup_ratio）</h4><p><strong>预热比例（Warmup_ratio）</strong>：决定学习率预热步数占总步数的比例，用于缓解训练初期不稳定性。实验表明，0.005的预热比例在Llama2微调中效果优于更高值（如0.1）。</p>
-<h4 id="梯度累积步数（gradient-accumulation-steps）"><a href="#梯度累积步数（gradient-accumulation-steps）" class="headerlink" title="梯度累积步数（gradient_accumulation_steps）"></a>梯度累积步数（gradient_accumulation_steps）</h4><p><strong>梯度累积步数（gradient_accumulation_steps）</strong>：在GPU显存有限时，通过累积多步梯度模拟大批次训练。</p>
+<h4 id="预热比例（warmup-ratio）"><a href="#预热比例（warmup-ratio）" class="headerlink" title="预热比例（warmup_ratio）"></a>预热比例（warmup_ratio）</h4><p>决定学习率预热步数占总步数的比例，用于缓解训练初期不稳定性。实验表明，0.005的预热比例在Llama2微调中效果优于更高值（如0.1）。</p>
+<h4 id="梯度累积步数（gradient-accumulation-steps）"><a href="#梯度累积步数（gradient-accumulation-steps）" class="headerlink" title="梯度累积步数（gradient_accumulation_steps）"></a>梯度累积步数（gradient_accumulation_steps）</h4><p>在GPU显存有限时，通过累积多步梯度模拟大批次训练。</p>
 <p>例如，当物理批次大小为16时，设置为4可等效模拟64的批次效果，Llama2微调中1步累积（即无累积）表现最优。</p>
-<h3 id="2-架构与任务适配参数"><a href="#2-架构与任务适配参数" class="headerlink" title="2. 架构与任务适配参数"></a>2. 架构与任务适配参数</h3><h4 id="批量大小（batch-size）"><a href="#批量大小（batch-size）" class="headerlink" title="批量大小（batch_size）"></a>批量大小（batch_size）</h4><p>批大小（batch_size）：需平衡内存占用与训练稳定性。大模型通常采用“大批次+梯度累积”策略，例如GPT-3使用3500万token&#x2F;批次，PaLM采用2048样本&#x2F;批次。</p>
+<h3 id="2-架构与任务适配参数"><a href="#2-架构与任务适配参数" class="headerlink" title="2. 架构与任务适配参数"></a>2. 架构与任务适配参数</h3><h4 id="批量大小（batch-size）"><a href="#批量大小（batch-size）" class="headerlink" title="批量大小（batch_size）"></a>批量大小（batch_size）</h4><p>需平衡内存占用与训练稳定性。大模型通常采用“大批次+梯度累积”策略，例如GPT-3使用3500万token&#x2F;批次，PaLM采用2048样本&#x2F;批次。</p>
 <p>每次训练更新梯度计算的时候提供多少条数据，如果这个值越大，就越不受某个异常数据带来的影响，因此训练会更稳定，还能加快训练速度，但这个值过大可能会导致过拟合，也会导致内存不足，通常推荐使用 8，这可能是因为 Nvidia 推荐用 8 的倍数来有效利用 Tensor Core。</p>
 <p>过小的批大小会导致梯度噪声，过大则可能陷入局部最优。</p>
-<h4 id="位置编码基频（base-frequency）："><a href="#位置编码基频（base-frequency）：" class="headerlink" title="位置编码基频（base frequency）："></a>位置编码基频（base frequency）：</h4><p>位置编码基频（base frequency）：影响模型对长文本的建模能力。Llama2默认RoPE编码的基频为10000，Meta通过将其提升至500000，成功将上下文窗口扩展至3.2万token，且性能优于位置插值方法。</p>
-<h3 id="3-正则化与泛化参数"><a href="#3-正则化与泛化参数" class="headerlink" title="3. 正则化与泛化参数"></a>3. 正则化与泛化参数</h3><h4 id="dropout率："><a href="#dropout率：" class="headerlink" title="dropout率："></a>dropout率：</h4><p>dropout率：防止过拟合的经典参数，在Transformer的注意力层和前馈层中常用。例如，BERT默认 dropout率为0.1，而在数据稀疏任务中可提高至0.3。</p>
-<h4 id="权重衰减（weight-decay）："><a href="#权重衰减（weight-decay）：" class="headerlink" title="权重衰减（weight decay）："></a>权重衰减（weight decay）：</h4><p>权重衰减（weight decay）：控制模型复杂度，AdamW优化器中常用值为0.01。Llama2微调中，适当权重衰减可提升模型在材料属性预测等小样本任务上的泛化能力。</p>
+<h4 id="位置编码基频（base-frequency）："><a href="#位置编码基频（base-frequency）：" class="headerlink" title="位置编码基频（base frequency）："></a>位置编码基频（base frequency）：</h4><p>影响模型对长文本的建模能力。Llama2默认RoPE编码的基频为10000，Meta通过将其提升至500000，成功将上下文窗口扩展至3.2万token，且性能优于位置插值方法。</p>
+<h3 id="3-正则化与泛化参数"><a href="#3-正则化与泛化参数" class="headerlink" title="3. 正则化与泛化参数"></a>3. 正则化与泛化参数</h3><h4 id="dropout率："><a href="#dropout率：" class="headerlink" title="dropout率："></a>dropout率：</h4><p>防止过拟合的经典参数，在Transformer的注意力层和前馈层中常用。例如，BERT默认 dropout率为0.1，而在数据稀疏任务中可提高至0.3。</p>
+<h4 id="权重衰减（weight-decay）："><a href="#权重衰减（weight-decay）：" class="headerlink" title="权重衰减（weight decay）："></a>权重衰减（weight decay）：</h4><p>控制模型复杂度，AdamW优化器中常用值为0.01。Llama2微调中，适当权重衰减可提升模型在材料属性预测等小样本任务上的泛化能力。</p>
 <h1 id="二-超参数配置参考文档说明"><a href="#二-超参数配置参考文档说明" class="headerlink" title="二. 超参数配置参考文档说明"></a>二. 超参数配置参考文档说明</h1><h1 id="预训练阶段超参配置参考文档"><a href="#预训练阶段超参配置参考文档" class="headerlink" title="预训练阶段超参配置参考文档"></a>预训练阶段超参配置参考文档</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2112.05682">The Reversible Transformer: Scaling Large-Scale Inference and Training with Minimal Overhead</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/google-research/t5x">Google’s T5X&#x2F;T5 训练配置指南</a>,重点关注其中的 configs&#x2F; 目录和 docs&#x2F; 文档。您可以看到从Base到11B所有模型的完整训练配置文件，这些文件本身就是“系统性和精炼”的超参数指南。</p>
 <p>谷歌对应上面的训练T5模型（包括13B和11B）的关键细节的官方博客：<a target="_blank" rel="noopener" href="https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html">Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer</a></p>
