@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		DeepSeek V3.2及核心技术DSA | 
+		DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制 | 
 	 
 	十二亚晖的个人空间
 	</title>
@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Etiketler</a>
+        <a href="/tags" class="menu-item-link">Tags</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Kategoriler</a>
+        <a href="/categories" class="menu-item-link">Categories</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
+		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
 		<div id="tree">
 			
 
@@ -541,7 +541,7 @@
 								<li class="file active">
 									<a href="/2025/10/05/09%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
                      
-										    DeepSeek V3.2及核心技术DSA
+										    DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制
                      
 									</a>
 								</li>
@@ -574,7 +574,7 @@
 	<!-- 引入正文 -->
 	<div id="content" class="content">
 		<h1 id="article-title">
-	DeepSeek V3.2及核心技术DSA
+	DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制
 </h1>
 
 <!-- meta -->
@@ -633,18 +633,15 @@
 
 <!-- content -->
 <div id="article-content">
-	<h1 id="DeepSeek-V3-2-及核心技术DSA（DeepSeek-Sparse-Attention，细粒度稀疏注意力机制）"><a href="#DeepSeek-V3-2-及核心技术DSA（DeepSeek-Sparse-Attention，细粒度稀疏注意力机制）" class="headerlink" title="DeepSeek V3.2 及核心技术DSA（DeepSeek Sparse Attention，细粒度稀疏注意力机制）"></a>DeepSeek V3.2 及核心技术DSA（DeepSeek Sparse Attention，细粒度稀疏注意力机制）</h1><p>&#x2F;&#x2F;【时间】20251008</p>
-<p>&#x2F;&#x2F;【地点】马来西亚，吉隆坡</p>
-<p>&#x2F;&#x2F;【事件】学习DeepSeek模型相关内容的笔记</p>
-<p>&#x2F;&#x2F;【分类】AI学习</p>
-<hr>
-<h2 id="DeepSeek-V3-2-Exp-推出时间：2025年9月29日）"><a href="#DeepSeek-V3-2-Exp-推出时间：2025年9月29日）" class="headerlink" title="DeepSeek V3.2-Exp (推出时间：2025年9月29日）"></a>DeepSeek V3.2-Exp (推出时间：2025年9月29日）</h2><h3 id="1-原始代码与论文"><a href="#1-原始代码与论文" class="headerlink" title="1. 原始代码与论文"></a>1. 原始代码与论文</h3><p>1.<a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/news/news250929"><strong>DeepSeek V3.2官方API文档介绍 on DeepSeek</strong></a>；</p>
+	<h1 id="DeepSeek-V3-2-及核心技术DSA"><a href="#DeepSeek-V3-2-及核心技术DSA" class="headerlink" title="DeepSeek V3.2 及核心技术DSA"></a>DeepSeek V3.2 及核心技术DSA</h1><p><strong>DSA：DeepSeek Sparse Attention (DeepSeek 细粒度稀疏注意力 机制，fine-grained sparse attention)</strong></p>
+<p>DeepSeek V3.2-Exp ,推出时间：2025年9月29日.</p>
+<h1 id="1-原始代码与论文"><a href="#1-原始代码与论文" class="headerlink" title="1. 原始代码与论文"></a>1. 原始代码与论文</h1><p>1.<a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/news/news250929"><strong>DeepSeek V3.2官方API文档介绍 on DeepSeek</strong></a>；</p>
 <p>2.<a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepSeek-V3.2-Exp"><strong>DeepSeek V3.2官方代码仓 on Github</strong></a>，含完整PDF论文。</p>
 <p>3.<a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepSeek-V3.2-Exp/blob/main/DeepSeek_V3_2.pdf"><strong>DeepSeek V3.2官方论文 on Github</strong></a>;</p>
 <p>4.<a target="_blank" rel="noopener" href="https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Exp"><strong>DeepSeek V3.2 介绍 on Huggingface</strong></a>;</p>
-<h3 id="2-关键技术（DSA）"><a href="#2-关键技术（DSA）" class="headerlink" title="2. 关键技术（DSA）"></a>2. 关键技术（DSA）</h3><p>DeepSeek-V3.2-Exp是一个实验性（Experimental）的版本，是DeepSeek模型迈向新一代架构的中间步骤。</p>
+<h1 id="2-关键技术（DSA）"><a href="#2-关键技术（DSA）" class="headerlink" title="2. 关键技术（DSA）"></a>2. 关键技术（DSA）</h1><p>DeepSeek-V3.2-Exp是一个实验性（Experimental）的版本，是DeepSeek模型迈向新一代架构的中间步骤。</p>
 <p>DeepSeek-V3.2-Exp在V3.1-Terminus的基础上引入了 <strong>DSA：DeepSeek Sparse Attention (DeepSeek 细粒度稀疏注意力 机制， fine-grained sparse attention)</strong></p>
-<h4 id="2-1-方案：细粒度稀疏注意力机制-DSA"><a href="#2-1-方案：细粒度稀疏注意力机制-DSA" class="headerlink" title="2.1 方案：细粒度稀疏注意力机制(DSA)"></a>2.1 方案：细粒度稀疏注意力机制(DSA)</h4><p>【DSA原理图】</p>
+<h2 id="2-1-细粒度稀疏注意力机制-DSA"><a href="#2-1-细粒度稀疏注意力机制-DSA" class="headerlink" title="2.1 细粒度稀疏注意力机制(DSA)"></a>2.1 细粒度稀疏注意力机制(DSA)</h2><p>【DSA原理图】</p>
 <p><img src="https://pica.zhimg.com/v2-95639b472024f757b50062f4bd8d51de_1440w.jpg" alt="DSA原理图"></p>
 <p>DSA 的设计包括两个关键组件：</p>
 <p><strong>组件1.Lightning Indexer</strong></p>
