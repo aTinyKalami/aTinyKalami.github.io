@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Tags</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Categories</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -310,7 +310,7 @@
 								<li class="file">
 									<a href="/2025/10/02/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83/">
                      
-										    大模型后训练与微调
+										    模型训练 - 大模型后训练与微调
                      
 									</a>
 								</li>
@@ -700,7 +700,45 @@
 输出：浮点数向量张量，形状为 [序列长度, 隐藏层维度]。这个张量才是真正送入Transformer第一层的输入。
 性质：这是一个可学习的、连续的过程。Embedding层中的权重（即那个大矩阵）是模型参数的一部分，会在训练过程中通过梯度下降不断调整优化。
 </code></pre>
-<h2 id="大模型预训练框架"><a href="#大模型预训练框架" class="headerlink" title="大模型预训练框架"></a>大模型预训练框架</h2><p>|训练框架	|主要提供方	|核心特点	|主要优势	|主要劣势	|<br>|:—	|:—	|:—	|:—	|:—	|<br>|PyTorch	|	Meta (开源社区)	|动态图为主，用户友好，生态丰富	|易用性高，研究和产业界生态繁荣，调试方便	|分布式训练等高级功能需额外学习和配置|<br>|TensorFlow	|谷歌开源	|静态图为主,生产环境部署成熟	|部署成熟，有完整的生产端工具链	|学术和研究社区活跃度不及PyTorch|<br>|DeepSpeed	|微软	|专注于分布式训练优化	|ZeRO技术大幅节省显存，支持超大规模模型训练	|配置复杂，与PyTorch耦合较紧|<br>|JAX	|谷歌	|函数式编程，专为高性能计算设计	|编译优化出色，在Google TPU上性能极佳	|学习曲线陡峭，社区和生态相对较小|</p>
+<h2 id="大模型预训练框架"><a href="#大模型预训练框架" class="headerlink" title="大模型预训练框架"></a>大模型预训练框架</h2><table>
+<thead>
+<tr>
+<th align="left">训练框架</th>
+<th align="left">主要提供方</th>
+<th align="left">核心特点</th>
+<th align="left">主要优势</th>
+<th align="left">主要劣势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">PyTorch</td>
+<td align="left">Meta (开源社区)</td>
+<td align="left">动态图为主，用户友好，生态丰富</td>
+<td align="left">易用性高，研究和产业界生态繁荣，调试方便</td>
+<td align="left">分布式训练等高级功能需额外学习和配置</td>
+</tr>
+<tr>
+<td align="left">TensorFlow</td>
+<td align="left">谷歌开源</td>
+<td align="left">静态图为主,生产环境部署成熟</td>
+<td align="left">部署成熟，有完整的生产端工具链</td>
+<td align="left">学术和研究社区活跃度不及PyTorch</td>
+</tr>
+<tr>
+<td align="left">DeepSpeed</td>
+<td align="left">微软</td>
+<td align="left">专注于分布式训练优化</td>
+<td align="left">ZeRO技术大幅节省显存，支持超大规模模型训练</td>
+<td align="left">配置复杂，与PyTorch耦合较紧</td>
+</tr>
+<tr>
+<td align="left">JAX</td>
+<td align="left">谷歌</td>
+<td align="left">函数式编程，专为高性能计算设计</td>
+<td align="left">编译优化出色，在Google TPU上性能极佳</td>
+<td align="left">学习曲线陡峭，社区和生态相对较小</td>
+</tr>
+</tbody></table>
 <h3 id="什么是模型训练的静态图和动态图"><a href="#什么是模型训练的静态图和动态图" class="headerlink" title="什么是模型训练的静态图和动态图"></a>什么是模型训练的静态图和动态图</h3><p>（待补充）</p>
 <h1 id="大模型后训练"><a href="#大模型后训练" class="headerlink" title="大模型后训练"></a>大模型后训练</h1><p>大模型后训练是在预训练好的基础模型之上，使用数量更少但质量更高、更具针对性的数据进行进一步训练，以赋予模型特定的能力或对齐其行为的过程。这是目前应用和研究的重点。</p>
 <p>大模型的后训练是将基础模型转化为可用大模型产品的关键，它内部又包含多个子阶段和技术。</p>
