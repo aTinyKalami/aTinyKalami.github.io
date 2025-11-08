@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		基础大模型如何行业化训练 | 
+		Tokeniazer分词 | 
 	 
 	十二亚晖的个人空间
 	</title>
@@ -19,7 +19,7 @@
 		<meta name="keywords" content="给时光以生命" />
 	
 	
-		<meta name="description" content="如何把基础NLP模型做后训练，实现行业化" />
+		<meta name="description" content="Tokenizer分词原理、算法知识学习，持续更新" />
 	
 
 	<!-- favicon -->
@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Tags</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Categories</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -145,17 +145,6 @@
 										01 通用文档
 									</a>
 									
-							<ul>
-								<li class="file">
-									<a href="/2025/10/25/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2020-01-01-%E5%9F%BA%E6%9C%AC%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
-                     
-										    01 Hexo框架的Github文章手工部署常用命令
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
 							<ul>
 								<li class="file">
 									<a href="/2025/10/25/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-01-HEXO%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%94%BB%E7%95%A5/">
@@ -274,162 +263,8 @@
 									</a>
 									
 							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										01 大模型基础
-									</a>
-									
-							<ul>
 								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/01%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/2025-10-06-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Embedding%E8%AF%8D%E5%B5%8C%E5%85%A5/">
-                     
-										    Embedding (词嵌入/向量化)
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/01%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/2025-10-06-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Tokenizer%E5%88%86%E8%AF%8D/">
-                     
-										    Tokeniazer分词
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/01%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3%E5%92%8CR1/">
-                     
-										    DeepSeek
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/01%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Transfomer%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/">
-                     
-										    Transformer模型架构基础
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/01%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
-                     
-										    DeepSeek V3.2及核心技术DSA
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/01%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/2025-10-10-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
-                     
-										    多模态模型
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/01%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/2025-10-22-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
-                     
-										    大模型API接口调用参数说明
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/11/02/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/01%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80/2025-11-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20OCR/">
-                     
-										    DeepSeek OCR模型技术与意义解析
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										02 模型训练
-									</a>
-									
-							<ul>
-								<li class="file active">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/02%20%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/2025-10-06-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A6%82%E4%BD%95%E8%AE%A9%E5%9F%BA%E7%A1%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A1%8C%E4%B8%9A%E5%8C%96/">
-                     
-										    基础大模型如何行业化训练
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/02%20%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/2025-10-13-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
-                     
-										    大模型训练和推理流程与框架
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2025/11/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/%E3%80%90%E8%B0%83%E5%BA%A6%E6%A1%86%E6%9E%B6%E3%80%91RAY%E5%92%8CK8S%E5%AE%B9%E5%99%A8%E6%A1%86%E6%9E%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/">
-                     
-										    AI训推框架使用K8S容器框架和RAY的关系和区别
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										06 AI应用
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/06%20AI%E5%BA%94%E7%94%A8/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91%E5%90%91%E9%87%8F%E5%8C%96Embedding/">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91%E5%90%91%E9%87%8F%E5%8C%96Embedding/">
                      
 										    Embedding向量化
                      
@@ -440,9 +275,141 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/06%20AI%E5%BA%94%E7%94%A8/2025-10-05-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91RAG%E6%96%B9%E6%A1%88%E8%AF%A6%E8%A7%A3/">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-05-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91RAG%E6%96%B9%E6%A1%88%E8%AF%A6%E8%A7%A3/">
                      
 										    RAG方案学习
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-06-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Embedding%E8%AF%8D%E5%B5%8C%E5%85%A5/">
+                     
+										    Embedding (词嵌入/向量化)
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-06-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Tokenizer%E5%88%86%E8%AF%8D/">
+                     
+										    Tokeniazer分词
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-06-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A6%82%E4%BD%95%E8%AE%A9%E5%9F%BA%E7%A1%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A1%8C%E4%B8%9A%E5%8C%96/">
+                     
+										    基础大模型如何行业化训练
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3%E5%92%8CR1/">
+                     
+										    DeepSeek
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Transfomer%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/">
+                     
+										    Transformer模型架构基础
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
+                     
+										    DeepSeek V3.2及核心技术DSA
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-10-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                     
+										    多模态模型
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-13-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
+                     
+										    大模型训练和推理流程与框架
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-22-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
+                     
+										    大模型API接口调用参数说明
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/11/02/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-11-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20OCR/">
+                     
+										    DeepSeek OCR模型技术与意义解析
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-11-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">
+                     
+										    大模型训练超参设置与方法
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/11/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/%E3%80%90%E8%B0%83%E5%BA%A6%E6%A1%86%E6%9E%B6%E3%80%91RAY%E5%92%8CK8S%E5%AE%B9%E5%99%A8%E6%A1%86%E6%9E%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/">
+                     
+										    AI训推框架使用K8S容器框架和RAY的关系和区别
                      
 									</a>
 								</li>
@@ -563,7 +530,7 @@
 	<!-- 引入正文 -->
 	<div id="content" class="content">
 		<h1 id="article-title">
-	基础大模型如何行业化训练
+	Tokeniazer分词
 </h1>
 
 <!-- meta -->
@@ -602,7 +569,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/模型/">模型</a>
+                    <a href="/tags/技术/">技术</a>
                     </i>
                 </span>
             
@@ -610,7 +577,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/算法/">算法</a>
+                    <a href="/tags/学习/">学习</a>
                     </i>
                 </span>
             
@@ -622,25 +589,25 @@
 
 <!-- content -->
 <div id="article-content">
-	<h1 id="如何将L0基础大模型打造成具备行业特征的L1行业大模型"><a href="#如何将L0基础大模型打造成具备行业特征的L1行业大模型" class="headerlink" title="如何将L0基础大模型打造成具备行业特征的L1行业大模型"></a>如何将L0基础大模型打造成具备行业特征的L1行业大模型</h1><h2 id="整体方法"><a href="#整体方法" class="headerlink" title="整体方法"></a>整体方法</h2><p>让L0的基础大模型具备行业能力，有4种途径：</p>
-<ol>
-<li>基于行业数据&#x2F;知识对模型做增量预训练（SFT：Supervised Fine-Tune，有监督微调），包括<strong>指令微调</strong>和<strong>思维链微调</strong></li>
-</ol>
-<ul>
-<li><p><strong>指令微调</strong>：基于行业知识数据（问答对）进行模型增训，提升行业知识问题的回答能力。</p>
-</li>
-<li><p><strong>思维链（CoT）微调</strong>：基于行业CoT数据进行模型增训，提升模型对行业问题的逻辑推理能力。</p>
-</li>
-</ul>
-<ol start="2">
-<li><p>行业流程&#x2F;标准的对齐优化（RL）</p>
-</li>
-<li><p>行业知识增强的问答（RAG，基于行业知识向量数据库）</p>
-</li>
-<li><p>行业&#x2F;领域能力工具化，供模型调用（Function Calling，MCP）。可能是行业化的一些业务系统，也可能是历史上基于小模型封装并提供API的一些AI应用。</p>
-</li>
-</ol>
-<p>前两种与模型自身能力有关，后两种是通过Agent的方式来对模型进行增强。</p>
+	<p>Tokenizer（分词器）是将文本转化为模型可接受的数字化表示的工具。它的目的是将一个句子切割成更小的单元——tokens，这些tokens会作为模型的输入。通过Tokenizer，模型能够将自然语言中的单词、字符或子词转化为数字向量，便于模型进行处理。</p>
+<p>Tokenizer分词阶段，主要采用的不是“模型”，而是一种“算法”或“工具”，其核心思想是 <strong>基于统计的无监督学习，从训练语料中学习得到一个分词器</strong>。</p>
+<p>在中文任务中，常见的tokenizer有两种形式：WordPiece和Byte-level BPE（BBPE）。WordPiece方法会将常用词存入词表，对于未出现的词，则拆解为更小的子单元；BBPE则通过将每个字符转化为Unicode编码，避免了WordPiece的OOV（Out of Vocabulary）问题，尤其在多语言模型中更为适用。</p>
+<p>Byte Pair Encoding (BPE)：</p>
+<pre><code>原理：从单个字符（或字节）开始，统计最常相邻出现的字符对，然后将它们合并成一个新的“符号”，不断迭代直到达到预定的词表大小。
+特点：能有效在词表大小和序列长度之间取得平衡。对于未登录词（OOV）有较好的处理能力，因为它可以回退到子词甚至字符级别。
+代表模型：GPT系列、RoBERTa、LLaMA 等绝大多数自回归（Decoder-only）模型都使用BPE或其变种。
+</code></pre>
+<p>WordPiece：</p>
+<pre><code>原理：与BPE类似，也是通过合并子词来构建词表。但它的合并策略不同，不是基于频率，而是基于合并后对语言模型似然度的提升（通过一个贪婪的似然性最大化准则来选择）。
+特点：产生的词表通常与BPE相似，但合并顺序和结果可能略有不同。
+代表模型：BERT、T5 以及几乎所有Google发布的模型。
+</code></pre>
+<p>Tokenization的过程就像是学生通过拆解和理解基础知识点来掌握更复杂的概念，这为后续的模型训练打下了基础。</p>
+<p>分词工具选择：HuggingFace tokenizers 库，目前最流行的分词器开发库，支持BPE、WordPiece等多种算法，性能极高。Hugging Face Transformers库中的所有模型的分词器都基于它。</p>
+<p>注意：分词工具（如BPE算法、SentencePiece）本身不负责任何向量化工作。向量化结果是模型本身的一个组成部分（即Embedding层），其参数是LLM模型在训练过程中学习得到的。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p>1.<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/651430181">大模型基础组件 - Tokenizer</a>。</p>
+<hr>
+<p>（全文完）</p>
 
 </div>
 
@@ -649,16 +616,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/02%20%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83/2025-10-13-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-06-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Embedding%E8%AF%8D%E5%B5%8C%E5%85%A5/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  大模型训练和推理流程与框架
+                  Embedding (词嵌入/向量化)
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE-old/">
-                AI知识地图
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-06-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A6%82%E4%BD%95%E8%AE%A9%E5%9F%BA%E7%A1%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A1%8C%E4%B8%9A%E5%8C%96/">
+                基础大模型如何行业化训练
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

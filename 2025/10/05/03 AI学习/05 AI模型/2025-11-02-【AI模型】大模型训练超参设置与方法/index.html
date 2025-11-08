@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		02 实操系统环境与工具软件配置 | 
+		大模型训练超参设置与方法 | 
 	 
 	十二亚晖的个人空间
 	</title>
@@ -19,7 +19,7 @@
 		<meta name="keywords" content="给时光以生命" />
 	
 	
-		<meta name="description" content="安装本地模型推理框架工具和上层软件" />
+		<meta name="description" content="大模型预训练、后训练过程中涉及到的超参设置和方法" />
 	
 
 	<!-- favicon -->
@@ -395,7 +395,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-11-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">
                      
 										    大模型训练超参设置与方法
@@ -465,7 +465,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2025/10/05/04%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-22-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E6%9C%AC%E6%9C%BA%E5%AE%89%E8%A3%85%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/">
                      
 										    02 实操系统环境与工具软件配置
@@ -530,7 +530,7 @@
 	<!-- 引入正文 -->
 	<div id="content" class="content">
 		<h1 id="article-title">
-	02 实操系统环境与工具软件配置
+	大模型训练超参设置与方法
 </h1>
 
 <!-- meta -->
@@ -569,7 +569,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/实操/">实操</a>
+                    <a href="/tags/技术/">技术</a>
                     </i>
                 </span>
             
@@ -577,7 +577,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/配置/">配置</a>
+                    <a href="/tags/洞察/">洞察</a>
                     </i>
                 </span>
             
@@ -589,10 +589,122 @@
 
 <!-- content -->
 <div id="article-content">
-	<h1 id="1-Ollama"><a href="#1-Ollama" class="headerlink" title="1. Ollama"></a>1. Ollama</h1><p>Github代码库版本管理软件，用于本地代码库版本管理及与云端的同步。</p>
-<p>在本地离线编辑代码库中的文档后，可以通过Github Desktop将更新同步到云端。</p>
-<h1 id="2-LMStudio"><a href="#2-LMStudio" class="headerlink" title="2. LMStudio"></a>2. LMStudio</h1><p>加速代理，用于在中国通过代理加速实现Github代码库的登录和编辑。</p>
-<h1 id="3-Chatbox"><a href="#3-Chatbox" class="headerlink" title="3. Chatbox"></a>3. Chatbox</h1><hr>
+	<p>超参数指的是：在模型开始训练之前就需要手动设定或通过算法搜索确定的“配置开关”，而不是通过训练阶段让模型从数据中学到的神经网络参数。</p>
+<p>超参数的设置是大模型训练与微调的核心环节，直接影响模型性能、收敛速度和计算效率。</p>
+<p>从基础参数（如学习率、迭代次数）到架构相关参数（如位置编码基频），再到自动化调优工具（如Optuna），合理配置需要结合任务特性、数据规模和计算资源综合权衡。</p>
+<p>一、主要超参数及配置建议</p>
+<h2 id="大模型训练核心超参数配置"><a href="#大模型训练核心超参数配置" class="headerlink" title="大模型训练核心超参数配置"></a>大模型训练核心超参数配置</h2><p>以下表格系统性地总结了大规模语言模型预训练与全参数微调中的核心超参数配置与原则。</p>
+<table>
+<thead>
+<tr>
+<th align="left">超参数</th>
+<th align="left">超参数定义</th>
+<th align="left">典型范围&#x2F;值</th>
+<th align="left">说明与配置原则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>学习率</strong></td>
+<td align="left">每次模型反向传播时更新神经网络参数的比例。用于控制大模型参数更新的幅度。</td>
+<td align="left">(10^{-4} ) 到 (10^{-3} )</td>
+<td align="left"><strong>原则</strong>：学习率与批量大小的平方根成正比。常用公式：<code>LR = Base_LR * sqrt(Batch_Size / Base_Batch_Size)</code>。模型越大，学习率倾向于越小。</td>
+</tr>
+<tr>
+<td align="left"><strong>批量大小</strong></td>
+<td align="left">模型在参数更新前所处理的训练样本数量。</td>
+<td align="left">256 到 2048 (或更大)</td>
+<td align="left"><strong>原则</strong>：使用能占满GPU&#x2F;TPU内存的<strong>最大全局批量大小</strong>。通常通过<strong>梯度累积</strong>在多卡上实现大批量。大批量通常使训练更稳定。</td>
+</tr>
+<tr>
+<td align="left"><strong>优化器</strong></td>
+<td align="left">决定如何根据损失函数的梯度来更新模型参数的算法。</td>
+<td align="left"><strong>AdamW</strong></td>
+<td align="left"><strong>当前绝对主流的选择</strong>。它是Adam优化器的改进版，正确地将权重衰减与梯度更新解耦。标准参数：<code>beta1=0.9</code>, <code>beta2=0.999</code>, <code>epsilon=1e-8</code>。</td>
+</tr>
+<tr>
+<td align="left"><strong>学习率调度器</strong></td>
+<td align="left">在训练过程中动态调整学习率的策略。</td>
+<td align="left"><strong>余弦衰减</strong></td>
+<td align="left"><strong>最有效和流行的选择</strong>。它将学习率从峰值按照余弦函数的曲线平滑地衰减至0，通常能获得更好的模型性能和收敛效果。</td>
+</tr>
+<tr>
+<td align="left"><strong>预热步数</strong></td>
+<td align="left">在训练初期，学习率从0线性增加到目标峰值学习率所经历的步数。</td>
+<td align="left">总步数的 <strong>1% - 5%</strong></td>
+<td align="left">让模型在初期“稳起步”，避免因一开始学习率过大而导致模型“跑偏”，对<strong>训练稳定性</strong>至关重要。</td>
+</tr>
+<tr>
+<td align="left"><strong>权重衰减</strong></td>
+<td align="left">一种正则化技术，通过在损失函数中添加权重的L2范数惩罚项，防止模型过拟合。</td>
+<td align="left">0.1</td>
+<td align="left">注意，在实现时通常不对 <code>LayerNorm</code>、<code>Bias</code> 等参数应用权重衰减。</td>
+</tr>
+<tr>
+<td align="left"><strong>梯度裁剪</strong></td>
+<td align="left">在反向传播过程中，当梯度的范数超过某个阈值时，将其按比例缩放的技术。</td>
+<td align="left"><strong>全局范数 1.0</strong></td>
+<td align="left">防止梯度爆炸（即梯度值变得巨大导致训练崩溃）的<strong>安全保障</strong>，能显著提高训练稳定性。</td>
+</tr>
+<tr>
+<td align="left"><strong>迭代次数</strong></td>
+<td align="left">整个训练数据集被模型完整地“看过”一遍的次数。</td>
+<td align="left">1 到 10 (预训练)<br>3 到 50 (微调)</td>
+<td align="left"><strong>预训练</strong>：通常只过1个epoch，因为数据量极大。<br><strong>指令微调</strong>：通常需要3-10个epoch。<br><strong>下游任务微调</strong>：可能需要10-50个epoch，需根据验证集性能早停，防止过拟合。</td>
+</tr>
+</tbody></table>
+<p>详细解释：</p>
+<h1 id="1-训练优化类参数"><a href="#1-训练优化类参数" class="headerlink" title="1. 训练优化类参数"></a>1. 训练优化类参数</h1><h2 id="学习率（Learning-Rate）"><a href="#学习率（Learning-Rate）" class="headerlink" title="学习率（Learning Rate）"></a>学习率（Learning Rate）</h2><p>学习率（learning rate）：学习率是每次模型反向传播时更新神经网络参数的比例。用于控制大模型参数更新的幅度。</p>
+<p>学习率与模型规模（神经网络参数总量）、数据量、批量大小相关。 需根据模型规模和数据量、批大小等进行动态调整。</p>
+<p>比如：</p>
+<p>1）模型规模：大模型通常采用较小学习率（如1e-6至1e-4）以避免过拟合，而小模型可尝试更大值（如1e-3）。例如，Llama2-70B在材料领域微调时，最优学习率范围为8e-7至8e-5，其中8e-5表现最佳。</p>
+<p>2）训练数据：如果有大量训练数据，学习率取值可以低点，从而避免因为数据量太大，导致模型参数变动太剧烈而无法收敛。</p>
+<p>但如果太低则可能会导致参数收敛过慢，训练出来没有达到调整效果。</p>
+<p>一个简单的判断方法是看训练过程的 loss值，如果 loss 下降很慢，说明学习率太小，如果 loss 反复横跳，说明学习率太大。</p>
+<p>3）批量大小：有研究表明，学习率应该和批大小匹配，批大小增加 n 倍时学习率也增大 n 倍。</p>
+<h2 id="迭代次数（epoch）"><a href="#迭代次数（epoch）" class="headerlink" title="迭代次数（epoch）"></a>迭代次数（epoch）</h2><p>迭代次数（epoch）：每过完一次所有数据就代表一个 epoch，所以 2 个 epoch 意味着相同数据会训练两次，这个值过大会导致模型过拟合，一般不超过 4.</p>
+<p>但在 OpenAI 论文里提到他们用的 16，过拟合反而能提升后续 RM 的效果。需根据数据量和模型拟合程度调整。Llama2微调实验显示，4个epoch在多数任务上优于2个epoch，但需警惕过拟合。</p>
+<h2 id="预热比例（warmup-ratio）"><a href="#预热比例（warmup-ratio）" class="headerlink" title="预热比例（warmup_ratio）"></a>预热比例（warmup_ratio）</h2><p>预热比例（Warmup_ratio）：决定学习率预热步数占总步数的比例，用于缓解训练初期不稳定性。实验表明，0.005的预热比例在Llama2微调中效果优于更高值（如0.1）。</p>
+<h2 id="梯度累积步数（gradient-accumulation-steps）"><a href="#梯度累积步数（gradient-accumulation-steps）" class="headerlink" title="梯度累积步数（gradient_accumulation_steps）"></a>梯度累积步数（gradient_accumulation_steps）</h2><p>梯度累积步数（gradient_accumulation_steps）：在GPU显存有限时，通过累积多步梯度模拟大批次训练。</p>
+<p>例如，当物理批次大小为16时，设置为4可等效模拟64的批次效果，Llama2微调中1步累积（即无累积）表现最优。</p>
+<h1 id="2-架构与任务适配参数"><a href="#2-架构与任务适配参数" class="headerlink" title="2. 架构与任务适配参数"></a>2. 架构与任务适配参数</h1><h2 id="批量大小（batch-size）"><a href="#批量大小（batch-size）" class="headerlink" title="批量大小（batch_size）"></a>批量大小（batch_size）</h2><p>批大小（batch_size）：需平衡内存占用与训练稳定性。大模型通常采用“大批次+梯度累积”策略，例如GPT-3使用3500万token&#x2F;批次，PaLM采用2048样本&#x2F;批次。</p>
+<p>每次训练更新梯度计算的时候提供多少条数据，如果这个值越大，就越不受某个异常数据带来的影响，因此训练会更稳定，还能加快训练速度，但这个值过大可能会导致过拟合，也会导致内存不足，通常推荐使用 8，这可能是因为 Nvidia 推荐用 8 的倍数来有效利用 Tensor Core。</p>
+<p>过小的批大小会导致梯度噪声，过大则可能陷入局部最优。</p>
+<h2 id="位置编码基频（base-frequency）："><a href="#位置编码基频（base-frequency）：" class="headerlink" title="位置编码基频（base frequency）："></a>位置编码基频（base frequency）：</h2><p>位置编码基频（base frequency）：影响模型对长文本的建模能力。Llama2默认RoPE编码的基频为10000，Meta通过将其提升至500000，成功将上下文窗口扩展至3.2万token，且性能优于位置插值方法。</p>
+<h1 id="3-正则化与泛化参数"><a href="#3-正则化与泛化参数" class="headerlink" title="3. 正则化与泛化参数"></a>3. 正则化与泛化参数</h1><h2 id="dropout率："><a href="#dropout率：" class="headerlink" title="dropout率："></a>dropout率：</h2><p>dropout率：防止过拟合的经典参数，在Transformer的注意力层和前馈层中常用。例如，BERT默认 dropout率为0.1，而在数据稀疏任务中可提高至0.3。</p>
+<h2 id="权重衰减（weight-decay）："><a href="#权重衰减（weight-decay）：" class="headerlink" title="权重衰减（weight decay）："></a>权重衰减（weight decay）：</h2><p>权重衰减（weight decay）：控制模型复杂度，AdamW优化器中常用值为0.01。Llama2微调中，适当权重衰减可提升模型在材料属性预测等小样本任务上的泛化能力。</p>
+<p>二、自动化调优工具与方法</p>
+<ol>
+<li>Optuna：智能超参数搜索</li>
+</ol>
+<p>Optuna通过贝叶斯优化（如TPE采样器）动态探索参数空间，支持剪枝（Pruning）功能提前终止无效试验。在XGBoost分类任务中，Optuna相比随机搜索将准确率提升0.06%，并减少38%的计算时间。</p>
+<p>核心优势包括：</p>
+<p>智能搜索：基于历史试验结果聚焦优质参数区域，例如优先探索低学习率范围。</p>
+<p>可视化分析：通过参数重要性图（如gamma&gt;max_depth&gt;learning_rate）指导调参方向。</p>
+<p>框架无关：支持PyTorch、TensorFlow等主流框架。</p>
+<p>代码示例如下：</p>
+<blockquote>
+<p> import optuna<br> def objective(trial):<br>     lr &#x3D; trial.suggest_float(“lr”, 1e-6, 1e-4, log&#x3D;True)  # 对数尺度采样<br>     return model.train(lr&#x3D;lr)  # 目标函数返回性能指标<br> study &#x3D; optuna.create_study(direction&#x3D;”maximize”)<br> study.optimize(objective, n_trials&#x3D;100)  # 100次试验</p>
+</blockquote>
+<ol start="2">
+<li>μTransfer：小模型迁移至大模型</li>
+</ol>
+<p>针对大模型训练成本高的问题，μTransfer先在小模型上调优超参数，再通过μP初始化方法迁移至大模型。实验显示，使用μP后，不同宽度的Transformer模型最优学习率一致，宽模型性能始终优于窄模型。</p>
+<p>三、调参实践与注意事项</p>
+<ol>
+<li><p>关键原则</p>
+<p> 对数尺度采样：学习率、权重衰减等超参数在对数尺度上更敏感，例如通过learning_rate&#x3D;10^r（r在[-6,-4]均匀采样）探索。<br> 早停策略：基于验证集损失停止训练，避免过拟合。例如，当连续5个epoch无提升时终止。<br> 参数相关性：学习率与批大小需协同调整，大批次通常需要更高学习率（如批大小翻倍，学习率提高1.5倍)。</p>
+</li>
+<li><p>常见误区</p>
+<p> 过度调参：盲目追求性能提升可能导致过拟合验证集，建议保留独立测试集评估最终效果。<br> 忽视计算效率：超参数优化需平衡试验次数与资源成本，Optuna剪枝功能可节省55%计算时间。</p>
+</li>
+</ol>
+<p>四、行业最佳实践</p>
+<pre><code>LLaMA系列：微调学习率推荐8e-5，RoPE基频调整至500000以支持长上下文。
+多任务学习：采用硬参数共享（所有任务共用底层参数）提升泛化能力，但需注意任务间干扰。
+强化学习微调（RLHF）：PPO算法中，关键参数如cliprange=0.2、gamma=0.95需结合奖励模型动态调整。
+</code></pre>
+<p>超参数设置既是科学也是艺术：需基于理论指导（如贝叶斯优化），结合实验迭代（如Optuna探索），并根据任务特性（如文本长度、数据规模）灵活调整。未来，随着自动化工具（如Optuna）和迁移学习方法（如μTransfer）的发展，大模型调参将更高效、更智能化。如何在有限计算资源下快速找到最优参数组合，仍是值得探索的核心问题。</p>
+<hr>
 <p>（本文完）</p>
 
 </div>
@@ -602,16 +714,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/04%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-05-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-22-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  01 实操系统环境与工具软件配置
+                  大模型API接口调用参数说明
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2025/10/05/09%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-06-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E8%8B%B1%E4%BC%9F%E8%BE%BE/">
-                英伟达
+              <a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-29-%E3%80%90%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BD%95%E3%80%91/">
+                临时记录
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
