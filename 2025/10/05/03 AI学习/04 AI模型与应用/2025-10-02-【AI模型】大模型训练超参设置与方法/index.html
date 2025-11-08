@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		模型训练 - 大模型训练超参设置与方法 | 
+	 
+	十二亚晖的个人空间
+	</title>
+	
+	<!-- keywords,description -->
+	
+		<meta name="keywords" content="给时光以生命" />
+	
+	
+		<meta name="description" content="大模型预训练、后训练过程中涉及到的超参设置和方法" />
+	
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+
+
+	<!-- search -->
+	<script>
+		var searchEngine = "https://www.google.com/search?q=";
+		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
+			searchEngine = "https://www.google.com/search?q=";
+		}
+		var homeHost = "atinykalami.github.io";
+		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
+			homeHost = window.location.host;
+		}
+	</script>
+
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@v1.5.1/dist/Valine.min.js"></script>
+
+	
+	
+
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">十二亚晖的个人空间</a>
+
+	<ul id="menu">
+    
+
+    
+      <li class="menu-item">
+        <a href="/tags" class="menu-item-link">标签</a>
+      </li>
+    
+
+    
+      <li class="menu-item">
+        <a href="/categories" class="menu-item-link">分类</a>
+      </li>
+    
+
+    
+      
+      
+        <li class="menu-item">
+          <a href='https://github.com/aTinyKalami' class="menu-item-link" target="_blank">
+            我的项目
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a href='https://github.com/aTinyKalami/blog-code-folder' class="menu-item-link" target="_blank">
+            博客源码
+          </a>
+        </li>
+      
+    
+  
+    
+      <li class="menu-item">
+        <a href='https://github.com/aTinyKalami' class="menu-item-link" target="_blank">
+          <i class="fa fa-github fa-2x"></i>
+        </a>
+      </li>
+    
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 通用文档
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-01-Markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%85%A5%E6%8C%87%E5%AF%BC/">
+                     
+										    01 Markdown格式文档输入规则
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/25/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-02-HEXO%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%94%BB%E7%95%A5/">
+                     
+										    02 Github上部署Hexo框架的博客的亲测爬坑攻略
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/25/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-03-HEXO%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
+                     
+										    03 Hexo框架的Github文章手工部署常用命令
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										03 AI学习
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										00 AI知识地图
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/00%20AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">
+                     
+										    AI知识地图
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										02 AI硬件体系
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/02%20AI%E7%A1%AC%E4%BB%B6%E4%BD%93%E7%B3%BB/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E8%8A%AF%E7%89%87/">
+                     
+										    AI芯片
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/02%20AI%E7%A1%AC%E4%BB%B6%E4%BD%93%E7%B3%BB/2025-10-06-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E5%AD%98%E5%82%A8/">
+                     
+										    02 AI存储
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										04 AI模型与应用
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-01-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Transfomer%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/">
+                     
+										    Transformer模型架构基础
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-01-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                     
+										    多模态模型
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Embedding%E8%AF%8D%E5%B5%8C%E5%85%A5/">
+                     
+										    基础知识 - Embedding (词嵌入/向量化)
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Tokenizer%E5%88%86%E8%AF%8D/">
+                     
+										    基础知识 - Tokeniazer分词
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
+                     
+										    基础知识 - 大模型API接口调用参数说明
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/02/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E5%BE%AE%E8%B0%83/">
+                     
+										    模型训练 - 模型后训练与微调
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">
+                     
+										    模型训练 - 大模型训练超参设置与方法
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A6%82%E4%BD%95%E8%AE%A9%E5%9F%BA%E7%A1%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A1%8C%E4%B8%9A%E5%8C%96/">
+                     
+										    模型训练 - 基础大模型如何行业化训练
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/11/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-03-%E3%80%90AI%E6%A1%86%E6%9E%B6%E3%80%91RAY%E5%92%8CK8S%E5%AE%B9%E5%99%A8%E6%A1%86%E6%9E%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/">
+                     
+										    AI框架 - 使用K8S容器框架和RAY的关系和区别
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-03-%E3%80%90AI%E6%A1%86%E6%9E%B6%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
+                     
+										    训推框架 - 大模型训练和推理流程与框架
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91GraphRAG%E6%96%B9%E6%A1%88/">
+                     
+										    AI应用 - Graph RAG
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91RAG%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90/">
+                     
+										    AI应用 - RAG方案
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 动手实操
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E5%90%84%E8%B5%84%E6%BA%90%E5%B9%B3%E5%8F%B0AC%E4%B8%8EPD%E8%AE%B0%E5%BD%95/">
+                     
+										    各资源平台链接与AC/PD记录
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-02-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
+                     
+										    实操系统环境与工具软件配置
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/29/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-29-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%9B%E8%A1%8C%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/">
+                     
+										    在本地进行NLP大模型的微调
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BD%95%E3%80%91%E4%BE%9B%E5%90%8E%E7%BB%AD%E7%BB%86%E5%8C%96/">
+                     
+										    临时记录
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB%E3%80%91%E6%96%87%E6%A1%A3%E5%90%8D%E7%A7%B0%20%E6%A8%A1%E6%9D%BF/">
+                     
+										    AI洞察 - 业界趋势洞察材料与网址
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-01-%E3%80%90AI%E6%B4%9E%E5%AF%9F%E3%80%91%E4%B8%9A%E7%95%8C%E6%B4%9E%E5%AF%9F%E7%BD%91%E5%9D%80/">
+                     
+										    AI洞察 - 业界趋势洞察材料与网址
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										08 业界厂商
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-06-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E8%8B%B1%E4%BC%9F%E8%BE%BE/">
+                     
+										    英伟达
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-10-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E9%98%BF%E9%87%8C%E4%BA%91/">
+                     
+										    阿里云
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										DeepSeek
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3%E5%92%8CR1/">
+                     
+										    DeepSeek V3和R1技术创新
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
+                     
+										    DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/11/02/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-09-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20OCR/">
+                     
+										    DeepSeek OCR模型技术与意义解析
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 日常记录
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/09%20%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/2025-10-15-%E3%80%90%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95%E3%80%91%E6%B5%B7%E5%A4%96%E5%9B%BD%E5%AE%B6%E8%B6%B3%E8%BF%B9/">
+                     
+										    这些年走过的国家
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content" class="content">
+		<h1 id="article-title">
+	模型训练 - 大模型训练超参设置与方法
+</h1>
+
+<!-- meta -->
+<div class="article-meta">
+	
+
+	<span>十二亚晖</span>
+	<span>2025-10-05 09:00:00</span>
+
+  <div id="article-categories">
+    
+		  <span>Categories：</span>
+      
+          
+              <span>
+                  <i class="fa fa-folder" aria-hidden="true">
+                  <a href="/categories/AI/">AI</a>
+                  </i>
+                
+              </span>
+          
+      
+    
+
+    
+		    <span>Tags：</span>
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/AI/">AI</a>
+                    </i>
+                </span>
+            
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/技术/">技术</a>
+                    </i>
+                </span>
+            
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/洞察/">洞察</a>
+                    </i>
+                </span>
+            
+        
+    
+  </div>
+
+</div>
+
+<!-- content -->
+<div id="article-content">
+	<p><strong>超参数</strong>：指在模型开始训练之前就需要手动设定或通过算法搜索确定的“配置开关”，而不是通过训练阶段让模型从数据中学到的神经网络参数。</p>
+<p>超参数的设置是大模型训练与微调的核心环节，直接影响模型性能、收敛速度和计算效率。</p>
+<h1 id="一-大模型训练核心超参数配置"><a href="#一-大模型训练核心超参数配置" class="headerlink" title="一. 大模型训练核心超参数配置"></a>一. 大模型训练核心超参数配置</h1><h2 id="大模型预训练与全参数微调中的核心超参数配置与原则总览"><a href="#大模型预训练与全参数微调中的核心超参数配置与原则总览" class="headerlink" title="大模型预训练与全参数微调中的核心超参数配置与原则总览"></a>大模型预训练与全参数微调中的核心超参数配置与原则总览</h2><table>
+<thead>
+<tr>
+<th align="left">超参数</th>
+<th align="left">超参数定义</th>
+<th align="left">典型范围&#x2F;值</th>
+<th align="left">说明与配置原则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>学习率</strong></td>
+<td align="left">每次模型反向传播时更新神经网络参数的比例。用于控制大模型参数更新的幅度。</td>
+<td align="left">(10^{-4} ) 到 (10^{-3} )</td>
+<td align="left"><strong>原则</strong>：学习率与批量大小的平方根成正比。常用公式：<code>LR = Base_LR * sqrt(Batch_Size / Base_Batch_Size)</code>。模型越大，学习率倾向于越小。</td>
+</tr>
+<tr>
+<td align="left"><strong>学习率调度器</strong></td>
+<td align="left">在训练过程中动态调整学习率的策略，或者算法。</td>
+<td align="left"><strong>余弦衰减</strong></td>
+<td align="left"><strong>最有效和流行的选择</strong>。它将学习率从峰值按照余弦函数的曲线平滑地衰减至0，通常能获得更好的模型性能和收敛效果。</td>
+</tr>
+<tr>
+<td align="left"><strong>批量大小</strong></td>
+<td align="left">模型在参数更新前所处理的训练样本数量。</td>
+<td align="left">256 到 2048 (或更大)</td>
+<td align="left"><strong>原则</strong>：使用能占满GPU&#x2F;TPU内存的<strong>最大全局批量大小</strong>。通常通过<strong>梯度累积</strong>在多卡上实现大批量。大批量通常使训练更稳定。</td>
+</tr>
+<tr>
+<td align="left"><strong>优化器</strong></td>
+<td align="left">决定如何根据损失函数的梯度来更新模型参数的算法。</td>
+<td align="left"><strong>AdamW</strong></td>
+<td align="left"><strong>当前绝对主流的选择</strong>。它是Adam优化器的改进版，正确地将权重衰减与梯度更新解耦。标准参数：<code>beta1=0.9</code>, <code>beta2=0.999</code>, <code>epsilon=1e-8</code>。</td>
+</tr>
+<tr>
+<td align="left"><strong>预热步数</strong></td>
+<td align="left">在训练初期，学习率从0线性增加到目标峰值学习率所经历的步数。</td>
+<td align="left">总步数的 <strong>1% - 5%</strong></td>
+<td align="left">让模型在初期“稳起步”，避免因一开始学习率过大而导致模型“跑偏”，对<strong>训练稳定性</strong>至关重要。</td>
+</tr>
+<tr>
+<td align="left"><strong>权重衰减</strong></td>
+<td align="left">一种正则化技术，通过在损失函数中添加权重的L2范数惩罚项，防止模型过拟合。</td>
+<td align="left">0.1</td>
+<td align="left">注意，在实现时通常不对 <code>LayerNorm</code>、<code>Bias</code> 等参数应用权重衰减。</td>
+</tr>
+<tr>
+<td align="left"><strong>梯度裁剪</strong></td>
+<td align="left">在反向传播过程中，当梯度的范数超过某个阈值时，将其按比例缩放的技术。</td>
+<td align="left"><strong>全局范数 1.0</strong></td>
+<td align="left">防止梯度爆炸（即梯度值变得巨大导致训练崩溃）的<strong>安全保障</strong>，能显著提高训练稳定性。</td>
+</tr>
+<tr>
+<td align="left"><strong>迭代次数</strong></td>
+<td align="left">整个训练数据集被模型完整地“看过”一遍的次数。</td>
+<td align="left">1 到 10 (预训练)<br>3 到 50 (微调)</td>
+<td align="left"><strong>预训练</strong>：通常只过1个epoch，因为数据量极大。<br><strong>指令微调</strong>：通常需要3-10个epoch。<br><strong>下游任务微调</strong>：可能需要10-50个epoch，需根据验证集性能早停，防止过拟合。</td>
+</tr>
+</tbody></table>
+<h2 id="超参数详细解释"><a href="#超参数详细解释" class="headerlink" title="超参数详细解释"></a>超参数详细解释</h2><h3 id="1-训练优化类超参数"><a href="#1-训练优化类超参数" class="headerlink" title="1. 训练优化类超参数"></a>1. 训练优化类超参数</h3><h4 id="学习率（Learning-Rate）"><a href="#学习率（Learning-Rate）" class="headerlink" title="学习率（Learning Rate）"></a>学习率（Learning Rate）</h4><p>学习率是每次模型反向传播时更新神经网络参数的比例。用于控制大模型参数更新的幅度。</p>
+<p>学习率与模型规模（神经网络参数总量）、数据量、批量大小相关。 需根据模型规模和数据量、批大小等进行动态调整。</p>
+<p>比如：</p>
+<p>1）模型规模：大模型通常采用较小学习率（如1e-6至1e-4）以避免过拟合，而小模型可尝试更大值（如1e-3）。例如，Llama2-70B在材料领域微调时，最优学习率范围为8e-7至8e-5，其中8e-5表现最佳。</p>
+<p>2）训练数据：如果有大量训练数据，学习率取值可以低点，从而避免因为数据量太大，导致模型参数变动太剧烈而无法收敛。</p>
+<p>但如果太低则可能会导致参数收敛过慢，训练出来没有达到调整效果。</p>
+<p>一个简单的判断方法是看训练过程的 loss值，如果 loss 下降很慢，说明学习率太小，如果 loss 反复横跳，说明学习率太大。</p>
+<p>3）批量大小：有研究表明，学习率应该和批大小匹配，批大小增加 n 倍时学习率也增大 n 倍。</p>
+<p>学习率与调度器：大模型训练的目标就是为了基于给定数据集找出来在高维空间的神经网络参数配置的局部最优解。所以可以把学习率想象成“下山时的步长”。一开始步长可以大一些（高学习率），快到山底时步长要变小（低学习率）以免迈过最低点。调度器就是控制这个步长变化规律的。</p>
+<h4 id="迭代次数（epoch）"><a href="#迭代次数（epoch）" class="headerlink" title="迭代次数（epoch）"></a>迭代次数（epoch）</h4><p>每过完一次所有数据就代表一个 epoch，所以 2 个 epoch 意味着相同数据会训练两次，这个值过大会导致模型过拟合，一般不超过 4.</p>
+<p>但在 OpenAI 论文里提到他们用的 16，过拟合反而能提升后续 RM 的效果。需根据数据量和模型拟合程度调整。Llama2微调实验显示，4个epoch在多数任务上优于2个epoch，但需警惕过拟合。</p>
+<p>步数（Step）与迭代次数（Epoch）：</p>
+<pre><code>Step（步数）：每进行一次参数更新（处理完一个batch）就算一步。
+
+Epoch（迭代次数）：模型完整遍历一遍整个训练集算一个epoch。
+
+总步数 = (总训练样本数 / 批量大小) * 迭代次数。
+</code></pre>
+<h4 id="预热比例（warmup-ratio）"><a href="#预热比例（warmup-ratio）" class="headerlink" title="预热比例（warmup_ratio）"></a>预热比例（warmup_ratio）</h4><p>决定学习率预热步数占总步数的比例，用于缓解训练初期不稳定性。实验表明，0.005的预热比例在Llama2微调中效果优于更高值（如0.1）。</p>
+<h4 id="梯度累积步数（gradient-accumulation-steps）"><a href="#梯度累积步数（gradient-accumulation-steps）" class="headerlink" title="梯度累积步数（gradient_accumulation_steps）"></a>梯度累积步数（gradient_accumulation_steps）</h4><p>在GPU显存有限时，通过累积多步梯度模拟大批次训练。</p>
+<p>例如，当物理批次大小为16时，设置为4可等效模拟64的批次效果，Llama2微调中1步累积（即无累积）表现最优。</p>
+<h3 id="2-架构与任务适配参数"><a href="#2-架构与任务适配参数" class="headerlink" title="2. 架构与任务适配参数"></a>2. 架构与任务适配参数</h3><h4 id="批量大小（batch-size）"><a href="#批量大小（batch-size）" class="headerlink" title="批量大小（batch_size）"></a>批量大小（batch_size）</h4><p>需平衡内存占用与训练稳定性。大模型通常采用“大批次+梯度累积”策略，例如GPT-3使用3500万token&#x2F;批次，PaLM采用2048样本&#x2F;批次。</p>
+<p>每次训练更新梯度计算的时候提供多少条数据，如果这个值越大，就越不受某个异常数据带来的影响，因此训练会更稳定，还能加快训练速度，但这个值过大可能会导致过拟合，也会导致内存不足，通常推荐使用 8，这可能是因为 Nvidia 推荐用 8 的倍数来有效利用 Tensor Core。</p>
+<p>过小的批大小会导致梯度噪声，过大则可能陷入局部最优。</p>
+<h4 id="位置编码基频（base-frequency）："><a href="#位置编码基频（base-frequency）：" class="headerlink" title="位置编码基频（base frequency）："></a>位置编码基频（base frequency）：</h4><p>影响模型对长文本的建模能力。Llama2默认RoPE编码的基频为10000，Meta通过将其提升至500000，成功将上下文窗口扩展至3.2万token，且性能优于位置插值方法。</p>
+<h3 id="3-正则化与泛化参数"><a href="#3-正则化与泛化参数" class="headerlink" title="3. 正则化与泛化参数"></a>3. 正则化与泛化参数</h3><h4 id="dropout率："><a href="#dropout率：" class="headerlink" title="dropout率："></a>dropout率：</h4><p>防止过拟合的经典参数，在Transformer的注意力层和前馈层中常用。例如，BERT默认 dropout率为0.1，而在数据稀疏任务中可提高至0.3。</p>
+<h4 id="权重衰减（weight-decay）："><a href="#权重衰减（weight-decay）：" class="headerlink" title="权重衰减（weight decay）："></a>权重衰减（weight decay）：</h4><p>控制模型复杂度，AdamW优化器中常用值为0.01。Llama2微调中，适当权重衰减可提升模型在材料属性预测等小样本任务上的泛化能力。</p>
+<h1 id="二-超参数配置参考文档说明"><a href="#二-超参数配置参考文档说明" class="headerlink" title="二. 超参数配置参考文档说明"></a>二. 超参数配置参考文档说明</h1><h1 id="预训练阶段超参配置参考文档"><a href="#预训练阶段超参配置参考文档" class="headerlink" title="预训练阶段超参配置参考文档"></a>预训练阶段超参配置参考文档</h1><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2112.05682">The Reversible Transformer: Scaling Large-Scale Inference and Training with Minimal Overhead</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/google-research/t5x">Google’s T5X&#x2F;T5 训练配置指南</a>,重点关注其中的 configs&#x2F; 目录和 docs&#x2F; 文档。您可以看到从Base到11B所有模型的完整训练配置文件，这些文件本身就是“系统性和精炼”的超参数指南。</p>
+<p>谷歌对应上面的训练T5模型（包括13B和11B）的关键细节的官方博客：<a target="_blank" rel="noopener" href="https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html">Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer</a></p>
+<p>基于T5X代码库的配置表格<a target="_blank" rel="noopener" href="https://docs.google.com/spreadsheets/d/1VPS_-l5eCYm-Obkwg9_BQZbC6v7w7vCk1ufvvksbLEU/edit?gid=0#gid=0">Model Parallelism in T5X</a></p>
+<p><a target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/v4.17.0/en/training">Hugging Face Transformers 文档：如何训练新语言模型</a></p>
+<h1 id="微调阶段超参配置参考文档"><a href="#微调阶段超参配置参考文档" class="headerlink" title="微调阶段超参配置参考文档"></a>微调阶段超参配置参考文档</h1><p>对于微调，超参数配置的逻辑与预训练有所不同。此时，LoRA 等高效微调方法已成为主流。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models</a></p>
+<p><a target="_blank" rel="noopener" href="https://magazine.sebastianraschka.com/p/a-visual-guide-to-fine-tuning-llms">A Visual Guide to Fine-tuning LLMs with LoRA</a></p>
+<h1 id="三-国内云厂商关于超参数配置的的社区文档学习精选"><a href="#三-国内云厂商关于超参数配置的的社区文档学习精选" class="headerlink" title="三. 国内云厂商关于超参数配置的的社区文档学习精选"></a>三. 国内云厂商关于超参数配置的的社区文档学习精选</h1><h4 id="1-核心推荐"><a href="#1-核心推荐" class="headerlink" title="1. 核心推荐"></a>1. 核心推荐</h4><ol>
+<li><a target="_blank" rel="noopener" href="https://www.volcengine.com/docs/8233/130073">火山引擎 - 大模型训练超参配置</a><ul>
+<li><strong>推荐理由：</strong> 最符合“系统性和精炼”要求的文档，直接以表格形式列出核心超参数的定义、建议值和示例，非常实用，是快速查阅的首选。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Nlkm5nkf3">百度文心千帆 - 模型调参介绍</a><ul>
+<li><strong>推荐理由：</strong> 对学习率、训练轮次、批量大小等核心参数有系统性的介绍和推荐范围，讲解清晰，是系统学习超参数作用的优秀文档。</li>
+</ul>
+</li>
+</ol>
+<h4 id="2-重点参考"><a href="#2-重点参考" class="headerlink" title="2. 重点参考"></a>2. 重点参考</h4><ol start="3">
+<li><a target="_blank" rel="noopener" href="https://support.huaweicloud.com/engineers-modelarts/modelarts_23_0032.html">华为云 - 超参搜索</a><ul>
+<li><strong>推荐理由：</strong> 系统介绍了自动超参优化（HPO）的功能和流程，说明了为什么要调整超参数以及如何让AI自动寻找最优配置，理念非常先进和实用。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://support.huaweicloud.com/bestpractice-modelarts/modelarts_10_0076.html">华为云 - 示例：从0到1制作自定义镜像并用于训练（PyTorch）</a><ul>
+<li><strong>推荐理由：</strong> 在这个详细的实战示例中，提供了完整的训练脚本片段，其中明确展示了<code>batch_size</code>, <code>learning_rate</code>等关键超参数在代码中的设置位置，对于理解参数如何落地极具参考价值。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/851/74132">腾讯云 - 大模型精调任务超参说明</a><ul>
+<li><strong>推荐理由：</strong> 专门针对大模型精调（Fine-tuning）场景，对LoRA等高效微调方法的超参数有详细说明，在进行模型微调时极具参考价值。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/dashscope/developer-reference/parameter-tuning">阿里云 - 灵积模型服务参数调优</a><ul>
+<li><strong>推荐理由：</strong> 虽然主要针对推理参数（如 <code>temperature</code>, <code>top_p</code>），但对于理解这些关键参数的定义和作用至关重要，是学习推理阶段超参数的基础。</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-拓展阅读"><a href="#3-拓展阅读" class="headerlink" title="3. 拓展阅读"></a>3. 拓展阅读</h4><ol start="7">
+<li><a target="_blank" rel="noopener" href="https://support.huaweicloud.com/exeml-modelarts/modelarts_21_0008.html">华为云 - 自动学习之预测分析项目</a><ul>
+<li><strong>推荐理由：</strong> 虽然面向自动学习场景，但其界面和流程中清晰地展示了<strong>学习率、迭代次数等超参数的可配置项</strong>，有助于初学者直观理解这些参数是训练任务的一部分。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/pai/user-guide/deploy-the-qwen-model-on-pai-quickly">阿里云 - 使用PAI快速部署Qwen模型</a><ul>
+<li><strong>推荐理由：</strong> 可通过其相关的微调教程，了解在阿里云PAI平台上进行全参数微调或LoRA微调时的具体超参数设置，有平台实操需求时可参考。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/beginner/train_cn.html">PaddlePaddle - 动态图基础使用</a><ul>
+<li><strong>推荐理由：</strong> 从飞桨深度学习框架层面解释了优化器、学习率调度器等超参数的设置原理，适合希望深入了解底层机制和框架具体用法的读者。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>（本文完）</p>
+
+</div>
+
+<!-- post-guide -->
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91Tokenizer%E5%88%86%E8%AF%8D/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  基础知识 - Tokeniazer分词
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A6%82%E4%BD%95%E8%AE%A9%E5%9F%BA%E7%A1%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A1%8C%E4%B8%9A%E5%8C%96/">
+                模型训练 - 基础大模型如何行业化训练
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+<!-- comment - giscus -->
+
+
+<!-- comment - valine -->
+
+
+<script>
+	
+	
+</script>
+
+	</div>
+	<div id="footer">
+	<p>
+	©<span id="footerYear-start"></span>-<span id="footerYear-end"></span>
+
+	
+	    <a href="/">十二亚晖</a>
+	
+	
+	
+	<br>
+	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//wujun.me" target="_blank">Wu Jun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
+	</p>
+</div>
+
+
+<script type="text/javascript">
+	document.getElementById('footerYear-start').innerHTML = new Date().getFullYear() + '';
+</script>
+
+<script type="text/javascript">
+	document.getElementById('footerYear-end').innerHTML = new Date().getFullYear() + '';
+</script>
+
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
