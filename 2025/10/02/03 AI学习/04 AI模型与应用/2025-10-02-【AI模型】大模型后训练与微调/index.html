@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Etiketler</a>
+        <a href="/tags" class="menu-item-link">Tags</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Kategoriler</a>
+        <a href="/categories" class="menu-item-link">Categories</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
+		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
 		<div id="tree">
 			
 
@@ -727,7 +727,10 @@
 <td align="left">用户提出需调用外部工具类的问题 + 调用外部工具的标准JSON格式的输出字段内容</td>
 </tr>
 </tbody></table>
-<h1 id="二-大模型微调数据集准备"><a href="#二-大模型微调数据集准备" class="headerlink" title="二. 大模型微调数据集准备"></a>二. 大模型微调数据集准备</h1><p>如何创建和选取模型微调数据集，是决定模型微调效果成败的最关键因素。</p>
+<h1 id="二-大模型微调的实施方式"><a href="#二-大模型微调的实施方式" class="headerlink" title="二. 大模型微调的实施方式"></a>二. 大模型微调的实施方式</h1><h2 id="基于模型托管厂商平台的MaaS服务进行低代码微调"><a href="#基于模型托管厂商平台的MaaS服务进行低代码微调" class="headerlink" title="基于模型托管厂商平台的MaaS服务进行低代码微调"></a>基于模型托管厂商平台的MaaS服务进行低代码微调</h2><p>以华为云或者硅基流动平台为例，给出截图。</p>
+<p>微调超参数配置与调整。</p>
+<p>可参考视频链接<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s2AUe2EBq?t=739.4"> → 低码微调模型</a></p>
+<h2 id="基于本地或云端环境通过工具软件进行全代码微调"><a href="#基于本地或云端环境通过工具软件进行全代码微调" class="headerlink" title="基于本地或云端环境通过工具软件进行全代码微调"></a>基于本地或云端环境通过工具软件进行全代码微调</h2><h1 id="二-大模型微调数据集准备"><a href="#二-大模型微调数据集准备" class="headerlink" title="二. 大模型微调数据集准备"></a>二. 大模型微调数据集准备</h1><p>如何创建和选取模型微调数据集，是决定模型微调效果成败的最关键因素。</p>
 <p>截止目前，已经诞生了各类不同的微调框架和海量的微调数据集，在绝大多数情况下，我们只需要选择不同的微调框架并搭配不同的数据集即可。</p>
 <p>但伴随着模型能力越来越复杂，种类越来越多，包括现阶段很多模型都具备了Function calling功能，和推理或者思维链能力。此时如果企业希望进行一些复杂功能模型的微调，例如围绕模型进行Function calling能力微调，同时还需保留其混合推理能力，此时很多公开数据集或许就无法满足要求了。此外，如果我们希望给模型进行特定领域的知识关注，或者提升模型对于特殊工具组的工具调用准确率，这时就需要手动创建微调数据集。</p>
 <h2 id="大模型微调数据集原理：模型内置特殊字符及提示词模板"><a href="#大模型微调数据集原理：模型内置特殊字符及提示词模板" class="headerlink" title="大模型微调数据集原理：模型内置特殊字符及提示词模板"></a>大模型微调数据集原理：模型内置特殊字符及提示词模板</h2><p>要手动合并或者创建微调数据集，就必须了解微调数据集构造背后的原理。</p>
@@ -751,9 +754,9 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
+              <a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3%E5%92%8CR1/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制
+                  DeepSeek V3和R1技术创新
               </a>
             
         </div>
