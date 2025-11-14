@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		模型训练 - 大模型后训练与微调 | 
+	 
+	十二亚晖的个人空间
+	</title>
+	
+	<!-- keywords,description -->
+	
+		<meta name="keywords" content="给时光以生命" />
+	
+	
+		<meta name="description" content="模型后训练与微调理论知识" />
+	
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+
+
+	<!-- search -->
+	<script>
+		var searchEngine = "https://www.google.com/search?q=";
+		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
+			searchEngine = "https://www.google.com/search?q=";
+		}
+		var homeHost = "atinykalami.github.io";
+		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
+			homeHost = window.location.host;
+		}
+	</script>
+
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@v1.5.1/dist/Valine.min.js"></script>
+
+	
+	
+
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">十二亚晖的个人空间</a>
+
+	<ul id="menu">
+    
+
+    
+      <li class="menu-item">
+        <a href="/tags" class="menu-item-link">Tags</a>
+      </li>
+    
+
+    
+      <li class="menu-item">
+        <a href="/categories" class="menu-item-link">Categories</a>
+      </li>
+    
+
+    
+      
+      
+        <li class="menu-item">
+          <a href='https://github.com/aTinyKalami' class="menu-item-link" target="_blank">
+            我的项目
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a href='https://github.com/aTinyKalami/blog-code-folder' class="menu-item-link" target="_blank">
+            博客源码
+          </a>
+        </li>
+      
+    
+  
+    
+      <li class="menu-item">
+        <a href='https://github.com/aTinyKalami' class="menu-item-link" target="_blank">
+          <i class="fa fa-github fa-2x"></i>
+        </a>
+      </li>
+    
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 通用文档
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-01-Markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%85%A5%E6%8C%87%E5%AF%BC/">
+                     
+										    01 Markdown格式文档输入规则
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/25/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-02-HEXO%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%94%BB%E7%95%A5/">
+                     
+										    02 Github上部署Hexo框架的博客的亲测爬坑攻略
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/25/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-03-HEXO%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
+                     
+										    03 Hexo框架的Github文章手工部署常用命令
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										03 AI学习
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										00 AI知识地图
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/00%20AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">
+                     
+										    AI知识地图
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										02 AI硬件体系
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/02%20AI%E7%A1%AC%E4%BB%B6%E4%BD%93%E7%B3%BB/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E8%8A%AF%E7%89%87/">
+                     
+										    AI芯片
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/02%20AI%E7%A1%AC%E4%BB%B6%E4%BD%93%E7%B3%BB/2025-10-06-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E5%AD%98%E5%82%A8/">
+                     
+										    02 AI存储
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										04 AI模型与应用
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91Transfomer%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/">
+                     
+										    Transformer模型架构基础
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                     
+										    多模态模型
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-02-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E7%8E%AF%E8%8A%82%E3%80%91Tokenizer%E5%88%86%E8%AF%8D/">
+                     
+										    基础知识 - Tokeniazer分词
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-02-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E7%8E%AF%E8%8A%82%E3%80%91Embedding%E8%AF%8D%E5%B5%8C%E5%85%A5/">
+                     
+										    基础知识 - Embedding (词嵌入/向量化)
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
+                     
+										    训推框架 - 大模型训练和推理流程与框架
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">
+                     
+										    模型训练 - 大模型训练超参设置与方法
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2025/10/02/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83/">
+                     
+										    模型训练 - 大模型后训练与微调
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91LoRA%E5%BE%AE%E8%B0%83%E5%92%8CQLoRA/">
+                     
+										    AI洞察 - LoRA微调和QLoRA
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
+                     
+										    基础知识 - 大模型API接口调用参数说明
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A6%82%E4%BD%95%E8%AE%A9%E5%9F%BA%E7%A1%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A1%8C%E4%B8%9A%E5%8C%96/">
+                     
+										    模型训练 - 基础大模型如何行业化训练
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/11/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-03-%E3%80%90AI%E6%A1%86%E6%9E%B6%E3%80%91RAY%E5%92%8CK8S%E5%AE%B9%E5%99%A8%E6%A1%86%E6%9E%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/">
+                     
+										    AI框架 - 使用K8S容器框架和RAY的关系和区别
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91GraphRAG%E6%96%B9%E6%A1%88/">
+                     
+										    AI应用 - Graph RAG
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91RAG%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90/">
+                     
+										    AI应用 - RAG方案
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 动手实操
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E5%90%84%E8%B5%84%E6%BA%90%E5%B9%B3%E5%8F%B0AC%E4%B8%8EPD%E8%AE%B0%E5%BD%95/">
+                     
+										    各资源平台链接与AC/PD记录
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-02-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
+                     
+										    实操系统环境与工具软件配置
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/29/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-29-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%9B%E8%A1%8C%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/">
+                     
+										    在本地进行NLP大模型的微调
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BD%95%E3%80%91%E4%BE%9B%E5%90%8E%E7%BB%AD%E7%BB%86%E5%8C%96/">
+                     
+										    临时课题记录
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB%E3%80%91%E6%96%87%E6%A1%A3%E5%90%8D%E7%A7%B0%20%E6%A8%A1%E6%9D%BF/">
+                     
+										    AI洞察 - 业界趋势洞察材料与网址
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-01-%E3%80%90AI%E6%B4%9E%E5%AF%9F%E3%80%91%E4%B8%9A%E7%95%8C%E6%B4%9E%E5%AF%9F%E7%BD%91%E5%9D%80/">
+                     
+										    AI洞察 - 业界趋势洞察材料与网址
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										08 业界厂商
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-06-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E8%8B%B1%E4%BC%9F%E8%BE%BE/">
+                     
+										    英伟达
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-10-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E9%98%BF%E9%87%8C%E4%BA%91/">
+                     
+										    阿里云
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										DeepSeek
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3%E5%92%8CR1/">
+                     
+										    DeepSeek V3和R1技术创新
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
+                     
+										    DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/11/02/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-09-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20OCR/">
+                     
+										    DeepSeek OCR模型技术与意义解析
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 日常记录
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/09%20%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/2025-10-15-%E3%80%90%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95%E3%80%91%E6%B5%B7%E5%A4%96%E5%9B%BD%E5%AE%B6%E8%B6%B3%E8%BF%B9/">
+                     
+										    这些年走过的国家
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content" class="content">
+		<h1 id="article-title">
+	模型训练 - 大模型后训练与微调
+</h1>
+
+<!-- meta -->
+<div class="article-meta">
+	
+
+	<span>十二亚晖</span>
+	<span>2025-10-02 09:00:00</span>
+
+  <div id="article-categories">
+    
+		  <span>Categories：</span>
+      
+          
+              <span>
+                  <i class="fa fa-folder" aria-hidden="true">
+                  <a href="/categories/AI/">AI</a>
+                  </i>
+                
+              </span>
+          
+      
+    
+
+    
+		    <span>Tags：</span>
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/AI/">AI</a>
+                    </i>
+                </span>
+            
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/技术/">技术</a>
+                    </i>
+                </span>
+            
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/洞察/">洞察</a>
+                    </i>
+                </span>
+            
+        
+    
+  </div>
+
+</div>
+
+<!-- content -->
+<div id="article-content">
+	<h1 id="一-大模型微调相关基础知识"><a href="#一-大模型微调相关基础知识" class="headerlink" title="一. 大模型微调相关基础知识"></a>一. 大模型微调相关基础知识</h1><h2 id="大模型微调概念"><a href="#大模型微调概念" class="headerlink" title="大模型微调概念"></a>大模型微调概念</h2><p><strong>大模型微调</strong>指的在已有的大规模预训练模型的基础上，通过再提供标注数据集输入到大语言模型进行进一步训练，从而优化模型在特定场景下（比如对话、工具调用、深度思考思维链拆解、Agent任务步骤规划等）的表现，以适应特定任务需求。</p>
+<p>大模型微调是通过后训练阶段修改优化预训练模型参数来达到优化模型输出能力，是一种能够让模型“永久”掌握某种能力的方法。</p>
+<p>不同于RAG或者Agent技术，是通过搭建工作流，以在单次任务中提供更多的系统提示词输入参考内容，或让模型使用外部工具等，来整体提升模型的输出表现和最终AI应用的结果。</p>
+<h3 id="全量微调与高效微调-PEFT-Parameter-Efficiency-Fine-Tuning"><a href="#全量微调与高效微调-PEFT-Parameter-Efficiency-Fine-Tuning" class="headerlink" title="全量微调与高效微调(PEFT:Parameter Efficiency Fine Tuning)"></a>全量微调与高效微调(PEFT:Parameter Efficiency Fine Tuning)</h3><p>从大类上微调可以划分为<strong>全量微调（对大模型的所有神经网络参数进行微调）</strong>，和<strong>高效微调（局部微调，只对大语言模型的部分神经网络参数进行微调）</strong>。</p>
+<p>毫无疑问，全量微调是一种算力消耗更大、但对模型的能力改造更为彻底的方法；而高效微调则更类似一种“四两拨千斤”的方法，通过仅修改模型部分参数，来提升模型的整体能力。</p>
+<h3 id="模型微调方案的优劣势"><a href="#模型微调方案的优劣势" class="headerlink" title="模型微调方案的优劣势"></a>模型微调方案的优劣势</h3><p>尽管模型微调能够通过修改模型参数的方式，永久的修改模型的能力。但这其实是一把双刃剑，如果微调处理不当，很可能造成模型原始能力的灾难性遗忘（Catastrophic forgetting），即会导致模型原始能力丢失，尤其对于复杂模型更容易发生。</p>
+<p>所以为了能够满足微调的业务目标，我们必须小心谨慎的设计模型微调数据集和微调训练流程，并经过反复多次训练验证，才能得到一个最佳的微调模型。</p>
+<h2 id="高效微调的具体方案：LoRA、QLoRA"><a href="#高效微调的具体方案：LoRA、QLoRA" class="headerlink" title="高效微调的具体方案：LoRA、QLoRA"></a>高效微调的具体方案：LoRA、QLoRA</h2><p>尽管全量微调可以对模型的能力进行深度改造，但要带入模型全部参数进行训练，需要消耗大量的算力，技术门槛较高，而且容易引发灾难性遗忘。相比之下，在绝大多数场景中，如果我们只想提升模型某个具体领域的能力，那高效微调会更加合适。</p>
+<p>尽管在2020年前后，深度学习领域诞生了很多高效微调的方法，但现在适用于大模型的最主流的高效微调方法只有一种——LoRA微调。</p>
+<p>LoRA（Low-Rank Adaptation）微调是一种高效的微调方法，旨在通过引入低秩矩阵来减少微调时需要调整的神经网络参数数量，从而显著降低显存和计算资源的消耗。具体来说，LoRA 微调并不直接调整原<br>始模型的所有参数，而是通过在某些层中插入低秩的适配器（Adapter）层来进行神经网络的后训练。</p>
+<p>详细的 LoRA的概念和数学原理等内容，参考下一篇关于LoRA微调的文章。</p>
+<h1 id="QLoRA（Quantized-Low-Rank-Adaptation）"><a href="#QLoRA（Quantized-Low-Rank-Adaptation）" class="headerlink" title="QLoRA（Quantized Low-Rank Adaptation）"></a>QLoRA（Quantized Low-Rank Adaptation）</h1><p>QLoRA（Quantized Low-Rank Adaptation） 是 LoRA 的一个扩展方案，它将LoRA的低秩适配器与量化技结合。从而进一步优化了计算效率和存储需求，特别是在极端显存受限的环境下也可以运行。</p>
+<p>具体方案实现上，与 LoRA 不同的是，QLoRA 会将插入的低秩适配器层的部分权重进行量化（通常是量化为低精度的 INT4 或INT8），而通常LoRA方案的低秩适配器层的权重的位数是与整个模型的位数相同（比如FP8或者FP16，BF16等）。从而在保持性能的同时，显著降低模型的存储和计算需求。</p>
+<p>QLoRA的优势：</p>
+<pre><code>1.在显存非常有限的情况下仍能进行微调。
+2.可以处理更大规模的模型。
+3.适合用于边缘设备和需要低延迟推理的场景。
+</code></pre>
+<h3 id="LoRA-与-QLoRA-的对比"><a href="#LoRA-与-QLoRA-的对比" class="headerlink" title="LoRA 与 QLoRA 的对比"></a>LoRA 与 QLoRA 的对比</h3><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">LoRA</th>
+<th align="left">QLoRA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">核心技术</td>
+<td align="left">低秩适配器（Low-RankAdapters）</td>
+<td align="left">低秩适配器 + 量化技术（Low-Rank Adapters +Quantization）</td>
+</tr>
+<tr>
+<td align="left">适用场景</td>
+<td align="left">显存受限，但设备性能较好</td>
+<td align="left">极限显存受限或需要快速推理的设备</td>
+</tr>
+<tr>
+<td align="left">计算效率</td>
+<td align="left">提高计算效率，减少调整的参数数量</td>
+<td align="left">进一步提升效率，减少内存使用并加快推理速度</td>
+</tr>
+<tr>
+<td align="left">量化技术</td>
+<td align="left">无量化</td>
+<td align="left">将权重量化为低精度（如 INT4 或 INT8）</td>
+</tr>
+<tr>
+<td align="left">内存消耗</td>
+<td align="left">较低，但不如 QLoRA 低</td>
+<td align="left">显著降低内存消耗，适合更小的设备</td>
+</tr>
+<tr>
+<td align="left">训练复杂度</td>
+<td align="left">较简单，适用于大多数微调场景</td>
+<td align="left">需要更多的量化和适配工作，但适合超大模型和设备受限场景</td>
+</tr>
+</tbody></table>
+<h2 id="高效微调的应用场景"><a href="#高效微调的应用场景" class="headerlink" title="高效微调的应用场景"></a>高效微调的应用场景</h2><p>在实际大模型应用场景中，高效微调主要用于以下四个方面：</p>
+<h3 id="（领域）知识灌注"><a href="#（领域）知识灌注" class="headerlink" title="（领域）知识灌注"></a>（领域）知识灌注</h3><p>（领域）知识灌注是指将外部知识或领域特定的信息快速集成到已有的预训练模型中。通过高效微调，模型可以更好地学习新领域的专有知识，而无需重新从头开始训练。例如，对于法律、医疗等专业领域，可以使用少量的标注数据对预训练模型进行微调，帮助模型理解特定行业的术语、规则和知识，进而提升专业领域的问答能力。</p>
+<h3 id="对话风格微调"><a href="#对话风格微调" class="headerlink" title="对话风格微调"></a>对话风格微调</h3><p>高效微调可以用于根据特定需求调整模型的对话风格。例如，针对客服系统、虚拟助理等场景，模型可以通过微调来适应不同的 语气、礼貌程度 或 回答方式，从而在与用户互动时提供更符合要求的对话体验。通过微调少量的参数（例如对话生成的策略、情感表达等），可以使模型表现出更具针对性和个性化的风格。</p>
+<h3 id="推理能力提升"><a href="#推理能力提升" class="headerlink" title="推理能力提升"></a>推理能力提升</h3><p>高效微调还可以用于提升大模型的推理能力，尤其是在处理更复杂推理任务时。通过微调，模型能够更加高效地理解长文本、推理隐含信息，或者从数据中提取逻辑关系，进而在多轮推理任务中提供更准确的答案。这种微调方式可以帮助模型在解答复杂问题时，提高推理准确性并减少错误。</p>
+<h3 id="Agent能力（Function-calling能力、或者MCP能力）提升"><a href="#Agent能力（Function-calling能力、或者MCP能力）提升" class="headerlink" title="Agent能力（Function calling能力、或者MCP能力）提升"></a>Agent能力（Function calling能力、或者MCP能力）提升</h3><p>在多任务协作或功能调用场景中，高效微调能够显著提升模型的Agent能力，使得模型能够有效地与其他系统进行交互、调用外部API或执行特定任务。通过针对性微调，模型可以学会更精准的功能调用策略、参数解析和操作指令，从而在自动化服务、智能助手或机器人控制等领域表现得更加高效和智能。</p>
+<h3 id="高效微调在不同场景的微调数据集对比"><a href="#高效微调在不同场景的微调数据集对比" class="headerlink" title="高效微调在不同场景的微调数据集对比"></a>高效微调在不同场景的微调数据集对比</h3><p>高效微调在各个场景下都是通过给预训练大模型输入针对不同场景所准备好的问答对，让模型对这些问答对进行有监督学习，从而提升模型针对所需要场景的回答输出质量。</p>
+<p>不同场景下的区别知识在于提供给模型的问答对内容不同。</p>
+<table>
+<thead>
+<tr>
+<th align="left">场景</th>
+<th align="left">训练问答对</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">领域知识灌注</td>
+<td align="left">领域知识问题 + 领域知识答案</td>
+</tr>
+<tr>
+<td align="left">对话风格微调</td>
+<td align="left">用户提问形式 + 要求答复形式</td>
+</tr>
+<tr>
+<td align="left">推理能力提升</td>
+<td align="left">用户提出要求 + 对要求进行分步骤拆解和执行的详细分解数据</td>
+</tr>
+<tr>
+<td align="left">Agent能力（FunctionCalling&#x2F;MCP能力）提升</td>
+<td align="left">用户提出需调用外部工具类的问题 + 调用外部工具的标准JSON格式的输出字段内容</td>
+</tr>
+</tbody></table>
+<h1 id="二-大模型微调的实施方式"><a href="#二-大模型微调的实施方式" class="headerlink" title="二. 大模型微调的实施方式"></a>二. 大模型微调的实施方式</h1><h2 id="1-基于模型托管厂商平台的MaaS服务进行低代码微调"><a href="#1-基于模型托管厂商平台的MaaS服务进行低代码微调" class="headerlink" title="1. 基于模型托管厂商平台的MaaS服务进行低代码微调"></a>1. 基于模型托管厂商平台的MaaS服务进行低代码微调</h2><p>以华为云或者硅基流动平台为例，给出截图。</p>
+<p>微调超参数配置与调整。</p>
+<p>可参考视频链接<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s2AUe2EBq?t=739.4"> → 低码微调模型</a></p>
+<h2 id="2-基于本地或云端环境通过工具软件进行全代码微调"><a href="#2-基于本地或云端环境通过工具软件进行全代码微调" class="headerlink" title="2. 基于本地或云端环境通过工具软件进行全代码微调"></a>2. 基于本地或云端环境通过工具软件进行全代码微调</h2><p>参考视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YLE1zyEvX?t=1204.2&p=4">4小时打造垂域专属大模型，Qwen3企业级微调实战！</a></p>
+<h3 id="主流微调工具："><a href="#主流微调工具：" class="headerlink" title="主流微调工具："></a>主流微调工具：</h3><p>入手学习大模型微调时，首先推荐功能层次封装层次较高的微调四套工具：unsloth、LlamaFactory、ms-SWIFT和ColossalAI。除此之外，也可以借助更加底层的库，如peft、LoRA、transformer<br>等实现高效微调。</p>
+<p>对于初学者来说，建议首先使用现成封装好的工具来进行微调。</p>
+<h4 id="1-unsloth"><a href="#1-unsloth" class="headerlink" title="1. unsloth"></a>1. unsloth</h4><p>unsloth GitHub主页：<a target="_blank" rel="noopener" href="https://github.com/unslothai/unsloth%E3%80%82[%E2%86%92">https://github.com/unslothai/unsloth。[→</a> 点我](<a target="_blank" rel="noopener" href="https://github.com/unslothai/unsloth">https://github.com/unslothai/unsloth</a>)</p>
+<p>unsloth 是一个专为大型语言模型（LLM）设计的动态量化与微调框架，旨在提高微调效率并减少显存占用。 它通过手动推导计算密集型数学步骤并手写 GPU 内核，实现了无需硬件更改即可显著加快训练速度。</p>
+<p>unsloth 与 HuggingFace 生态兼容，可以很容易地transformers、peft、trl 等库结合，以实现模型的监督微调（SFT）和直接偏好优化（DPO），仅需模型的加载方式，无需对现有训练代码进行修改。</p>
+<p>主要功能点：</p>
+<pre><code>高效微调： unsloth 通过深度优化，使 LLM 的微调速度提高 2-5 倍，显存使用量减少约 80%，且准确度无明显下降。
+广泛的模型支持： 目前支持的模型包括目前各类主流模型，用户可以根据需求适合的模型进行微调。
+兼容性： unsloth 与 HuggingFace态系统兼容，用户可以轻松将其与 traformers、peft、l 等库结合，实现模型的监督微调（SFT）和直接偏好优化（DPO），仅需修改模型的加载方式，无需对现有训练代码进行过多修改。
+内存优化： 通过 4 位和 16 位的 QLoRA/LoRA 微调，unsloth 显著了显存占用，使得在资源受限的环境中也能大的微调。
+</code></pre>
+<p>unsloth核心优势：</p>
+<pre><code>显著提升微调效率： 相比传统方法，Unsloth采用独家4bit动态量化技术，能够在更短的时间内完成微调任务，节省时间成本。
+降低硬件要求： 通过优化显存使用，用户可以在显存较小的 GPU 上进行大模型的微调，降低了硬件门槛。
+开源免费： Unsloth 提供开源版本，用户可以在 Google Colab 或 Kaggle Notebooks 上免费试用，方便上手体验。
+</code></pre>
+<p>Unsloth 通过动态量化方法，尽量减少性能损失的同时显著压缩大型语言模型（LLMs）的体积。对于 Qwen3 模型，尤其是 4-bit 动态量化版本，现有的评测显示其性能下降非常有限，甚至在某些任务上与原始模型相当。根据最近的一项研究，Qwen3 模型在4bit动态量化时，仅损失不到1%的性能。</p>
+<p>总的来说，unsloth 为大型语言模型的微调提供了高效、低成本的解决方案，适合希望在有限资源下进行模型微调的开发者和研究人员。</p>
+<h3 id="2-LLama-Factory"><a href="#2-LLama-Factory" class="headerlink" title="2. LLama-Factory"></a>2. LLama-Factory</h3><p>LLama-Factory GitHub主页：<a target="_blank" rel="noopener" href="https://github.com/hiyouga/LLaMA-Factory%EF%BC%8C[%E2%86%92">https://github.com/hiyouga/LLaMA-Factory，[→</a> 点我](<a target="_blank" rel="noopener" href="https://github.com/hiyouga/LLaMA-Factory">https://github.com/hiyouga/LLaMA-Factory</a>)</p>
+<p>LLaMA-Factory 是一个统一且高效的微调框架，旨在为超过 100 种大型语言模型（LLMs）和视觉语言模型（VLMs）提供便捷的微调支持。 用户能够灵活地定制模型以适应各种下游任务。</p>
+<p>主要功能和特点：</p>
+<pre><code>广型支持： LLaMA-Factory 支持对 100 多LLMs 和 VLMs 进行微调，包括最新的模型版本，如Llama 3、GLM-4、Mistral Small、PaliGemma2 等。
+高效的微调方法： 框架集成了多nk Adaptation）、QRA（Quantized LoRA）等，以提高训练速度并减少显存占用。
+多模态任务支持： 除了传统的文本任务外，LLaMA-Factory 还支频识别、音频理解等多种任务类型。
+实验监控： 提供了丰富的实验监控工具，如 LlamaBoard、TensorBoard、Wandb、MLflow、练过程。
+快速： 框架提供了类似 OpenAI 风格的 API、Gradio UI 和命令行界面，并结合 vLLM worker，实现了高效的推理能力。
+</code></pre>
+<h3 id="3-ms-SWIFT"><a href="#3-ms-SWIFT" class="headerlink" title="3. ms-SWIFT"></a>3. ms-SWIFT</h3><p>ms-SWIFT GitHub项目主页：<a target="_blank" rel="noopener" href="https://github.com/modelscope/swift%EF%BC%8C[%E2%86%92">https://github.com/modelscope/swift，[→</a> 点我](<a target="_blank" rel="noopener" href="https://github.com/modelscope/swift">https://github.com/modelscope/swift</a>)</p>
+<p>ms-swift（Scalable lightWeight Infrastructure for Fine-Tuning）是由魔搭社区（ModelScope）开发的高效微调和部署框架，旨在为研究人员和开发者提供一站式的大模型与多模态大模型的训练、推理、评测、量化和部署解决方案。</p>
+<pre><code>模型支持： ms-swift 支持超过 450 种大型模型（LLMs）和 150多种多模态大模型（MLLMs）的训练和部署，包括最新的模型版本，如 Qwen2.5、InternLM3、GLM4、Llama3.3、Mistral、DeepSeek-R1、Yi1.5、Baichuan2、Gemma2 等，以及多模态模型如Qwen2.5-VL、Qwen2-Audio、Llama3.2-Vision、Llava、InternVL2.5 等。
+多样化的训练技术： 框架集oRA、Llama-Pro、LonoRA、GaLore、Q-GaLore、LoRA+、LISA、DoRA、FourierFt、ReFT、UnSloth 和 Liger 等，满足不同的微调需求。
+轻量级微调： 支持多种轻量级微调方法，如 LoRA、QLoRA、DoLLaMAPro、Adapt、GaLore、QGalore、LISA、UnSloth、Liger-Kernel 等，降低显存和计算资源的消耗。
+分布式训练： 支持分布式数据并行（DDP）、DeepSpeed ZeRO2/ZeRO3、FSDP 等技术，提升推理加速：** 提供 BNBWQ、GPTQ、AQLM、HQQ、EETQ 等量化方法，并支持使用 vLLM 和LMDeploy 对推理、测和部署 支持图像、视频和语音等多种模态型训练，涵盖 VQA、Caption、OCR、Grounding 等任务。
+用户友好的界面： 提供基于 Gradio 的 We和量化操作，简化了大模型的全链路流程
+</code></pre>
+<h3 id="4-ColossalAI"><a href="#4-ColossalAI" class="headerlink" title="4. ColossalAI"></a>4. ColossalAI</h3><p>ColossalAI GitHub项目主页：<a target="_blank" rel="noopener" href="https://github.com/hpcaitech/ColossalAI%EF%BC%8C[%E2%86%92">https://github.com/hpcaitech/ColossalAI，[→</a> 点我](<a target="_blank" rel="noopener" href="https://github.com/hpcaitech/ColossalAI">https://github.com/hpcaitech/ColossalAI</a>)</p>
+<p>Colossal-AI 是一个高效的分布式人工智能训练系统，旨在最大化提升人工智能训练效率，同时最小化训练成本。</p>
+<p>作为深度学习框架的内核，Colossal-AI 提供了自动超高维并行、大规模优化库、自适应任务调度、内存优化以及最新模型复现等前沿技术。</p>
+<p>与英伟达的 Megatron-LM 相比，Colossal-AI 仅需一半数量的 GPU 即可完成 GPT-3 训练，半小时内预训练 ViT-Base&#x2F;32，并在两天内训练完 15 亿参数的GPT 模型。</p>
+<p>此外，Colossal-AI 提供了多种并行技术，如数据并行、流水线并行和张量并行，以加速模型训练。 该项目自开源以来，迅速登上 GitHub 热榜，成为解放 AI 生产力的最佳选择。</p>
+<p>并且，ColossalAI也是目前唯一支持DeepSeek R1非量化模型高效微调的框架，仅需4个节点、8卡A100服务器即可完成DeepSeek R1高效微调。</p>
+<h2 id="模型性能评估框架EvalScope"><a href="#模型性能评估框架EvalScope" class="headerlink" title="模型性能评估框架EvalScope"></a>模型性能评估框架EvalScope</h2><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/modelscope/evalscope">https://github.com/modelscope/evalscope</a></p>
+<p>EvalScope 是由阿里巴巴魔搭社区（ModelScope）推出的一款开源模型评估框架，旨在为大语言模型（LLM）和多模态模型提供统一、系统化的性能评估方案。该框架具备高度的自动化和可扩展性，适用于研究机构、工业界以及模型开发者在模型验证与性能对比场景中的广泛需求。</p>
+<p>EvalScope 的核心功能和特点包括：</p>
+<pre><code>1. 丰富的评测基准覆盖：框架内置多种权威评测数据集，涵盖中英文通用知识问答（如 MMLU、CMMLU、C-Eval）、数学推理（如 GSM8K、MATH）、常识判断（如 HellaSwag、ARC）、代码生成（如 HumanEval）等多个方向，支持对模型能力进行多维度评估。
+2. 多样的评估模式支持：EvalScope 提供三种灵活的评估模式，包括单模型评估模式（Single）、基于基线的两两对比模式（Pairwise-Baseline）、以及全模型两两对比模式（Pairwise-All），可满足从快速诊断到全面对比的不同使用场景。
+3. 统一的模型接入接口：框架对不同类型的模型提供统一的调用方式，兼容 HuggingFace、本地部署模型及 API 远程调用，支持标准的 generate 与 chat 接口，大大降低了模型集成的复杂度。
+4. 评估流程高度自动化：EvalScope 实现了评测任务的全自动执行，包括客观题自动打分、复杂问题使用评审模型辅助判定结果等，支持批量评估与日志记录，极大提升了评估效率与结果一致性。
+5. 完善的性能与能力可视化工具：框架支持生成详细的评估报告和图表，展示模型在不同任务维度下的表现，便于开发者进行横向对比和性能分析。
+6. 多后端与评测能力扩展：EvalScope 可集成多个评测后端，如 OpenCompass、VLMEvalKit、RAGEval 等，支持从单模态到多模态、从语言建模到 RAG 端到端评测的全链路能力。
+7. 支持部署性能测试：除评估模型能力外，EvalScope 还提供服务端推理性能测试工具，涵盖吞吐量、响应时延等关键指标，帮助开发者评估模型的部署实用性。
+</code></pre>
+<h1 id="二-大模型微调数据集准备"><a href="#二-大模型微调数据集准备" class="headerlink" title="二. 大模型微调数据集准备"></a>二. 大模型微调数据集准备</h1><p>如何创建和选取模型微调数据集，是决定模型微调效果成败的最关键因素。</p>
+<p>截止目前，已经诞生了各类不同的微调框架和海量的微调数据集，在绝大多数情况下，我们只需要选择不同的微调框架并搭配不同的数据集即可。</p>
+<p>但伴随着模型能力越来越复杂，种类越来越多，包括现阶段很多模型都具备了Function calling功能，和推理或者思维链能力。此时如果企业希望进行一些复杂功能模型的微调，例如围绕模型进行Function calling能力微调，同时还需保留其混合推理能力，此时很多公开数据集或许就无法满足要求了。此外，如果我们希望给模型进行特定领域的知识关注，或者提升模型对于特殊工具组的工具调用准确率，这时就需要手动创建微调数据集。</p>
+<h2 id="大模型微调数据集原理：模型内置特殊字符及提示词模板"><a href="#大模型微调数据集原理：模型内置特殊字符及提示词模板" class="headerlink" title="大模型微调数据集原理：模型内置特殊字符及提示词模板"></a>大模型微调数据集原理：模型内置特殊字符及提示词模板</h2><p>要手动合并或者创建微调数据集，就必须了解微调数据集构造背后的原理。</p>
+<p>最快速了解构造数据集的方法，是从模型底层原理入手。当前的大模型普遍需要通过一些特殊字符来标记用户的不同类型输入、系统提示词、以及工具调用或者多模态输入等。而在实际对话过程中，模型对于用户的输入输出是如何进行识别的？</p>
+<p>大模型其实是通过一组特殊字符标记来规范自己的行为，判断当前消息类型，以及通过输出特殊标记来确定停止时间。</p>
+<p>以Qwen3为例，一次简单的问答，用户感知的输入输出和大模型在系统中的真实输入和输出，分别如下图所示：</p>
+<p><img src="https://github.com/aTinyKalami/DailyBlog/blob/main/images/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83/%E7%94%A8%E6%88%B7%E6%8F%90%E9%97%AE%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%AF%B9%E6%AF%94.jpg" alt="问答人机输入输出对比"></p>
+<p>其中 &lt;|im_start|&gt; 代表文本开始，而 user 则代表消息身份，用于构建多轮对话，而 &lt;|im_end|&gt; 则代表文本结束，即用户输入结束，而 &lt;|im_start|&gt; 代表新一段文本开始， assistant 代表接下来由模型创建消息，而 &lt;|im_end|&gt; 同样代表模型创建消息的结束。</p>
+<p>对于绝大多数模型，我们可以在模型的 tokenizer_config.json 中看到完整的特殊标记符（以及系统提示词模板）。</p>
+<p><img src="https://github.com/aTinyKalami/DailyBlog/blob/main/images/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8F%90%E7%A4%BA%E8%AF%8DJSON%E6%96%87%E4%BB%B6%E7%A4%BA%E6%84%8F.jpg" alt="大模型特殊提示词字符JSON文件示意"></p>
+<hr>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yc411g78a?t=249.4">大语言模型常用微调框架介绍</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YLE1zyEvX?t=1204.2&p=4">4小时打造垂域专属大模型，Qwen3企业级微调实战！</a>,完整教程PDF与微调数据集、评测集数据包的百度网盘下载链接，在留言置顶中扫码即可获得链接和提取码。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yc411g78a/">大语言模型常用微调框架介绍｜LoRA&amp;Prefix-Tuning&amp;Prompt-Tuning&amp;P-Tuning v2&amp;RLHF微调原理简介</a></p>
+<hr>
+<p>（本文完）</p>
+
+</div>
+
+<!-- post-guide -->
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BD%95%E3%80%91%E4%BE%9B%E5%90%8E%E7%BB%AD%E7%BB%86%E5%8C%96/">
+                临时课题记录
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+<!-- comment - giscus -->
+
+
+<!-- comment - valine -->
+
+
+<script>
+	
+	
+</script>
+
+	</div>
+	<div id="footer">
+	<p>
+	©<span id="footerYear-start"></span>-<span id="footerYear-end"></span>
+
+	
+	    <a href="/">十二亚晖</a>
+	
+	
+	
+	<br>
+	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//wujun.me" target="_blank">Wu Jun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
+	</p>
+</div>
+
+
+<script type="text/javascript">
+	document.getElementById('footerYear-start').innerHTML = new Date().getFullYear() + '';
+</script>
+
+<script type="text/javascript">
+	document.getElementById('footerYear-end').innerHTML = new Date().getFullYear() + '';
+</script>
+
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
