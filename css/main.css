@@ -433,6 +433,7 @@ pre {
   overflow: auto !important;
 }
 
+
 /* 代码块复制按钮样式 */
 .code-wrapper {
   position: relative;
@@ -442,30 +443,29 @@ pre {
   position: absolute;
   right: 10px;
   top: 10px;
-  padding: 5px 10px;
-  background: #333;
+  padding: 5px 10px 5px 30px; /* 左边留空间放图标 */
+  background: #333 url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>') no-repeat 8px center;
+  background-size: 16px;
   color: white;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   font-size: 12px;
-  opacity: 0;
+  opacity: 0.8;  /* 一直可见 */
   transition: opacity 0.3s;
   z-index: 10;
 }
 
-.code-wrapper:hover .copy-btn {
-  opacity: 1;
-}
-
 .copy-btn:hover {
-  background: #555;
+  opacity: 1;  /* 悬停时更明显 */
+  background-color: #555;
 }
 
 .copy-btn:active {
-  background: #222;
+  background-color: #222;
 }
 
 .copy-btn.success {
-  background: #28a745;
+  background-color: #28a745;
+  opacity: 1;
 }
