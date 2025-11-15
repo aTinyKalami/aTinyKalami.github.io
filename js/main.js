@@ -369,3 +369,36 @@ function wrapImageWithFancyBox() {
     }
   });
 }
+
+
+// 代码复制功能
+document.addEventListener('DOMContentLoaded', function() {
+  // 为所有代码块添加复制按钮
+  document.querySelectorAll('td.code').forEach(function(codeBlock) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-wrapper';
+    
+    // 包装代码块
+    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+    wrapper.appendChild(codeBlock);
+    
+    // 创建复制按钮
+    const copyButton = document.createElement('button');
+    copyButton.className = 'copy-btn';
+    copyButton.textContent = '复制';
+    wrapper.appendChild(copyButton);
+    
+    // 添加复制功能
+    copyButton.addEventListener('click', function() {
+      const code = codeBlock.querySelector('pre').innerText;
+      navigator.clipboard.writeText(code).then(function() {
+        copyButton.textContent = '已复制!';
+        copyButton.classList.add('success');
+        setTimeout(function() {
+          copyButton.textContent = '复制';
+          copyButton.classList.remove('success');
+        }, 2000);
+      });
+    });
+  });
+});
