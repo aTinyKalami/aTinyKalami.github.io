@@ -421,8 +421,9 @@ figure{
 	}
 }
 
-figure.highlight {
+pre {
   border: none !important;
   background: #f6f8fa !important;
+  padding: 15px !important;
   border-radius: 6px !important;
 }
