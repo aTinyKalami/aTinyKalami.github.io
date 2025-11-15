@@ -398,12 +398,7 @@ figure{
 	-webkit-justify-content: flex-end;
 	justify-content: flex-end;
 }
-/* figure */
-figure.highlight {
-  border: none !important;
-  background: #f6f8fa !important;
-  border-radius: 6px !important;
-}
+
 /* footer */
 #footer{
 	font-size: 14px;
@@ -424,4 +419,10 @@ figure.highlight {
 	#sidebar {
 		opacity: 0.95;
 	}
+}
+
+figure.highlight {
+  border: none !important;
+  background: #f6f8fa !important;
+  border-radius: 6px !important;
 }
