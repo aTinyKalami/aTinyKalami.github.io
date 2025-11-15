@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		AI框架 - 使用K8S容器框架和RAY的关系和区别 | 
+		ipynb格式使用指导 | 
 	 
 	十二亚晖的个人空间
 	</title>
@@ -19,7 +19,7 @@
 		<meta name="keywords" content="给时光以生命" />
 	
 	
-		<meta name="description" content="AI训推框架使用K8S容器框架和RAY的关系和区别" />
+		<meta name="description" content=".ipynb格式Juypter Notebook文档使用" />
 	
 
 	<!-- favicon -->
@@ -179,7 +179,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2025/10/05/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-04-ipynb%E6%A0%BC%E5%BC%8F%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
                      
 										    ipynb格式使用指导
@@ -373,7 +373,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2025/11/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-03-%E3%80%90AI%E6%A1%86%E6%9E%B6%E3%80%91RAY%E5%92%8CK8S%E5%AE%B9%E5%99%A8%E6%A1%86%E6%9E%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/">
                      
 										    AI框架 - 使用K8S容器框架和RAY的关系和区别
@@ -596,7 +596,7 @@
 	<!-- 引入正文 -->
 	<div id="content" class="content">
 		<h1 id="article-title">
-	AI框架 - 使用K8S容器框架和RAY的关系和区别
+	ipynb格式使用指导
 </h1>
 
 <!-- meta -->
@@ -604,7 +604,7 @@
 	
 
 	<span>十二亚晖</span>
-	<span>2025-11-05 09:00:00</span>
+	<span>2025-10-05 09:00:00</span>
 
   <div id="article-categories">
     
@@ -613,7 +613,7 @@
           
               <span>
                   <i class="fa fa-folder" aria-hidden="true">
-                  <a href="/categories/AI/">AI</a>
+                  <a href="/categories/基础工具/">基础工具</a>
                   </i>
                 
               </span>
@@ -627,7 +627,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/AI/">AI</a>
+                    <a href="/tags/ipynb/">ipynb</a>
                     </i>
                 </span>
             
@@ -635,7 +635,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/技术/">技术</a>
+                    <a href="/tags/notebook/">notebook</a>
                     </i>
                 </span>
             
@@ -643,7 +643,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/学习/">学习</a>
+                    <a href="/tags/工具/">工具</a>
                     </i>
                 </span>
             
@@ -655,62 +655,52 @@
 
 <!-- content -->
 <div id="article-content">
-	<p>为了清晰对比采用Ray前后的技术栈变化，我为你梳理了一个详细的表格，并附上了核心方案的解读。</p>
-<table>
-<thead>
-<tr>
-<th align="left">层级</th>
-<th align="left">未采用Ray的传统技术栈</th>
-<th align="left">采用Ray后的技术栈</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>应用层</strong></td>
-<td align="left">自行实现的分布式应用逻辑（如Proxy、Trainer、Worker）</td>
-<td align="left"><strong>Ray Task</strong> 和 <strong>Ray Actor</strong>（直接实现业务逻辑）</td>
-</tr>
-<tr>
-<td align="left"><strong>调度与通信</strong></td>
-<td align="left"><strong>Kubernetes</strong>（调度Pod）、<strong>gRPC&#x2F;Protobuf</strong>（自定义通信协议）</td>
-<td align="left"><strong>Ray</strong>（应用层调度与通信）</td>
-</tr>
-<tr>
-<td align="left"><strong>资源与管理</strong></td>
-<td align="left"><strong>Kubernetes</strong>（管理容器化资源）</td>
-<td align="left"><strong>Kubernetes</strong>（管理Ray集群资源） + <strong>Ray Cluster</strong>（提供统一计算资源视图）</td>
-</tr>
-<tr>
-<td align="left"><strong>运行时环境</strong></td>
-<td align="left"><strong>Docker</strong>（定制多个组件镜像）</td>
-<td align="left"><strong>Docker</strong>（提供统一的Ray运行时环境）</td>
-</tr>
-<tr>
-<td align="left"><strong>基础设施</strong></td>
-<td align="left">物理机、虚拟机</td>
-<td align="left">物理机、虚拟机</td>
-</tr>
-</tbody></table>
-<h3 id="两种技术栈方案解读"><a href="#两种技术栈方案解读" class="headerlink" title="两种技术栈方案解读"></a>两种技术栈方案解读</h3><p>具体看看这两种技术栈方案是如何运作的：</p>
-<h4 id="未采用Ray的传统方案"><a href="#未采用Ray的传统方案" class="headerlink" title="未采用Ray的传统方案"></a>未采用Ray的传统方案</h4><p>在云原生环境中构建一个复杂的分布式系统（如AutoML服务），你需要亲自处理许多底层分布式问题：</p>
-<ul>
-<li><strong>应用开发</strong>：你需要用Python编写<strong>Proxy</strong>、<strong>Trainer</strong>、<strong>Worker</strong>等所有组件的业务逻辑，并自行设计它们之间的<strong>状态管理</strong>和<strong>协调机制</strong>。</li>
-<li><strong>服务通信</strong>：需要定义<strong>gRPC</strong>通信协议和序列化方式（如<strong>Protobuf</strong>），并处理网络连接、重试、超时等复杂问题。</li>
-<li><strong>资源调度与部署</strong>：需依赖<strong>Kubernetes</strong>进行资源调度，为每个组件编写<strong>Dockerfile</strong>和<strong>YAML</strong>配置文件。若需动态扩缩容，可能还要用<strong>Go</strong>语言开发复杂的K8s Operator。</li>
-<li><strong>可观测性</strong>：需额外集成<strong>Prometheus</strong>和<strong>Grafana</strong>等工具来监控应用状态。</li>
-</ul>
-<p>这套方案<strong>技术栈庞杂</strong>，开发者需具备多领域知识，且大量精力耗费在与核心业务无关的”分布式样板代码”上。</p>
-<h4 id="采用Ray后的方案"><a href="#采用Ray后的方案" class="headerlink" title="采用Ray后的方案"></a>采用Ray后的方案</h4><p>Ray的核心价值在于，它<strong>在K8s的容器编排之上，构建了一个面向应用层的统一分布式编程抽象</strong>。</p>
-<ul>
-<li><strong>应用开发</strong>：你只需关注业务代码。用<code>@ray.remote</code>装饰器，就能将普通Python函数和类转变为分布式的<strong>Task</strong>和<strong>Actor</strong>。例如，将Worker设计为Task，Trainer设计为Actor。</li>
-<li><strong>服务通信</strong>：Ray<strong>内置了高性能的通信层</strong>和<strong>分布式对象存储</strong>。任务间的数据传递通过<strong>ObjectRef</strong>引用完成，无需你手动处理网络通信细节。</li>
-<li><strong>资源调度与部署</strong>：<strong>Kubernetes</strong>负责底层资源管理，而<strong>Ray</strong>负责上层应用任务调度。你可以通过<code>ray up</code>命令或<strong>KubeRay</strong> Operator一键部署Ray集群。Ray的Autoscaler能根据任务负载自动扩缩容计算节点。</li>
-<li><strong>统一资源视图</strong>：Ray集群为你提供了一个<strong>统一的计算资源池</strong>。你提交任务时，只需指定CPU&#x2F;GPU需求，Ray调度器会自动将其分配到合适的节点，无需关心Pod边界。</li>
-</ul>
-<h3 id="推荐深入学习资料"><a href="#推荐深入学习资料" class="headerlink" title="推荐深入学习资料"></a>推荐深入学习资料</h3><ul>
-<li><strong>文章标题</strong>：《云原生场景下如何利用Ray快速构建分布式系统》<a target="_blank" rel="noopener" href="https://hub.baai.ac.cn/view/29167">→ 点我</a></li>
-<li><strong>推荐理由</strong>：这篇文章通过一个具体的<strong>AutoML服务案例</strong>，清晰地展示了使用传统方式与使用Ray构建分布式系统的完整技术栈对比。它不仅讲解了Ray的核心概念（Task、Actor、Object Store），还详细描述了如何利用Ray在K8s上实际搭建一个多角色、高弹性、动态化的分布式应用，非常有实践指导意义。</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>简单来说，Ray并非替代K8s，而是与它<strong>分工协作</strong>：K8s继续扮演”数据中心操作系统”的角色，负责<strong>底层资源的管理和调度</strong>；而Ray则作为”分布式编程框架”，负责<strong>上层应用的计算任务调度和分布式协调</strong>。这种组合让你能更专注于业务逻辑本身，显著提升开发分布式应用的效率。</p>
+	<h1 id="Jupyter-Notebook-文档使用的核心优势"><a href="#Jupyter-Notebook-文档使用的核心优势" class="headerlink" title="Jupyter Notebook 文档使用的核心优势"></a>Jupyter Notebook 文档使用的核心优势</h1><p>Jupyter Notebook 有以下几个核心好处，特别适合数据工作和机器学习：</p>
+<ol>
+<li><p>即时反馈，所见即所得</p>
+<p> 写一行代码，马上看到结果</p>
+<p> 不需要写完整程序就能测试想法</p>
+</li>
+<li><p>完美适合数据探索</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以一步步探索数据</span></span><br><span class="line">df.head()        <span class="comment"># 立即显示数据前几行</span></span><br><span class="line">df.describe()    <span class="comment"># 立即显示统计信息</span></span><br><span class="line">df.plot()        <span class="comment"># 立即显示图表</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>混合内容和代码</p>
+<p> 可以用 Markdown 写文字说明，插入图片、表格、数学公式，做成完整的数据分析报告。</p>
+</li>
+<li><p>分块执行，调试方便</p>
+<p> 某个代码块出错，不影响其他块。可以重复执行单个块，不用从头开始</p>
+</li>
+<li><p>特别适合机器学习</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据预处理</span></span><br><span class="line">data = load_data()</span><br><span class="line">data = clean_data(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练模型</span></span><br><span class="line">model = train_model(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 评估结果</span></span><br><span class="line">evaluate_model(model)</span><br></pre></td></tr></table></figure>
+
+<p>每个步骤可以独立运行和调整。</p>
+<ol start="6">
+<li><p>保存完整的工作流</p>
+<p> 保留所有代码、结果和思考过程，方便分享和复现。像实验室笔记本一样记录整个实验。</p>
+</li>
+</ol>
+<p>对数据处理项目的特别价值：</p>
+<pre><code>下载数据集 → 立即看到下载进度
+
+数据转换 → 立即检查转换结果
+
+格式验证 → 立即查看生成的文件内容
+</code></pre>
+<p>总结：Jupyter Notebook 让你像做实验一样写代码，每一步都能立即看到效果，极大提升了数据探索和机器学习的工作效率！</p>
+<hr>
+<h1 id="Juypter文档使用"><a href="#Juypter文档使用" class="headerlink" title="Juypter文档使用"></a>Juypter文档使用</h1><h2 id="创建：在VSCode中直接创建-ipynb-文件"><a href="#创建：在VSCode中直接创建-ipynb-文件" class="headerlink" title="创建：在VSCode中直接创建 .ipynb 文件"></a>创建：在VSCode中直接创建 .ipynb 文件</h2><pre><code>按 Ctrl+N 新建文件
+
+按 Ctrl+S 保存
+
+文件名输入：name.ipynb
+
+保存位置：选择所需目标文件夹
+</code></pre>
 <hr>
 <p>（本文完）</p>
 
@@ -721,11 +711,16 @@
     <div class="post-guide">
         <div class="item left">
             
+              <a href="/2025/10/05/2025-01-01-%E3%80%90%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB%E3%80%91%E6%96%87%E6%A1%A3%E5%90%8D%E7%A7%B0%20%E6%A8%A1%E6%9D%BF/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  AI洞察 - 业界趋势洞察材料与网址
+              </a>
+            
         </div>
         <div class="item right">
             
-              <a href="/2025/11/02/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-09-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20OCR/">
-                DeepSeek OCR模型技术与意义解析
+              <a href="/2025/10/05/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-01-Markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%85%A5%E6%8C%87%E5%AF%BC/">
+                01 Markdown格式文档输入规则
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

@@ -8,8 +8,6 @@
 	<!-- title -->
 	
 	<title>
-	
-		AI框架 - 使用K8S容器框架和RAY的关系和区别 | 
 	 
 	十二亚晖的个人空间
 	</title>
@@ -19,7 +17,7 @@
 		<meta name="keywords" content="给时光以生命" />
 	
 	
-		<meta name="description" content="AI训推框架使用K8S容器框架和RAY的关系和区别" />
+		<meta name="description" content="生活 - 学习 - 工作 - 思考" />
 	
 
 	<!-- favicon -->
@@ -373,7 +371,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2025/11/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-03-%E3%80%90AI%E6%A1%86%E6%9E%B6%E3%80%91RAY%E5%92%8CK8S%E5%AE%B9%E5%99%A8%E6%A1%86%E6%9E%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/">
                      
 										    AI框架 - 使用K8S容器框架和RAY的关系和区别
@@ -595,154 +593,48 @@
 
 	<!-- 引入正文 -->
 	<div id="content" class="content">
-		<h1 id="article-title">
-	AI框架 - 使用K8S容器框架和RAY的关系和区别
-</h1>
-
-<!-- meta -->
-<div class="article-meta">
+		<div id="index">
 	
+		<div class="index-li">
+			<a href="/2025/10/05/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-04-ipynb%E6%A0%BC%E5%BC%8F%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
+				<h2 class="index-title">
+					ipynb格式使用指导
+				</h2>
+				<div class="index-brief">
+					Jupyter Notebook 文档使用的核心优势Jupyter Notebook 有以下几个核心好处，特别适合数据工作和机器学习：
 
-	<span>十二亚晖</span>
-	<span>2025-11-05 09:00:00</span>
+即时反馈，所见即所得
+ 写一行代码，马上看到结果
+ 不需要写完整程序就能测试想法
 
-  <div id="article-categories">
-    
-		  <span>Categories：</span>
-      
-          
-              <span>
-                  <i class="fa fa-folder" aria-hidden="true">
-                  <a href="/categories/AI/">AI</a>
-                  </i>
-                
-              </span>
-          
-      
-    
+完美适合数据探索
 
-    
-		    <span>Tags：</span>
-        
-            
-                <span>
-                    <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/AI/">AI</a>
-                    </i>
-                </span>
-            
-        
-            
-                <span>
-                    <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/技术/">技术</a>
-                    </i>
-                </span>
-            
-        
-            
-                <span>
-                    <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/学习/">学习</a>
-                    </i>
-                </span>
-            
-        
-    
-  </div>
 
+1234# 可以一步步探索数据df.head()    
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2025-10-05</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/基础工具/">基础工具</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+	
+	<div id="index-paginator">
+		
+	</div>
 </div>
-
-<!-- content -->
-<div id="article-content">
-	<p>为了清晰对比采用Ray前后的技术栈变化，我为你梳理了一个详细的表格，并附上了核心方案的解读。</p>
-<table>
-<thead>
-<tr>
-<th align="left">层级</th>
-<th align="left">未采用Ray的传统技术栈</th>
-<th align="left">采用Ray后的技术栈</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>应用层</strong></td>
-<td align="left">自行实现的分布式应用逻辑（如Proxy、Trainer、Worker）</td>
-<td align="left"><strong>Ray Task</strong> 和 <strong>Ray Actor</strong>（直接实现业务逻辑）</td>
-</tr>
-<tr>
-<td align="left"><strong>调度与通信</strong></td>
-<td align="left"><strong>Kubernetes</strong>（调度Pod）、<strong>gRPC&#x2F;Protobuf</strong>（自定义通信协议）</td>
-<td align="left"><strong>Ray</strong>（应用层调度与通信）</td>
-</tr>
-<tr>
-<td align="left"><strong>资源与管理</strong></td>
-<td align="left"><strong>Kubernetes</strong>（管理容器化资源）</td>
-<td align="left"><strong>Kubernetes</strong>（管理Ray集群资源） + <strong>Ray Cluster</strong>（提供统一计算资源视图）</td>
-</tr>
-<tr>
-<td align="left"><strong>运行时环境</strong></td>
-<td align="left"><strong>Docker</strong>（定制多个组件镜像）</td>
-<td align="left"><strong>Docker</strong>（提供统一的Ray运行时环境）</td>
-</tr>
-<tr>
-<td align="left"><strong>基础设施</strong></td>
-<td align="left">物理机、虚拟机</td>
-<td align="left">物理机、虚拟机</td>
-</tr>
-</tbody></table>
-<h3 id="两种技术栈方案解读"><a href="#两种技术栈方案解读" class="headerlink" title="两种技术栈方案解读"></a>两种技术栈方案解读</h3><p>具体看看这两种技术栈方案是如何运作的：</p>
-<h4 id="未采用Ray的传统方案"><a href="#未采用Ray的传统方案" class="headerlink" title="未采用Ray的传统方案"></a>未采用Ray的传统方案</h4><p>在云原生环境中构建一个复杂的分布式系统（如AutoML服务），你需要亲自处理许多底层分布式问题：</p>
-<ul>
-<li><strong>应用开发</strong>：你需要用Python编写<strong>Proxy</strong>、<strong>Trainer</strong>、<strong>Worker</strong>等所有组件的业务逻辑，并自行设计它们之间的<strong>状态管理</strong>和<strong>协调机制</strong>。</li>
-<li><strong>服务通信</strong>：需要定义<strong>gRPC</strong>通信协议和序列化方式（如<strong>Protobuf</strong>），并处理网络连接、重试、超时等复杂问题。</li>
-<li><strong>资源调度与部署</strong>：需依赖<strong>Kubernetes</strong>进行资源调度，为每个组件编写<strong>Dockerfile</strong>和<strong>YAML</strong>配置文件。若需动态扩缩容，可能还要用<strong>Go</strong>语言开发复杂的K8s Operator。</li>
-<li><strong>可观测性</strong>：需额外集成<strong>Prometheus</strong>和<strong>Grafana</strong>等工具来监控应用状态。</li>
-</ul>
-<p>这套方案<strong>技术栈庞杂</strong>，开发者需具备多领域知识，且大量精力耗费在与核心业务无关的”分布式样板代码”上。</p>
-<h4 id="采用Ray后的方案"><a href="#采用Ray后的方案" class="headerlink" title="采用Ray后的方案"></a>采用Ray后的方案</h4><p>Ray的核心价值在于，它<strong>在K8s的容器编排之上，构建了一个面向应用层的统一分布式编程抽象</strong>。</p>
-<ul>
-<li><strong>应用开发</strong>：你只需关注业务代码。用<code>@ray.remote</code>装饰器，就能将普通Python函数和类转变为分布式的<strong>Task</strong>和<strong>Actor</strong>。例如，将Worker设计为Task，Trainer设计为Actor。</li>
-<li><strong>服务通信</strong>：Ray<strong>内置了高性能的通信层</strong>和<strong>分布式对象存储</strong>。任务间的数据传递通过<strong>ObjectRef</strong>引用完成，无需你手动处理网络通信细节。</li>
-<li><strong>资源调度与部署</strong>：<strong>Kubernetes</strong>负责底层资源管理，而<strong>Ray</strong>负责上层应用任务调度。你可以通过<code>ray up</code>命令或<strong>KubeRay</strong> Operator一键部署Ray集群。Ray的Autoscaler能根据任务负载自动扩缩容计算节点。</li>
-<li><strong>统一资源视图</strong>：Ray集群为你提供了一个<strong>统一的计算资源池</strong>。你提交任务时，只需指定CPU&#x2F;GPU需求，Ray调度器会自动将其分配到合适的节点，无需关心Pod边界。</li>
-</ul>
-<h3 id="推荐深入学习资料"><a href="#推荐深入学习资料" class="headerlink" title="推荐深入学习资料"></a>推荐深入学习资料</h3><ul>
-<li><strong>文章标题</strong>：《云原生场景下如何利用Ray快速构建分布式系统》<a target="_blank" rel="noopener" href="https://hub.baai.ac.cn/view/29167">→ 点我</a></li>
-<li><strong>推荐理由</strong>：这篇文章通过一个具体的<strong>AutoML服务案例</strong>，清晰地展示了使用传统方式与使用Ray构建分布式系统的完整技术栈对比。它不仅讲解了Ray的核心概念（Task、Actor、Object Store），还详细描述了如何利用Ray在K8s上实际搭建一个多角色、高弹性、动态化的分布式应用，非常有实践指导意义。</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>简单来说，Ray并非替代K8s，而是与它<strong>分工协作</strong>：K8s继续扮演”数据中心操作系统”的角色，负责<strong>底层资源的管理和调度</strong>；而Ray则作为”分布式编程框架”，负责<strong>上层应用的计算任务调度和分布式协调</strong>。这种组合让你能更专注于业务逻辑本身，显著提升开发分布式应用的效率。</p>
-<hr>
-<p>（本文完）</p>
-
-</div>
-
-<!-- post-guide -->
-
-    <div class="post-guide">
-        <div class="item left">
-            
-        </div>
-        <div class="item right">
-            
-              <a href="/2025/11/02/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-09-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20OCR/">
-                DeepSeek OCR模型技术与意义解析
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
-        </div>
-    </div>
-
-
-<!-- comment - giscus -->
-
-
-<!-- comment - valine -->
-
-
-<script>
-	
-	
-</script>
 
 	</div>
 	<div id="footer">

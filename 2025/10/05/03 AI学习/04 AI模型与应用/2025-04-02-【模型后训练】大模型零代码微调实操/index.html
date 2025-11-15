@@ -178,6 +178,17 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-04-ipynb%E6%A0%BC%E5%BC%8F%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
+                     
+										    ipynb格式使用指导
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -455,17 +466,6 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB%E3%80%91%E6%96%87%E6%A1%A3%E5%90%8D%E7%A7%B0%20%E6%A8%A1%E6%9D%BF/">
-                     
-										    AI洞察 - 业界趋势洞察材料与网址
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-01-%E3%80%90AI%E6%B4%9E%E5%AF%9F%E3%80%91%E4%B8%9A%E7%95%8C%E6%B4%9E%E5%AF%9F%E7%BD%91%E5%9D%80/">
                      
 										    AI洞察 - 业界趋势洞察材料与网址
@@ -578,6 +578,17 @@
 								
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/2025-01-01-%E3%80%90%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB%E3%80%91%E6%96%87%E6%A1%A3%E5%90%8D%E7%A7%B0%20%E6%A8%A1%E6%9D%BF/">
+                     
+										    AI洞察 - 业界趋势洞察材料与网址
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 		</div>
 	</div>
 </div>
@@ -649,7 +660,8 @@
 <h1 id="1-微调数据集准备与上传"><a href="#1-微调数据集准备与上传" class="headerlink" title="1. 微调数据集准备与上传"></a>1. 微调数据集准备与上传</h1><p>用户可以上传自己的微调数据集，或者在平台中选择模型托管厂商提供的领域数据集。</p>
 <p>微调数据集一般都是.JSON格式，条数建议在10k条以上。实际企业应用中，条数太少了没必要，可以直接基于原模型以提示词工程方式使用。条数太多了算力消耗较大，而且可能会影响模型的稳定性，造成模型灾难性遗忘。需要结合其他通识数据集，进行数据配比后一起给模型进行微调。操作复杂并且不确定性高。</p>
 <p>大模型微调数据集准备，（可以参考后续要单开的文章）。</p>
-<p>Hugging face上有大量的开源数据集，可以从中选取。</p>
+<p>Hugging face上有大量的开源数据集，可以从中选取。但是可能与云厂商模型托管平台所能接受的数据集格式不同。所以需要基于python的数据集处理库datasets进行数据集的转换。</p>
+<p><code>datasets</code> 是 Hugging Face 提供的一个高效数据处理库，专为机器学习和大语言模型（LLM）训练而设计。它支持加载、处理、转换和保存各种格式的数据（如 JSON、CSV、Parquet 等），并能与 <code>transformers</code> 模型无缝集成。通过 <code>datasets</code>，开发者可以快速完成数据清洗、切分、tokenization 等常见任务，大大提升训练效率，特别适合用于指令微调、对话生成、Function Calling 等任务的数据预处理。</p>
 <h1 id="2-微调超参数配置"><a href="#2-微调超参数配置" class="headerlink" title="2. 微调超参数配置"></a>2. 微调超参数配置</h1><p>用户可以根据自己的经验配置超参数，很多平台也提供默认的超参数，并推荐用户由系统来缺省设置超参。</p>
 <p>说明：大模型微调的超参设置跟大模型预训练的超参数设置是类似的，基于同样的模型训练的主要参数。只是配置的原则会有所区别。</p>
 <p>详细介绍可参考：<a target="_blank" rel="noopener" href="https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">大模型训练超参设置 → 点我</a>。</p>
@@ -660,13 +672,43 @@
 <p>（此处是个人的分析判断）部署发布后按照Token收费的方式，后台可能是将微调后的模型采用Serverless的方式进行部署，在用户使用的时候进行快速的加载。好处是模型托管厂商的成本会比较低，坏处是如果模型调用频率不高，那么模型调用的SLA可能会比较差。</p>
 <h1 id="二-实操指导"><a href="#二-实操指导" class="headerlink" title="二. 实操指导"></a>二. 实操指导</h1><h2 id="1-目标设置"><a href="#1-目标设置" class="headerlink" title="1. 目标设置"></a>1. 目标设置</h2><p>假设我们的任务是要基于基础的NLP对话模型，结合医疗数据集，微调构建一个网上电子医生对话模型。</p>
 <h2 id="2-平台选择"><a href="#2-平台选择" class="headerlink" title="2. 平台选择"></a>2. 平台选择</h2><p>以下实操指导内容以<a target="_blank" rel="noopener" href="https://cloud.siliconflow.cn/me/models">硅基流动模型托管平台</a>为例，其他模型托管平台类似。（后续实验OpenAI的FineTune接口低码微调）</p>
-<h2 id="3-数据准备"><a href="#3-数据准备" class="headerlink" title="3. 数据准备"></a>3. 数据准备</h2><p>在登录模型托管平台进行微调操作前，需要提前准备好需要的微调数据集。</p>
-<p>Hugging face上有大量的开源数据集，可以根据不同的场景目标从中选取。详细的操作参考文章（文章链接）</p>
+<h2 id="3-数据集准备"><a href="#3-数据集准备" class="headerlink" title="3. 数据集准备"></a>3. 数据集准备</h2><h3 id="3-1-数据集选取"><a href="#3-1-数据集选取" class="headerlink" title="3.1 数据集选取"></a>3.1 数据集选取</h3><p>在登录模型托管平台进行微调操作前，需要提前准备好需要的微调数据集。</p>
+<p>Hugging face上有大量的开源数据集，可以根据不同的场景目标从中选取。</p>
 <p>我们选择<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/fengjay01/Chinese-medical-dialogue-sample/viewer/default/train?p=2&views%5B%5D=train">中文医疗对话数据集</a>。这个数据集是个Sample，比较小，用于体验过程没问题，性价比高。</p>
-<p>Huggingface上一般只提供通过全码进行数据集远程调用。我们还需要下载到本地。</p>
-<h2 id="3-操作过程"><a href="#3-操作过程" class="headerlink" title="3. 操作过程"></a>3. 操作过程</h2><p>1.登录硅基流动官网平台，系统默认进入模型广场。</p>
-<p>2.左侧选择 模型微调 → 新建微调任务。</p>
-<p>3.任务名称：</p>
+<p>数据集所有者有一篇基于此数据集进行微调构建医疗对话模型的论文，Paper:Enhancing Chinese Medical Diagnostic Chatbot through Supervised Fine-Tuning of Large Language Models。DOI: 10.1109&#x2F;IoTAAI62601.2024.10692873。<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10692873">链接</a></p>
+<h3 id="3-2-数据集在线转换"><a href="#3-2-数据集在线转换" class="headerlink" title="3.2 数据集在线转换"></a>3.2 数据集在线转换</h3><p>因为硅基流动平台仅支持.josnl的数据集，这是一种轻量化Json格式，每行为一个独立的Json对象。在Huggingface上下载的数据集需要经过处理才能够使用。</p>
+<p>采用Huggingface的datasets高效数据处理库来进行转换。</p>
+<p>构建并运行dataset_convert.ipynb文件，即Juypter Notebook格式的文件，可以包含Python代码和Markdown格式文本，并且支持分块调试。</p>
+<p>文件中代码内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">!pip install --upgrade datasets huggingface_hub</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datasets <span class="keyword">import</span> load_dataset</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载数据集</span></span><br><span class="line">dataset = load_dataset(<span class="string">&quot;Roselia-penguin/sample_medical-dialogue-Chinese&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为硅基流动格式</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">convert_to_siliconflow_format</span>(<span class="params">dataset, output_file, max_rows=<span class="number">5000</span></span>):</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(output_file, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> dataset:</span><br><span class="line">            <span class="keyword">if</span> count &gt;= max_rows:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">           </span><br><span class="line">     </span><br><span class="line">            messages = []</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 添加 system 角色（来自 instruction）</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;instruction&#x27;</span> <span class="keyword">in</span> item <span class="keyword">and</span> item[<span class="string">&#x27;instruction&#x27;</span>]:</span><br><span class="line">                messages.append(&#123;</span><br><span class="line">                    <span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, </span><br><span class="line">                    <span class="string">&quot;content&quot;</span>: item[<span class="string">&#x27;instruction&#x27;</span>]</span><br><span class="line">                &#125;)</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            <span class="comment"># 添加 user 角色（来自 input）</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;input&#x27;</span> <span class="keyword">in</span> item <span class="keyword">and</span> item[<span class="string">&#x27;input&#x27;</span>]:</span><br><span class="line">                messages.append(&#123;</span><br><span class="line">                    <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, </span><br><span class="line">                    <span class="string">&quot;content&quot;</span>: item[<span class="string">&#x27;input&#x27;</span>]</span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line"></span><br><span class="line">            <span class="comment"># 添加 assistant 角色（来自 output）</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">&#x27;output&#x27;</span> <span class="keyword">in</span> item <span class="keyword">and</span> item[<span class="string">&#x27;output&#x27;</span>]:</span><br><span class="line">                messages.append(&#123;</span><br><span class="line">                    <span class="string">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>, </span><br><span class="line">                    <span class="string">&quot;content&quot;</span>: item[<span class="string">&#x27;output&#x27;</span>]</span><br><span class="line">                &#125;)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            json_obj = &#123;<span class="string">&quot;messages&quot;</span>: messages&#125;</span><br><span class="line">            f.write(json.dumps(json_obj, ensure_ascii=<span class="literal">False</span>) + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;转换完成！共生成 <span class="subst">&#123;count&#125;</span> 行数据&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行转换</span></span><br><span class="line">convert_to_siliconflow_format(dataset[<span class="string">&#x27;train&#x27;</span>], <span class="string">&quot;converted_dataset.jsonl&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>运行转换完成后得到 converted_dataset.jsonl 文件。</p>
+<h3 id="3-3-数据集下载到本地后转换"><a href="#3-3-数据集下载到本地后转换" class="headerlink" title="3.3 数据集下载到本地后转换"></a>3.3 数据集下载到本地后转换</h3><p>也可以将数据集下载到本地，通过手工方式进行文本格式批处理替换的转换。</p>
+<p>将数据集下载到本地的操作可参考<a target="_blank" rel="noopener" href="https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">《Huggingface平台的模型和数据集使用》 。</a></p>
+<p>本地转换处理的工具待整理。</p>
+<h2 id="3-操作过程"><a href="#3-操作过程" class="headerlink" title="3. 操作过程"></a>3. 操作过程</h2><ol>
+<li><p>登录硅基流动官网平台，系统默认进入模型广场。</p>
+</li>
+<li><p>左侧选择 模型微调 → 新建微调任务。</p>
+</li>
+<li><p>任务名称：医疗问答模型</p>
+</li>
+<li><p>模型选择：成本考虑，选择参数量最小的 Qwen2.5-7b-instruct。（此处可以看出来，硅基流动仅支持对Qwen2.5的4个开源原始模型进行无代码微调，对DeepSeek等不提供微调服务。）</p>
+</li>
+<li><p>数据集上传：将前面的 converted_dataset.jsonl 文件上传到硅基流动平台。正常的话系统很快显示上传成功。</p>
+</li>
+<li><p>配置验证数据集：可选择微调数据集中的一部分（默认10%）作为验证数据集，也可以单独另外上传验证数据集。</p>
+</li>
+<li><p>微调模型名称：仅支持英文、字母和字符等，用于微调过后托管到平台。此处取名：Medical_Consultant_Model</p>
+</li>
+<li><p>超参数配置：大部分超参跟模型训练超参一样。只是此处使用LoRA微调，所以有LoRA的秩数量设置。此处选择默认超参数，不做修改。后续可以修改epcoh等，观察模型过拟合现象等。</p>
+</li>
+<li><p>模型微调：提交任务后，系统生成微调任务。但是硅基流动的调度策略是使用闲时算力进行模型微调，所以任务是离线处理。需等待系统在空闲时进行微调后返回结果。（可我中国时间半夜2:31提交的，也是挂起等待状态。。。）</p>
+</li>
+<li><p>模型结果输出和托管</p>
+</li>
+<li><p>模型验证</p>
+</li>
+</ol>
 <hr>
 <h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s2AUe2EBq?t=739.4">B站视频介绍 → 低码微调模型</a>。</p>
 <hr>
