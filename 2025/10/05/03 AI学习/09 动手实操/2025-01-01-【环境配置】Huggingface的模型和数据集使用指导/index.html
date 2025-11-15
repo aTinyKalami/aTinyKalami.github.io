@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">标签</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">分类</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -690,7 +690,7 @@
 <p>然后在 CLI 提示中粘贴 Token，然后执行。</p>
 <p>第 4 步：下载模型</p>
 <p>下载模型的命令如下：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;from huggingface_hub import snapshot_download; snapshot_download(repo_id=&#x27;squad&#x27;, repo_type=&#x27;dataset&#x27;, local_dir=&#x27;./squad_dataset&#x27;)&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">python -c &quot;from huggingface_hub import snapshot_download; snapshot_download(repo_id=&#x27;squad&#x27;, repo_type=&#x27;dataset&#x27;, local_dir=&#x27;./squad_dataset&#x27;)&quot;</span><br></pre></td></tr></table></figure>
 <p>其中各参数的含义：</p>
 <pre><code>1.repo_id 指库（模型或数据集）在Huggingface上的名称，可以从Huggingface上直接复制。
 2.repo_type 指库的类型，是模型 Model 还是数据集 dataset。
@@ -702,7 +702,7 @@
 3.存放目录：D:/handson/python download/sample_medical-dialogue-Chinese
 </code></pre>
 <p>那么命令为：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;from huggingface_hub import snapshot_download; snapshot_download(repo_id=&#x27;Roselia-penguin/sample_medical-dialogue-Chinese&#x27;, repo_type=&#x27;dataset&#x27;, local_dir=&#x27;D:/handson/python download/sample_medical-dialogue-Chinese&#x27;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">python -c &quot;from huggingface_hub import snapshot_download; snapshot_download(repo_id=&#x27;Roselia-penguin/sample_medical-dialogue-Chinese&#x27;, repo_type=&#x27;dataset&#x27;, local_dir=&#x27;D:/handson/python download/sample_medical-dialogue-Chinese&#x27;)</span><br></pre></td></tr></table></figure>
 <p><strong>注意：此处的存放目录，要为下载模型或数据集单独创一个目录。因为下载的时Huggingface上的这个库下的所有文件，所以如果没有单独目录，会有很多分散的文件。</strong></p>
 <hr>
 <h2 id="方法二：通过-Python-代码在程序中下载"><a href="#方法二：通过-Python-代码在程序中下载" class="headerlink" title="方法二：通过 Python 代码在程序中下载"></a>方法二：通过 Python 代码在程序中下载</h2><p>第 1 步：安装必要的依赖</p>
@@ -715,28 +715,28 @@
 <p>第2步：通过 Python 下载模型</p>
 <p>1）创建一个 Python 文件 download.py.</p>
 <p>在cmd下的命令有多种：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad download.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">notepad download.py</span><br></pre></td></tr></table></figure>
 <p>或者</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> <span class="built_in">nul</span> &gt; download.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">type</span> <span class="built_in">nul</span> &gt; download.py</span><br></pre></td></tr></table></figure>
 <p>或者</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo code &gt; download3.py  </span><br><span class="line"><span class="comment"># code这里是代码，也可以些null</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">echo code &gt; download3.py  </span><br><span class="line"><span class="comment"># code这里是代码，也可以些null</span></span><br></pre></td></tr></table></figure>
 
 <p>2）然后再打开download.py文件，输入如下内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> huggingface_hub <span class="keyword">import</span> snapshot_download</span><br><span class="line"></span><br><span class="line">snapshot_download(</span><br><span class="line">    repo_id=<span class="string">&quot;Roselia-penguin/sample_medical-dialogue-Chinese&quot;</span>,</span><br><span class="line">    repo_type=<span class="string">&quot;dataset&quot;</span>, </span><br><span class="line">    local_dir=<span class="string">&quot;D:/handson/python download/sample_medical-dialogue-Chinese&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;下载完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> huggingface_hub <span class="keyword">import</span> snapshot_download</span><br><span class="line"></span><br><span class="line">snapshot_download(</span><br><span class="line">    repo_id=<span class="string">&quot;Roselia-penguin/sample_medical-dialogue-Chinese&quot;</span>,</span><br><span class="line">    repo_type=<span class="string">&quot;dataset&quot;</span>, </span><br><span class="line">    local_dir=<span class="string">&quot;D:/handson/python download/sample_medical-dialogue-Chinese&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;下载完成！&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>其中参数含义同方法一。</p>
 <p>注：这些代码也可以在上面生成.py文件时，通过echo命令一次性直接输入并创建。</p>
 <p>3）运行文件，执行下载命令。也可以在Python程序中嵌入下面代码，在程序解释执行时触发下载。</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python download.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">python download.py</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="方法三：直接通过Git下载"><a href="#方法三：直接通过Git下载" class="headerlink" title="方法三：直接通过Git下载"></a>方法三：直接通过Git下载</h2><p>第1步：安装Git</p>
 <p>基本使用Github的都会安装Git，此步骤为缺省。</p>
 <p>Git网址: <a target="_blank" rel="noopener" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></p>
 <p>第2步：在Git中直接下载</p>
 <p>下载的Git命令如下：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 数据集（或模型）URL地址 指定目录名</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git clone 数据集（或模型）URL地址 指定目录名</span><br></pre></td></tr></table></figure>
 <p>此方法下载完成后的模型或数据集所在目录为指定的本地下载目录（<strong>必须是在使用Git的项目库的文件夹下的子目录</strong>）。如果不给出，缺省为Git项目对应文件夹的根目录。</p>
 <p>如按照上面的例子，下载的Git命令为：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://huggingface.co/datasets/Roselia-penguin/sample_medical-dialogue-Chinese D:/HandsOn/github/blog/python</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git clone https://huggingface.co/datasets/Roselia-penguin/sample_medical-dialogue-Chinese D:/HandsOn/github/blog/python</span><br></pre></td></tr></table></figure>
 <hr>
 <h1 id="HuggingFace模型使用各步骤说明"><a href="#HuggingFace模型使用各步骤说明" class="headerlink" title="HuggingFace模型使用各步骤说明"></a>HuggingFace模型使用各步骤说明</h1><h2 id="1-安装与环境配置"><a href="#1-安装与环境配置" class="headerlink" title="1. 安装与环境配置"></a>1. 安装与环境配置</h2><table>
 <thead>
@@ -841,9 +841,9 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/02%20AI%E7%A1%AC%E4%BB%B6%E4%BD%93%E7%B3%BB/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E8%8A%AF%E7%89%87/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91GraphRAG%E6%96%B9%E6%A1%88/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  AI芯片
+                  AI应用 - Graph RAG
               </a>
             
         </div>
