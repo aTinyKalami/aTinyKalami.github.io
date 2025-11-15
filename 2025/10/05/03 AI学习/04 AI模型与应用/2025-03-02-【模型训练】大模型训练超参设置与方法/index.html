@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Tags</a>
+        <a href="/tags" class="menu-item-link">标签</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Categories</a>
+        <a href="/categories" class="menu-item-link">分类</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
 		<div id="tree">
 			
 
@@ -750,46 +750,12 @@ Epoch（迭代次数）：模型完整遍历一遍整个训练集算一个epoch�
 <h1 id="微调阶段超参配置参考文档"><a href="#微调阶段超参配置参考文档" class="headerlink" title="微调阶段超参配置参考文档"></a>微调阶段超参配置参考文档</h1><p>对于微调，超参数配置的逻辑与预训练有所不同。此时，LoRA 等高效微调方法已成为主流。</p>
 <p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models</a></p>
 <p><a target="_blank" rel="noopener" href="https://magazine.sebastianraschka.com/p/a-visual-guide-to-fine-tuning-llms">A Visual Guide to Fine-tuning LLMs with LoRA</a></p>
-<h1 id="三-国内云厂商关于超参数配置的的社区文档学习精选"><a href="#三-国内云厂商关于超参数配置的的社区文档学习精选" class="headerlink" title="三. 国内云厂商关于超参数配置的的社区文档学习精选"></a>三. 国内云厂商关于超参数配置的的社区文档学习精选</h1><h4 id="1-核心推荐"><a href="#1-核心推荐" class="headerlink" title="1. 核心推荐"></a>1. 核心推荐</h4><ol>
-<li><a target="_blank" rel="noopener" href="https://www.volcengine.com/docs/8233/130073">火山引擎 - 大模型训练超参配置</a><ul>
-<li><strong>推荐理由：</strong> 最符合“系统性和精炼”要求的文档，直接以表格形式列出核心超参数的定义、建议值和示例，非常实用，是快速查阅的首选。</li>
-</ul>
+<h1 id="三-国内云厂商关于超参数配置的的社区文档学习精选"><a href="#三-国内云厂商关于超参数配置的的社区文档学习精选" class="headerlink" title="三. 国内云厂商关于超参数配置的的社区文档学习精选"></a>三. 国内云厂商关于超参数配置的的社区文档学习精选</h1><ol>
+<li><p><a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/pai/user-guide/llm-fine-tuning-experience?spm=5176.21213303.J_ZGek9Blx07Hclc3Ddt9dg.43.5f2a2f3dzA23VW&scm=20140722.S_help@@%E6%96%87%E6%A1%A3@@2863790._.ID_help@@%E6%96%87%E6%A1%A3@@2863790-RL_%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%E8%B6%85%E5%8F%82-LOC_2024SPHelpResult-OR_ser-PAR1_215041be17632329906976329edf3b-V_4-PAR3_o-RE_new10-P0_0-P1_0">阿里云 - 大语言模型微调指引</a></p>
 </li>
-<li><a target="_blank" rel="noopener" href="https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Nlkm5nkf3">百度文心千帆 - 模型调参介绍</a><ul>
-<li><strong>推荐理由：</strong> 对学习率、训练轮次、批量大小等核心参数有系统性的介绍和推荐范围，讲解清晰，是系统学习超参数作用的优秀文档。</li>
-</ul>
+<li><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/851/97539">腾讯云 - 精调内置开源大模型</a></p>
 </li>
-</ol>
-<h4 id="2-重点参考"><a href="#2-重点参考" class="headerlink" title="2. 重点参考"></a>2. 重点参考</h4><ol start="3">
-<li><a target="_blank" rel="noopener" href="https://support.huaweicloud.com/engineers-modelarts/modelarts_23_0032.html">华为云 - 超参搜索</a><ul>
-<li><strong>推荐理由：</strong> 系统介绍了自动超参优化（HPO）的功能和流程，说明了为什么要调整超参数以及如何让AI自动寻找最优配置，理念非常先进和实用。</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://support.huaweicloud.com/bestpractice-modelarts/modelarts_10_0076.html">华为云 - 示例：从0到1制作自定义镜像并用于训练（PyTorch）</a><ul>
-<li><strong>推荐理由：</strong> 在这个详细的实战示例中，提供了完整的训练脚本片段，其中明确展示了<code>batch_size</code>, <code>learning_rate</code>等关键超参数在代码中的设置位置，对于理解参数如何落地极具参考价值。</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/851/74132">腾讯云 - 大模型精调任务超参说明</a><ul>
-<li><strong>推荐理由：</strong> 专门针对大模型精调（Fine-tuning）场景，对LoRA等高效微调方法的超参数有详细说明，在进行模型微调时极具参考价值。</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/dashscope/developer-reference/parameter-tuning">阿里云 - 灵积模型服务参数调优</a><ul>
-<li><strong>推荐理由：</strong> 虽然主要针对推理参数（如 <code>temperature</code>, <code>top_p</code>），但对于理解这些关键参数的定义和作用至关重要，是学习推理阶段超参数的基础。</li>
-</ul>
-</li>
-</ol>
-<h4 id="3-拓展阅读"><a href="#3-拓展阅读" class="headerlink" title="3. 拓展阅读"></a>3. 拓展阅读</h4><ol start="7">
-<li><a target="_blank" rel="noopener" href="https://support.huaweicloud.com/exeml-modelarts/modelarts_21_0008.html">华为云 - 自动学习之预测分析项目</a><ul>
-<li><strong>推荐理由：</strong> 虽然面向自动学习场景，但其界面和流程中清晰地展示了<strong>学习率、迭代次数等超参数的可配置项</strong>，有助于初学者直观理解这些参数是训练任务的一部分。</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://help.aliyun.com/zh/pai/user-guide/deploy-the-qwen-model-on-pai-quickly">阿里云 - 使用PAI快速部署Qwen模型</a><ul>
-<li><strong>推荐理由：</strong> 可通过其相关的微调教程，了解在阿里云PAI平台上进行全参数微调或LoRA微调时的具体超参数设置，有平台实操需求时可参考。</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/beginner/train_cn.html">PaddlePaddle - 动态图基础使用</a><ul>
-<li><strong>推荐理由：</strong> 从飞桨深度学习框架层面解释了优化器、学习率调度器等超参数的设置原理，适合希望深入了解底层机制和框架具体用法的读者。</li>
-</ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/2.6/guides/model_convert/convert_from_pytorch/cv_experience_cn.html#liumoxingxunlianchaocanduiqi">百度飞桨 PaddlePaddle - CV - 迁移经验汇总</a></p>
 </li>
 </ol>
 <hr>
@@ -802,9 +768,9 @@ Epoch（迭代次数）：模型完整遍历一遍整个训练集算一个epoch�
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-06-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E8%8B%B1%E4%BC%9F%E8%BE%BE/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  英伟达
+                  训推框架 - 大模型训练和推理流程与框架
               </a>
             
         </div>
