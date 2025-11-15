@@ -371,16 +371,17 @@ function wrapImageWithFancyBox() {
 }
 
 
+
 // 代码复制功能
 document.addEventListener('DOMContentLoaded', function() {
   // 为所有代码块添加复制按钮
-  document.querySelectorAll('td.code').forEach(function(codeBlock) {
+  document.querySelectorAll('figure.highlight').forEach(function(figure) {
     const wrapper = document.createElement('div');
     wrapper.className = 'code-wrapper';
     
-    // 包装代码块
-    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
-    wrapper.appendChild(codeBlock);
+    // 包装整个figure
+    figure.parentNode.insertBefore(wrapper, figure);
+    wrapper.appendChild(figure);
     
     // 创建复制按钮
     const copyButton = document.createElement('button');
@@ -390,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 添加复制功能
     copyButton.addEventListener('click', function() {
-      const code = codeBlock.querySelector('pre').innerText;
+      const code = figure.querySelector('pre').innerText;
       navigator.clipboard.writeText(code).then(function() {
         copyButton.textContent = '已复制!';
         copyButton.classList.add('success');
