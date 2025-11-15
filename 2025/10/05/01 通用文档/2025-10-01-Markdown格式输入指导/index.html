@@ -692,7 +692,7 @@
 <blockquote>
 <p>我是一段引用文字段落块</p>
 </blockquote>
-<h2 id="2-7-表格"><a href="#2-7-表格" class="headerlink" title="2.7 表格"></a>2.7 表格</h2><p>管道符 | 是必须的，用于分隔列；分隔线 第二行必须包含，两个就可以，用于定义列对齐方式；空格 不影响渲染，主要用于提高可读性。</p>
+<h2 id="2-7-表格"><a href="#2-7-表格" class="headerlink" title="2.7 表格"></a>2.7 表格</h2><h3 id="2-7-1-表格语法"><a href="#2-7-1-表格语法" class="headerlink" title="2.7.1 表格语法"></a>2.7.1 表格语法</h3><p>管道符 | 是必须的，用于分隔列；分隔线 第二行必须包含，两个就可以，用于定义列对齐方式；空格 不影响渲染，主要用于提高可读性。</p>
 <p>基本表格语法示例：</p>
 <table>
 <thead>
@@ -740,6 +740,25 @@
 <td align="right">内容6</td>
 </tr>
 </tbody></table>
+<h3 id="2-7-2-表格中内容换行和加序号"><a href="#2-7-2-表格中内容换行和加序号" class="headerlink" title="2.7.2 表格中内容换行和加序号"></a>2.7.2 表格中内容换行和加序号</h3><p>可以使用 HTML 换行标签 <code>&lt;br&gt;</code>来进行换行，使用语法如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| 项目 | 描述 |</span><br><span class="line">|:---|:---|</span><br><span class="line">| 任务清单 | 1. 完成需求分析<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span>2. 设计系统架构<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span>3. 编写代码 |</span><br><span class="line">| 注意事项 | • 注意安全性<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span>• 考虑性能优化<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span>• 做好测试 |</span><br></pre></td></tr></table></figure>
+<p>渲染效果：</p>
+<table>
+<thead>
+<tr>
+<th align="left">项目</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">任务清单</td>
+<td align="left">1. 完成需求分析<br>2. 设计系统架构<br>3. 编写代码</td>
+</tr>
+<tr>
+<td align="left">注意事项</td>
+<td align="left">• 注意安全性<br>• 考虑性能优化<br>• 做好测试</td>
+</tr>
+</tbody></table>
 <h2 id="2-8-Pre-Code代码块"><a href="#2-8-Pre-Code代码块" class="headerlink" title="2.8 Pre Code代码块"></a>2.8 Pre Code代码块</h2><p> pre code 代码块，用来在页面中呈现独立代码块。</p>
 <pre><code>pre：预格式化文本，保持代码的缩进和换行
 
@@ -774,8 +793,8 @@ class=&quot;language-xxx&quot;：指定代码语言用于语法高亮
         </div>
         <div class="item right">
             
-              <a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-06-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E8%8B%B1%E4%BC%9F%E8%BE%BE/">
-                英伟达
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB%E3%80%91%E6%96%87%E6%A1%A3%E5%90%8D%E7%A7%B0%20%E6%A8%A1%E6%9D%BF/">
+                AI洞察 - 业界趋势洞察材料与网址
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
