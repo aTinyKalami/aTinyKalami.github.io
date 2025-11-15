@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		临时课题记录 | 
+		模型微调 - 大模型零代码微调实操 | 
 	 
 	十二亚晖的个人空间
 	</title>
@@ -19,7 +19,7 @@
 		<meta name="keywords" content="给时光以生命" />
 	
 	
-		<meta name="description" content="临时课题记录，暂存待后续整理合入对应模块" />
+		<meta name="description" content="基于硅基流动平台进行大模型零代码微调实操" />
 	
 
 	<!-- favicon -->
@@ -329,7 +329,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%93%8D/">
                      
 										    模型微调 - 大模型零代码微调实操
@@ -443,7 +443,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BD%95%E3%80%91%E4%BE%9B%E5%90%8E%E7%BB%AD%E7%BB%86%E5%8C%96/">
                      
 										    临时课题记录
@@ -585,7 +585,7 @@
 	<!-- 引入正文 -->
 	<div id="content" class="content">
 		<h1 id="article-title">
-	临时课题记录
+	模型微调 - 大模型零代码微调实操
 </h1>
 
 <!-- meta -->
@@ -593,7 +593,7 @@
 	
 
 	<span>十二亚晖</span>
-	<span>2025-05-05 09:00:00</span>
+	<span>2025-10-05 09:00:00</span>
 
   <div id="article-categories">
     
@@ -632,7 +632,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/学习/">学习</a>
+                    <a href="/tags/实操/">实操</a>
                     </i>
                 </span>
             
@@ -644,26 +644,33 @@
 
 <!-- content -->
 <div id="article-content">
-	<p>待分析知识点：</p>
+	<h1 id="一-基础概念"><a href="#一-基础概念" class="headerlink" title="一. 基础概念"></a>一. 基础概念</h1><p>很多模型API提供商（如OpenAI）和大模型托管厂商（如华为云、阿里云、硅基流动）都支持用户根据所需要的使用场景进行简单的无码化模型微调。</p>
+<p>具体的微调步骤分如下三步：</p>
+<h1 id="1-微调数据集准备与上传"><a href="#1-微调数据集准备与上传" class="headerlink" title="1. 微调数据集准备与上传"></a>1. 微调数据集准备与上传</h1><p>用户可以上传自己的微调数据集，或者在平台中选择模型托管厂商提供的领域数据集。</p>
+<p>微调数据集一般都是.JSON格式，条数建议在10k条以上。实际企业应用中，条数太少了没必要，可以直接基于原模型以提示词工程方式使用。条数太多了算力消耗较大，而且可能会影响模型的稳定性，造成模型灾难性遗忘。需要结合其他通识数据集，进行数据配比后一起给模型进行微调。操作复杂并且不确定性高。</p>
+<p>大模型微调数据集准备，（可以参考后续要单开的文章）。</p>
+<p>Hugging face上有大量的开源数据集，可以从中选取。</p>
+<h1 id="2-微调超参数配置"><a href="#2-微调超参数配置" class="headerlink" title="2. 微调超参数配置"></a>2. 微调超参数配置</h1><p>用户可以根据自己的经验配置超参数，很多平台也提供默认的超参数，并推荐用户由系统来缺省设置超参。</p>
+<p>说明：大模型微调的超参设置跟大模型预训练的超参数设置是类似的，基于同样的模型训练的主要参数。只是配置的原则会有所区别。</p>
+<p>详细介绍可参考：<a target="_blank" rel="noopener" href="https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">大模型训练超参设置 → 点我</a>。</p>
+<p>微调超参数配置与调整可参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s2AUe2EBq?t=739.4">视频介绍 → 低码微调模型</a>。</p>
+<h1 id="3-调用平台的算力来进行模型的微调"><a href="#3-调用平台的算力来进行模型的微调" class="headerlink" title="3. 调用平台的算力来进行模型的微调"></a>3. 调用平台的算力来进行模型的微调</h1><p>在平台中确认配置并点击执行，系统会自动进行微调。</p>
+<h1 id="4-微调模型的评测与发布"><a href="#4-微调模型的评测与发布" class="headerlink" title="4. 微调模型的评测与发布"></a>4. 微调模型的评测与发布</h1><h2 id="4-1-评测"><a href="#4-1-评测" class="headerlink" title="4.1 评测"></a>4.1 评测</h2><p>部分厂商平台带有模型评测工具，或者用户可以用自己的模型评测工具，对微调后的模型效果进行评测，并且以图形化的方式给出模型在各个领域的性能效果。</p>
+<h2 id="4-2-发布"><a href="#4-2-发布" class="headerlink" title="4.2 发布"></a>4.2 发布</h2><p>微调后的模型，用户可以选择发布到模型厂商或模型托管厂商的平台上，供后续自己调用。调用的收费方式一般也分为按专属资源收费（比如华为云，目前微调后的模型只支持这种方式），或者按照调用Token收费（比如硅基流动等支持这种方式）。</p>
+<p>（此处是个人的分析判断）部署发布后按照Token收费的方式，后台可能是将微调后的模型采用Serverless的方式进行部署，在用户使用的时候进行快速的加载。好处是模型托管厂商的成本会比较低，坏处是如果模型调用频率不高，那么模型调用的SLA可能会比较差。</p>
+<h1 id="二-实操指导"><a href="#二-实操指导" class="headerlink" title="二. 实操指导"></a>二. 实操指导</h1><h2 id="1-目标设置"><a href="#1-目标设置" class="headerlink" title="1. 目标设置"></a>1. 目标设置</h2><p>假设我们的任务是要基于基础的NLP对话模型，结合医疗数据集，微调构建一个网上电子医生对话模型。</p>
+<h2 id="2-平台选择"><a href="#2-平台选择" class="headerlink" title="2. 平台选择"></a>2. 平台选择</h2><p>以下实操指导内容以<a target="_blank" rel="noopener" href="https://cloud.siliconflow.cn/me/models">硅基流动模型托管平台</a>为例，其他模型托管平台类似。（后续实验OpenAI的FineTune接口低码微调）</p>
+<h2 id="3-数据准备"><a href="#3-数据准备" class="headerlink" title="3. 数据准备"></a>3. 数据准备</h2><p>在登录模型托管平台进行微调操作前，需要提前准备好需要的微调数据集。</p>
+<p>Hugging face上有大量的开源数据集，可以根据不同的场景目标从中选取。详细的操作参考文章（文章链接）</p>
+<p>我们选择<a target="_blank" rel="noopener" href="https://huggingface.co/datasets/fengjay01/Chinese-medical-dialogue-sample/viewer/default/train?p=2&views%5B%5D=train">中文医疗对话数据集</a>。这个数据集是个Sample，比较小，用于体验过程没问题，性价比高。</p>
+<p>Huggingface上一般只提供通过全码进行数据集远程调用。我们还需要下载到本地。</p>
+<h2 id="3-操作过程"><a href="#3-操作过程" class="headerlink" title="3. 操作过程"></a>3. 操作过程</h2><p>1.登录硅基流动官网平台，系统默认进入模型广场。</p>
+<p>2.左侧选择 模型微调 → 新建微调任务。</p>
+<p>3.任务名称：</p>
 <hr>
-<p>提示词压缩</p>
-<p>从提示词工程到上下文工程。</p>
-<p>LoRA微调详细学习。</p>
-<p>大模型的架构、参数等，在实体文件上是如何表示和对应的？</p>
-<p>模型微调有哪些数据集，包括Hugging face上的开源数据集分一些什么样的类型？</p>
-<p>企业数据集加工有哪些工具，如何处理。</p>
+<h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s2AUe2EBq?t=739.4">B站视频介绍 → 低码微调模型</a>。</p>
 <hr>
-<p>GPU芯片</p>
-<h1 id="CUDA核和Tensor核的区别"><a href="#CUDA核和Tensor核的区别" class="headerlink" title="CUDA核和Tensor核的区别"></a>CUDA核和Tensor核的区别</h1><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/451127498">文章介绍</a></p>
-<p>第2个评论回答的比较清楚。</p>
-<p>tensor core 第一代是在volta架构上推出，专为深度学习而设计的，在tensor矩阵场景下算得更快。一个时钟周期内可以完成一个64 floating point 的FMA，而cuda core是搞不定的，分多次。</p>
-<p><img src="https://vdn3.vzuu.com/SD/1fd55a3c-9362-11eb-a595-1278b449b310.mp4?auth_key=1761741592-0-0-19b21368bf65ad9cc817ada64d87bb08&bu=078babd7&c=avc.0.0&disable_local_cache=1&expiration=1761741592&f=mp4&pu=078babd7&v=tx" alt="形象对比"></p>
-<h1 id="达芬奇架构NPU又有什么区别？"><a href="#达芬奇架构NPU又有什么区别？" class="headerlink" title="达芬奇架构NPU又有什么区别？"></a>达芬奇架构NPU又有什么区别？</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/352481421">参考这里</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/389768549">参考这里</a></p>
-<p>达芬奇架构，是华为自研的面向AI计算特征的全新计算架构，具备高算力、高能效、灵活可裁剪的特性，是实现万物智能的重要基础。具体来说，达芬奇架构采用3D Cube针对矩阵运算做加速，大幅提升单位功耗下的AI算力，每个AI Core可以在一个时钟周期内实现4096个MAC操作，相比传统的CPU和GPU实现数量级的提升。</p>
-<p><img src="https://pic1.zhimg.com/v2-1f6368d7b412c07f92caa26eba6c1f1a_1440w.jpg" alt="架构图示"></p>
-<h1 id="英伟达GPU和华为NPU的区别"><a href="#英伟达GPU和华为NPU的区别" class="headerlink" title="英伟达GPU和华为NPU的区别"></a>英伟达GPU和华为NPU的区别</h1><hr>
-<p>（本文完））</p>
+<p>（本文完）</p>
 
 </div>
 
@@ -672,16 +679,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/02/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  后训练 - 大模型后训练与微调
+                  模型训练 - 大模型训练超参设置与方法
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/00%20AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">
-                AI知识地图
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
+                基础知识 - 大模型API接口调用参数说明
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

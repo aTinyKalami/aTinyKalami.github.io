@@ -19,7 +19,7 @@
 		<meta name="keywords" content="给时光以生命" />
 	
 	
-		<meta name="description" content="大模型API调用接口的作用及参数选择" />
+		<meta name="description" content="大模型API调用接口的作用及参数选择，还需深化学习" />
 	
 
 	<!-- favicon -->
@@ -329,6 +329,17 @@
 							</ul>
 			
 							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%93%8D/">
+                     
+										    模型微调 - 大模型零代码微调实操
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="file active">
 									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
                      
@@ -396,9 +407,9 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E5%90%84%E8%B5%84%E6%BA%90%E5%B9%B3%E5%8F%B0AC%E4%B8%8EPD%E8%AE%B0%E5%BD%95/">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
                      
-										    各资源平台链接与AC/PD记录
+										    Huggingface平台的模型和数据集使用
                      
 									</a>
 								</li>
@@ -613,7 +624,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/技术/">技术</a>
+                    <a href="/tags/洞察/">洞察</a>
                     </i>
                 </span>
             
@@ -621,7 +632,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/洞察/">洞察</a>
+                    <a href="/tags/技术/">技术</a>
                     </i>
                 </span>
             
@@ -633,7 +644,9 @@
 
 <!-- content -->
 <div id="article-content">
-	<p>业界当前大模型API调用，OpenAI基本形成事实标准，各个厂家新推出的模型的API调用，都遵循OpenAI的GPT的调用格式（Formate）。</p>
+	<p>大模型的API调用，根据模型类别、用途功能，有很多不同的方面。</p>
+<p>可以基于硅基流动的API文档进行完整和系统的学习与归档，参考<a target="_blank" rel="noopener" href="https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions">硅基流动API文档</a>。</p>
+<p>业界当前大模型API调用，OpenAI基本形成事实标准，各个厂家新推出的模型的API调用，都遵循OpenAI的GPT的调用格式（Formate）。</p>
 <h1 id="OpenAI-的模型调用API参数总览"><a href="#OpenAI-的模型调用API参数总览" class="headerlink" title="OpenAI 的模型调用API参数总览"></a>OpenAI 的模型调用API参数总览</h1><table>
 <thead>
 <tr>
@@ -736,6 +749,8 @@
 <p>典型用途：在需要实时接收生成数据时（如实时显示聊天回复），可以设置为 True。在大多数情况下，特别是需要一次性获取完整回答的情况下，设置为 False 是更常见的选择。</p>
 <h3 id="Messages："><a href="#Messages：" class="headerlink" title="Messages："></a>Messages：</h3><p> 用途：这个参数用于给大模型提供每轮输入的Tokens，从而启动大模型的Prefill环节。如果要让大模型有记忆，就要在程序中保留历史的输入和输出，并且每次在调用中作为输入通过Messages API的参数提供给模型。</p>
 <hr>
+<h1 id="实际API文档理解"><a href="#实际API文档理解" class="headerlink" title="实际API文档理解"></a>实际API文档理解</h1><p>以硅基流动官网（<a target="_blank" rel="noopener" href="https://cloud.siliconflow.cn/me/models?types=chat%EF%BC%89%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%B9%BF%E5%9C%BA%E5%8F%91%E5%B8%83%E7%9A%84%EF%BC%88deepseek-ai/DeepSeek-R1-0528-Qwen3-8B%EF%BC%89%E7%9A%84%5B%E6%A8%A1%E5%9E%8BAPI%E6%96%87%E6%A1%A3%5D(https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions)%E4%B8%BA%E4%BE%8B%EF%BC%9A">https://cloud.siliconflow.cn/me/models?types=chat）的模型广场发布的（deepseek-ai/DeepSeek-R1-0528-Qwen3-8B）的[模型API文档](https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions)为例：</a></p>
+<hr>
 <h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><p><a target="_blank" rel="noopener" href="https://platform.openai.com/docs/api-reference">OpenAI官方API文档主页</a></p>
 <p><a target="_blank" rel="noopener" href="https://notes.kodekloud.com/docs/Mastering-Generative-AI-with-OpenAI/Understanding-Tokens-and-API-Parameters/Understanding-OpenAI-API-Parameters">Understanding OpenAI API Parameters</a></p>
 <p><a target="_blank" rel="noopener" href="https://medium.com/@csakash03/model-parameters-in-openai-api-fe6101d3f813">Model Parameters in OpenAI API</a></p>
@@ -749,16 +764,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-02-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E7%8E%AF%E8%8A%82%E3%80%91Embedding%E8%AF%8D%E5%B5%8C%E5%85%A5/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%93%8D/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  基础知识 - Embedding (词嵌入/向量化)
+                  模型微调 - 大模型零代码微调实操
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91GraphRAG%E6%96%B9%E6%A1%88/">
-                AI应用 - Graph RAG
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91RAG%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90/">
+                AI应用 - RAG方案
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

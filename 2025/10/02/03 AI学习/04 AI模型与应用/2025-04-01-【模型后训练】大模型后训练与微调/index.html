@@ -330,6 +330,17 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%93%8D/">
+                     
+										    模型微调 - 大模型零代码微调实操
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
                      
 										    基础知识 - 大模型API接口调用参数说明
@@ -396,9 +407,9 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E5%90%84%E8%B5%84%E6%BA%90%E5%B9%B3%E5%8F%B0AC%E4%B8%8EPD%E8%AE%B0%E5%BD%95/">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
                      
-										    各资源平台链接与AC/PD记录
+										    Huggingface平台的模型和数据集使用
                      
 									</a>
 								</li>
@@ -613,7 +624,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/技术/">技术</a>
+                    <a href="/tags/洞察/">洞察</a>
                     </i>
                 </span>
             
@@ -621,7 +632,7 @@
             
                 <span>
                     <i class="fa fa-tag" aria-hidden="true">
-                    <a href="/tags/洞察/">洞察</a>
+                    <a href="/tags/技术/">技术</a>
                     </i>
                 </span>
             
@@ -633,17 +644,66 @@
 
 <!-- content -->
 <div id="article-content">
-	<h1 id="一-大模型微调基础知识"><a href="#一-大模型微调基础知识" class="headerlink" title="一. 大模型微调基础知识"></a>一. 大模型微调基础知识</h1><h2 id="大模型微调概念"><a href="#大模型微调概念" class="headerlink" title="大模型微调概念"></a>大模型微调概念</h2><h3 id="什么是大模型微调（Fine-Tuning）"><a href="#什么是大模型微调（Fine-Tuning）" class="headerlink" title="什么是大模型微调（Fine Tuning）"></a>什么是大模型微调（Fine Tuning）</h3><p><strong>大模型微调</strong>指的在已有的大规模预训练模型的基础上，通过再提供标注数据集输入到大语言模型进行进一步训练，从而优化模型在特定场景下（比如对话、工具调用、深度思考思维链拆解、Agent任务步骤规划等）的表现，以适应特定任务需求。</p>
-<h3 id="模型微调方案的优劣势"><a href="#模型微调方案的优劣势" class="headerlink" title="模型微调方案的优劣势"></a>模型微调方案的优劣势</h3><p>大模型微调通过后训练阶段修改优化预训练模型参数来达到优化模型输出能力，是一种能够让模型“永久”掌握某种能力的方法。</p>
+	<h1 id="一-大模型微调基础知识"><a href="#一-大模型微调基础知识" class="headerlink" title="一. 大模型微调基础知识"></a>一. 大模型微调基础知识</h1><h2 id="1-大模型微调基本概念"><a href="#1-大模型微调基本概念" class="headerlink" title="1. 大模型微调基本概念"></a>1. 大模型微调基本概念</h2><h3 id="1-1-什么是大模型微调（Fine-Tuning）"><a href="#1-1-什么是大模型微调（Fine-Tuning）" class="headerlink" title="1.1 什么是大模型微调（Fine Tuning）"></a>1.1 什么是大模型微调（Fine Tuning）</h3><p><strong>大模型微调</strong>指的在已有的大规模预训练模型的基础上，通过再提供标注数据集输入到大语言模型进行进一步训练，从而优化模型在特定场景下（比如对话、工具调用、深度思考思维链拆解、Agent任务步骤规划等）的表现，以适应特定任务需求。</p>
+<h3 id="1-2-模型微调方案的优劣势"><a href="#1-2-模型微调方案的优劣势" class="headerlink" title="1.2 模型微调方案的优劣势"></a>1.2 模型微调方案的优劣势</h3><p>大模型微调通过后训练阶段修改优化预训练模型参数来达到优化模型输出能力，是一种能够让模型“永久”掌握某种能力的方法。</p>
 <p>不同于RAG或者Agent技术，这些方案是通过搭建工作流，以在单次任务中提供更多的系统提示词输入参考内容，或让模型使用外部工具等，来整体提升模型的输出表现和最终AI应用的结果。</p>
 <p>尽管模型微调能够通过修改模型参数的方式，永久的修改模型的能力。但这其实是一把双刃剑，如果微调处理不当，很可能造成模型原始能力的 <strong>灾难性遗忘（Catastrophic Forgetting）</strong>，即会导致模型原始能力丢失，尤其对于复杂模型更容易发生。</p>
 <p>所以为了能够满足微调的业务目标，我们必须小心谨慎的设计模型微调数据集和微调训练流程，并经过反复多次训练验证，才能得到一个最佳的微调模型。</p>
-<h3 id="全量微调（FineTuning）与高效微调-PEFT-Parameter-Efficiency-Fine-Tuning"><a href="#全量微调（FineTuning）与高效微调-PEFT-Parameter-Efficiency-Fine-Tuning" class="headerlink" title="全量微调（FineTuning）与高效微调(PEFT:Parameter Efficiency Fine Tuning)"></a>全量微调（FineTuning）与高效微调(PEFT:Parameter Efficiency Fine Tuning)</h3><p>模型微调方案从大类上微调可以划分为<strong>全量微调（对大模型的所有神经网络参数进行微调）</strong>，和<strong>高效微调（局部微调，只对大语言模型的部分神经网络参数进行微调）</strong>。</p>
+<h2 id="2-大模型微调的方法"><a href="#2-大模型微调的方法" class="headerlink" title="2. 大模型微调的方法"></a>2. 大模型微调的方法</h2><h3 id="2-1-全量微调（FineTuning）与高效微调-PEFT-Parameter-Efficiency-Fine-Tuning"><a href="#2-1-全量微调（FineTuning）与高效微调-PEFT-Parameter-Efficiency-Fine-Tuning" class="headerlink" title="2.1 全量微调（FineTuning）与高效微调(PEFT:Parameter Efficiency Fine Tuning)"></a>2.1 全量微调（FineTuning）与高效微调(PEFT:Parameter Efficiency Fine Tuning)</h3><p>模型微调方案从大类上微调可以划分为<strong>全量微调（对大模型的所有神经网络参数进行微调）</strong>，和<strong>高效微调（局部微调，只对大语言模型的部分神经网络参数进行微调）</strong>。</p>
 <p>全量微调是一种算力消耗更大、但对模型的能力改造更为彻底的方法；而高效微调则更类似一种“四两拨千斤”的方法，通过仅修改模型部分参数，来提升模型的整体能力。</p>
-<hr>
-<h3 id="高效微调的具体方案：LoRA、QLoRA"><a href="#高效微调的具体方案：LoRA、QLoRA" class="headerlink" title="高效微调的具体方案：LoRA、QLoRA"></a>高效微调的具体方案：LoRA、QLoRA</h3><p>尽管全量微调可以对模型的能力进行深度改造，但要带入模型全部参数进行训练，需要消耗大量的算力，技术门槛较高，而且容易引发灾难性遗忘。相比之下，在绝大多数场景中，如果我们只想提升模型某个具体领域的能力，那高效微调会更加合适。</p>
-<p>尽管在2020年前后，深度学习领域诞生了很多高效微调的方法，但现在适用于大模型的最主流的高效微调方法只有一种——LoRA微调。</p>
-<h4 id="LoRA微调"><a href="#LoRA微调" class="headerlink" title="LoRA微调"></a>LoRA微调</h4><h5 id="1-什么是LoRA微调"><a href="#1-什么是LoRA微调" class="headerlink" title="1.什么是LoRA微调"></a>1.什么是LoRA微调</h5><p>**LoRA（Low-Rank Adaptation）**微调基于低秩矩阵分解的参数高效微调方法，其核心思想是通过分解大模型参数矩阵为低秩形式，显著减少训练参数数量（通常仅需原模型0.1%-1%的参数量），同时保持接近全量微调的性能。</p>
+<h3 id="2-2-高效微调（PEFT）的具体方法"><a href="#2-2-高效微调（PEFT）的具体方法" class="headerlink" title="2.2 高效微调（PEFT）的具体方法"></a>2.2 高效微调（PEFT）的具体方法</h3><p>尽管全量微调可以对模型的能力进行深度改造，但要带入模型全部参数进行训练，需要消耗大量的算力，技术门槛较高，而且容易引发灾难性遗忘。相比之下，在绝大多数场景中，如果我们只想提升模型某个具体领域的能力，那高效微调会更加合适。</p>
+<p>Hugging face的PEFT项目地址：<a target="_blank" rel="noopener" href="https://github.com/huggingface/peft%E3%80%82[%E2%86%92%E7%82%B9%E6%88%91](https://github.com/huggingface/peft)">https://github.com/huggingface/peft。[→点我](https://github.com/huggingface/peft)</a></p>
+<p>高效微调业界有多种不同方案，包括：LoRA微调，Prefix-Tuning，Prompt Tuning，P-Tuning V2，AdaLoRA等。</p>
+<p>各种高效微调方案的对比：</p>
+<table>
+<thead>
+<tr>
+<th align="left">微调方案</th>
+<th align="left">提出机构</th>
+<th align="left">技术原理</th>
+<th align="left">论文名称</th>
+<th align="left">论文地址</th>
+<th align="left">Github项目地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">LoRA微调：基于低阶自适应的大语言模型微调方法</td>
+<td align="left">微软研究院</td>
+<td align="left">基于大模型内部的低秩特性，在大模型网络结构中旁挂低阶矩阵适配器（Adaptor）来模拟全参数微调，提升大模型参数对新任务的输出质量</td>
+<td align="left">LoRA：Low-Rank adaptation of large language models(2021)，基于低阶自适应的大语言模型微调方法</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.09685">Https://arxiv.org/abs/2106.09685</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/microsoft/LoRA">https://github.com/microsoft/LoRA</a></td>
+</tr>
+<tr>
+<td align="left">Prefix-Tuning：基于提示词前缀优化的微调方法</td>
+<td align="left">斯坦福大学</td>
+<td align="left">在原始模型的基础上，增加一个可被训练的Embedding层，用于给提示词增加前缀，从而让模型更好的理解提示词意图，并在训练（微调）过程中不断优化Embedding层的这些参数。Prefix Tuning是一种即增加了模型结构的灵活性，又能够不改变原模型参数的基础上提供一种自动的、改变原有模型表现的微调机制。</td>
+<td align="left">Prefix-Tuning:Optimizing Continuous Prompts for Gereration(2021)，基于提示词前缀优化的微调方法</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://aclanthology.org/2021.acl-long.353/">Https://aclanthology.org/2021.acl-long.353/</a></td>
+<td align="left">NA</td>
+</tr>
+<tr>
+<td align="left">Prompt Tuning：基于提示词调优的微调方法</td>
+<td align="left">谷歌</td>
+<td align="left">相当于PrefixTuning的轻量化&#x2F;简化版本。 无需额外增加模型参数（Embedding层），而是在已有的模型参数中，选择一部分参数作为可歇息参数，并进行微调使其根据微调数据改变。从而在运行时创建每个Prompt的前缀，帮助模型更好的理解和处理微调所指向的特定任务。不同于PrefixTuning方法，PromptTUning训练的到的前缀是具备可解释性的，可以通过查看这些前缀，来查看模型是如何优化Prompte的。（此处没搞清楚）。</td>
+<td align="left">The power of Scale for parameter-efficient prompt tuning（2021）</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.08691">Https://arxiv.org/abs/2104.08691</a></td>
+<td align="left">NA</td>
+</tr>
+<tr>
+<td align="left">P-Tuning V2：基于提示词前缀调优的微调方法 V2</td>
+<td align="left">清华大学</td>
+<td align="left">可以理解为Prefix tuning的改进版本。P-Tuning V2不仅在输入层添加连续的prompts（可被训练的embedding层），而且还在预训练模型的每一层都添加了连续的prompts。</td>
+<td align="left">P-Tuning v2:Prompt Tuning Can Be Comparable to Fine-tuning universally across scales and tasks（2022）</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://aclanthology.org/2021.acl-long.353">https://aclanthology.org/2021.acl-long.353</a></td>
+<td align="left">P-Tuning V2的Github地址：<a target="_blank" rel="noopener" href="https://github.com/thudm/p-tuning-v2%EF%BC%8CChatGLM-6B+P-Tuning%E5%BE%AE%E8%B0%83%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80%EF%BC%9AHttps://github.com/thudm/chatglm-6b/blob/main/ptuning/readme.md">https://github.com/thudm/p-tuning-v2，ChatGLM-6B+P-Tuning微调项目地址：Https://github.com/thudm/chatglm-6b/blob/main/ptuning/readme.md</a></td>
+</tr>
+</tbody></table>
+<p>此处延伸学习的参考文档：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yc411g78a?t=1615.3">→ 点我</a>。</p>
+<h4 id="LoRA微调"><a href="#LoRA微调" class="headerlink" title="LoRA微调"></a>LoRA微调</h4><p>尽管深度学习领域诞生了很多高效微调的方法，但现在适用于大模型的最主流的高效微调方法只有一种——LoRA微调。</p>
+<p>LoRA微调的Github地址：<a target="_blank" rel="noopener" href="https://github.com/microsoft/LoRA%E3%80%82">https://github.com/microsoft/LoRA。</a></p>
+<p>论文地址：Https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2106.09685。</p>
+<h5 id="1-什么是LoRA微调"><a href="#1-什么是LoRA微调" class="headerlink" title="1.什么是LoRA微调"></a>1.什么是LoRA微调</h5><p>**LoRA（Low-Rank Adaptation）**微调基于低秩矩阵分解的参数高效微调方法，其核心思想是通过分解大模型参数矩阵为低秩形式，显著减少训练参数数量（通常仅需原模型0.1%-1%的参数量），同时保持接近全量微调的性能。</p>
 <p>具体来说，LoRA 微调并不直接调整原始模型的所有参数，而是通过在某些层中插入低秩的适配器（Adapter）层来进行神经网络的后训练。</p>
 <h5 id="2-LoRA微调的优势"><a href="#2-LoRA微调的优势" class="headerlink" title="2.LoRA微调的优势"></a>2.LoRA微调的优势</h5><p>在全量微调中，我们会修改模型的所有权重，而在 LoRA 中，只对某些低秩矩阵的适配器进行训练和调整。这意味着可以保持原始模型的参数不变，只是通过新增少量的新参数，寻找这些参数的最优值来调整整个大语言模型的输出。</p>
 <p>低秩矩阵的引入可以在显存和计算能力有限的情况下，依然有效地对大型预训练模型进行微调，从而让 LoRA 成为显存较小的设备上的理想选择。</p>
@@ -654,7 +714,7 @@
 </code></pre>
 <h5 id="3-LoRA微调的数学原理"><a href="#3-LoRA微调的数学原理" class="headerlink" title="3.LoRA微调的数学原理"></a>3.LoRA微调的数学原理</h5><p>文字概述：</p>
 <p>假设原始权重矩阵为$W\in\mathbb{R}^{d\times k}$，LoRA将其分解为$W+\Delta W&#x3D;W+BA$，其中$B\in\mathbb{R}^{d\times r}$，$A\in\mathbb{R}^{r\times k}$，且$r\ll\min(d,k)$。通过约束秩$r$（通常取4-64），参数更新量从$dk$降至$r(d+k)$，降幅可达90%以上。</p>
-<p>详细原理视频讲解，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13U1YBZENK?t=28.2"> → 点我</a></p>
+<p>详细原理视频讲解<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13U1YBZENK?t=28.2"> → 点我</a></p>
 <h5 id="4-LoRA微调适合的场景"><a href="#4-LoRA微调适合的场景" class="headerlink" title="4. LoRA微调适合的场景"></a>4. LoRA微调适合的场景</h5><p>LoRA微调的典型应用场景包括：</p>
 <pre><code>1. 垂直领域知识注入（如金融风控模型）
 2. 多语言适配（小语种NLP任务）
@@ -757,11 +817,19 @@
 </tr>
 </tbody></table>
 <hr>
-<h1 id="二-大模型微调的实施方式"><a href="#二-大模型微调的实施方式" class="headerlink" title="二. 大模型微调的实施方式"></a>二. 大模型微调的实施方式</h1><h2 id="1-基于模型托管厂商平台的MaaS服务进行低代码微调"><a href="#1-基于模型托管厂商平台的MaaS服务进行低代码微调" class="headerlink" title="1. 基于模型托管厂商平台的MaaS服务进行低代码微调"></a>1. 基于模型托管厂商平台的MaaS服务进行低代码微调</h2><p>以华为云或者硅基流动平台为例，给出截图。</p>
-<p>微调超参数配置与调整。</p>
-<p>可参考视频链接<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s2AUe2EBq?t=739.4"> → 低码微调模型</a></p>
+<p>强化学习（RL）：待补充</p>
+<hr>
+<h1 id="二-大模型微调的实施方式"><a href="#二-大模型微调的实施方式" class="headerlink" title="二. 大模型微调的实施方式"></a>二. 大模型微调的实施方式</h1><h2 id="1-基于模型托管厂商的平台进行零代码微调"><a href="#1-基于模型托管厂商的平台进行零代码微调" class="headerlink" title="1. 基于模型托管厂商的平台进行零代码微调"></a>1. 基于模型托管厂商的平台进行零代码微调</h2><p>很多模型API提供商（如OpenAI）和大模型托管厂商（如华为云、阿里云、硅基流动）都支持用户根据所需要的使用场景进行简单的无码化模型微调。</p>
+<p>具体的微调步骤分三步。</p>
+<h3 id="1-1-微调数据集准备与上传"><a href="#1-1-微调数据集准备与上传" class="headerlink" title="1.1 微调数据集准备与上传"></a>1.1 微调数据集准备与上传</h3><p>用户可以上传自己的微调数据集，或者在平台中选择模型托管厂商提供的领域数据集。</p>
+<p>大模型微调数据集准备，后续单开文章。</p>
+<h3 id="1-2-微调超参数配置"><a href="#1-2-微调超参数配置" class="headerlink" title="1.2 微调超参数配置"></a>1.2 微调超参数配置</h3><p>用户可以根据自己的经验配置超参数，很多平台也提供默认的超参数，并推荐用户由系统来缺省设置超参。</p>
+<p>大模型微调的超参设置跟大模型预训练的超参数设置是一样的，基于同样的模型训练的主要参数。只是配置的原则会有所区别。</p>
+<p>可参考大模型训练超参设置<a target="_blank" rel="noopener" href="https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">→点我</a>。</p>
+<p>微调超参数配置与调整可参考视频链接<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s2AUe2EBq?t=739.4"> → 低码微调模型</a></p>
+<h3 id="1-3-调用平台的算力来进行模型的微调"><a href="#1-3-调用平台的算力来进行模型的微调" class="headerlink" title="1.3 调用平台的算力来进行模型的微调"></a>1.3 调用平台的算力来进行模型的微调</h3><p>以硅基流动模型托管平台为例。</p>
 <h2 id="2-基于本地或云端环境通过工具软件进行全代码微调"><a href="#2-基于本地或云端环境通过工具软件进行全代码微调" class="headerlink" title="2. 基于本地或云端环境通过工具软件进行全代码微调"></a>2. 基于本地或云端环境通过工具软件进行全代码微调</h2><p>参考视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1YLE1zyEvX?t=1204.2&p=4">4小时打造垂域专属大模型，Qwen3企业级微调实战！</a></p>
-<h3 id="主流微调工具："><a href="#主流微调工具：" class="headerlink" title="主流微调工具："></a>主流微调工具：</h3><p>入手学习大模型微调时，首先推荐功能层次封装层次较高的微调四套工具：unsloth、LlamaFactory、ms-SWIFT和ColossalAI。除此之外，也可以借助更加底层的库，如peft、LoRA、transformer<br>等实现高效微调。</p>
+<h3 id="选择微调工具："><a href="#选择微调工具：" class="headerlink" title="选择微调工具："></a>选择微调工具：</h3><p>入手学习大模型微调时，首先推荐功能层次封装层次较高的微调四套工具：unsloth、LlamaFactory、ms-SWIFT和ColossalAI。除此之外，也可以借助更加底层的库，如peft、LoRA、transformer<br>等实现高效微调。</p>
 <p>对于初学者来说，建议首先使用现成封装好的工具来进行微调。</p>
 <h4 id="1-unsloth"><a href="#1-unsloth" class="headerlink" title="1. unsloth"></a>1. unsloth</h4><p>unsloth GitHub主页：<a target="_blank" rel="noopener" href="https://github.com/unslothai/unsloth%EF%BC%8C[%E2%86%92%E7%82%B9%E6%88%91](https://github.com/unslothai/unsloth)%E3%80%82">https://github.com/unslothai/unsloth，[→点我](https://github.com/unslothai/unsloth)。</a></p>
 <p>unsloth 是一个专为大型语言模型（LLM）设计的动态量化与微调框架，旨在提高微调效率并减少显存占用。 它通过手动推导计算密集型数学步骤并手写 GPU 内核，实现了无需硬件更改即可显著加快训练速度。</p>
@@ -813,7 +881,9 @@
 6. 多后端与评测能力扩展：EvalScope 可集成多个评测后端，如 OpenCompass、VLMEvalKit、RAGEval 等，支持从单模态到多模态、从语言建模到 RAG 端到端评测的全链路能力。
 7. 支持部署性能测试：除评估模型能力外，EvalScope 还提供服务端推理性能测试工具，涵盖吞吐量、响应时延等关键指标，帮助开发者评估模型的部署实用性。
 </code></pre>
-<h1 id="二-大模型微调数据集准备"><a href="#二-大模型微调数据集准备" class="headerlink" title="二. 大模型微调数据集准备"></a>二. 大模型微调数据集准备</h1><p>如何创建和选取模型微调数据集，是决定模型微调效果成败的最关键因素。</p>
+<h1 id="二-大模型微调数据集准备"><a href="#二-大模型微调数据集准备" class="headerlink" title="二. 大模型微调数据集准备"></a>二. 大模型微调数据集准备</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1z9RLYWEjq?t=6.7">想微调特定领域的 DeepSeek，数据集究竟要怎么搞（理论篇）</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1y8QpYGE57?t=4.0">如何把领域文献批量转换为可供模型微调的数据集？</a></p>
+<p>如何创建和选取模型微调数据集，是决定模型微调效果成败的最关键因素。</p>
 <p>截止目前，已经诞生了各类不同的微调框架和海量的微调数据集，在绝大多数情况下，我们只需要选择不同的微调框架并搭配不同的数据集即可。</p>
 <p>但伴随着模型能力越来越复杂，种类越来越多，包括现阶段很多模型都具备了Function calling功能，和推理或者思维链能力。此时如果企业希望进行一些复杂功能模型的微调，例如围绕模型进行Function calling能力微调，同时还需保留其混合推理能力，此时很多公开数据集或许就无法满足要求了。此外，如果我们希望给模型进行特定领域的知识关注，或者提升模型对于特殊工具组的工具调用准确率，这时就需要手动创建微调数据集。</p>
 <h2 id="大模型微调数据集原理：模型内置特殊字符及提示词模板"><a href="#大模型微调数据集原理：模型内置特殊字符及提示词模板" class="headerlink" title="大模型微调数据集原理：模型内置特殊字符及提示词模板"></a>大模型微调数据集原理：模型内置特殊字符及提示词模板</h2><p>要手动合并或者创建微调数据集，就必须了解微调数据集构造背后的原理。</p>
@@ -844,9 +914,9 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-02-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制
+                  实操系统环境与工具软件配置
               </a>
             
         </div>
