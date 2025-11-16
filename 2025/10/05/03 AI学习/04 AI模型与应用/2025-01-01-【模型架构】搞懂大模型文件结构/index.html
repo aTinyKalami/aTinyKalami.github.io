@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		模型基础 - 搞懂大模型文件结构 | 
+	 
+	十二亚晖的个人空间
+	</title>
+	
+	<!-- keywords,description -->
+	
+		<meta name="keywords" content="给时光以生命" />
+	
+	
+		<meta name="description" content="读懂大模型结构如何与开源文件相对应的" />
+	
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+
+
+	<!-- search -->
+	<script>
+		var searchEngine = "https://www.google.com/search?q=";
+		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
+			searchEngine = "https://www.google.com/search?q=";
+		}
+		var homeHost = "atinykalami.github.io";
+		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
+			homeHost = window.location.host;
+		}
+	</script>
+
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@v1.5.1/dist/Valine.min.js"></script>
+
+	
+	
+
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">十二亚晖的个人空间</a>
+
+	<ul id="menu">
+    
+
+    
+      <li class="menu-item">
+        <a href="/tags" class="menu-item-link">Tags</a>
+      </li>
+    
+
+    
+      <li class="menu-item">
+        <a href="/categories" class="menu-item-link">Categories</a>
+      </li>
+    
+
+    
+      
+      
+        <li class="menu-item">
+          <a href='https://github.com/aTinyKalami' class="menu-item-link" target="_blank">
+            我的项目
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a href='https://github.com/aTinyKalami/blog-code-folder' class="menu-item-link" target="_blank">
+            博客源码
+          </a>
+        </li>
+      
+    
+  
+    
+      <li class="menu-item">
+        <a href='https://github.com/aTinyKalami' class="menu-item-link" target="_blank">
+          <i class="fa fa-github fa-2x"></i>
+        </a>
+      </li>
+    
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 通用文档
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-01-Markdown%E6%A0%BC%E5%BC%8F%E8%BE%93%E5%85%A5%E6%8C%87%E5%AF%BC/">
+                     
+										    01 Markdown格式文档输入规则
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/25/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-02-HEXO%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%94%BB%E7%95%A5/">
+                     
+										    02 Github上部署Hexo框架的博客的亲测爬坑攻略
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/25/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-03-HEXO%E6%A1%86%E6%9E%B6%E5%8D%9A%E5%AE%A2%E6%89%8B%E5%8A%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
+                     
+										    03 Hexo框架的Github文章手工部署常用命令
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/01%20%E9%80%9A%E7%94%A8%E6%96%87%E6%A1%A3/2025-10-04-ipynb%E6%A0%BC%E5%BC%8F%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
+                     
+										    04 ipynb格式使用指导
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										03 AI学习
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										00 AI知识地图
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/00%20AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">
+                     
+										    AI知识地图
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										02 AI硬件体系
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/02%20AI%E7%A1%AC%E4%BB%B6%E4%BD%93%E7%B3%BB/2025-10-05-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E8%8A%AF%E7%89%87/">
+                     
+										    AI芯片
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/02%20AI%E7%A1%AC%E4%BB%B6%E4%BD%93%E7%B3%BB/2025-10-06-%E3%80%90AI%E5%AD%A6%E4%B9%A0%E3%80%91AI%E5%AD%98%E5%82%A8/">
+                     
+										    02 AI存储
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										04 AI模型与应用
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91%E6%90%9E%E6%87%82%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/">
+                     
+										    模型基础 - 搞懂大模型文件结构
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91Transfomer%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/">
+                     
+										    Transformer模型架构基础
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-03-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                     
+										    多模态模型
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-02-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80%E3%80%91Tokenizer%E5%88%86%E8%AF%8D/">
+                     
+										    基础知识 - Tokeniazer分词
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-02-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80%E3%80%91Embedding%E8%AF%8D%E5%B5%8C%E5%85%A5/">
+                     
+										    基础知识 - Embedding (词嵌入/向量化)
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
+                     
+										    训推框架 - 大模型训练和推理流程与框架
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">
+                     
+										    模型训练 - 大模型训练超参设置与方法
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/02/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83/">
+                     
+										    后训练 - 大模型后训练与微调
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A6%82%E4%BD%95%E8%AE%A9%E5%9F%BA%E7%A1%80%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%A1%8C%E4%B8%9A%E5%8C%96/">
+                     
+										    模型训练 - 基础大模型如何行业化训练
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
+                     
+										    基础知识 - 大模型API接口调用参数说明
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/11/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-03-%E3%80%90AI%E6%A1%86%E6%9E%B6%E3%80%91RAY%E5%92%8CK8S%E5%AE%B9%E5%99%A8%E6%A1%86%E6%9E%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB/">
+                     
+										    AI框架 - 使用K8S容器框架和RAY的关系和区别
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91GraphRAG%E6%96%B9%E6%A1%88/">
+                     
+										    AI应用 - Graph RAG
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91RAG%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90/">
+                     
+										    AI应用 - RAG方案
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 动手实操
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
+                     
+										    Huggingface平台的模型和数据集使用
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-02-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
+                     
+										    实操系统环境与工具软件配置
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-01-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E7%BA%BF%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%BE%AE%E8%B0%83/">
+                     
+										    动手实操 - 在线大模型零代码微调
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/29/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-02-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%BF%9B%E8%A1%8C%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83/">
+                     
+										    在本地进行NLP大模型的微调
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/05/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-01-01-%E3%80%90%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BD%95%E3%80%91%E4%BE%9B%E5%90%8E%E7%BB%AD%E7%BB%86%E5%8C%96/">
+                     
+										    临时课题记录
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/2025-10-01-%E3%80%90AI%E6%B4%9E%E5%AF%9F%E3%80%91%E4%B8%9A%E7%95%8C%E6%B4%9E%E5%AF%9F%E7%BD%91%E5%9D%80/">
+                     
+										    AI洞察 - 业界趋势洞察材料与网址
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										08 业界厂商
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-06-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E8%8B%B1%E4%BC%9F%E8%BE%BE/">
+                     
+										    英伟达
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/2025-10-10-%E3%80%90AI%E5%8E%82%E5%95%86%E3%80%91%E9%98%BF%E9%87%8C%E4%BA%91/">
+                     
+										    阿里云
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										DeepSeek
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3%E5%92%8CR1/">
+                     
+										    DeepSeek V3和R1技术创新
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-08-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3.2%E5%92%8CDSA/">
+                     
+										    DeepSeek V3.2及核心技术DSA细粒度稀疏注意力机制
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/11/02/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-09-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20OCR/">
+                     
+										    DeepSeek OCR模型技术与意义解析
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 日常记录
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/09%20%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95/2025-10-15-%E3%80%90%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95%E3%80%91%E6%B5%B7%E5%A4%96%E5%9B%BD%E5%AE%B6%E8%B6%B3%E8%BF%B9/">
+                     
+										    这些年走过的国家
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2025/10/05/2025-01-01-%E3%80%90%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB%E3%80%91%E6%96%87%E6%A1%A3%E5%90%8D%E7%A7%B0%20%E6%A8%A1%E6%9D%BF/">
+                     
+										    AI洞察 - 业界趋势洞察材料与网址
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content" class="content">
+		<h1 id="article-title">
+	模型基础 - 搞懂大模型文件结构
+</h1>
+
+<!-- meta -->
+<div class="article-meta">
+	
+
+	<span>十二亚晖</span>
+	<span>2025-10-05 09:00:00</span>
+
+  <div id="article-categories">
+    
+		  <span>Categories：</span>
+      
+          
+              <span>
+                  <i class="fa fa-folder" aria-hidden="true">
+                  <a href="/categories/AI/">AI</a>
+                  </i>
+                
+              </span>
+          
+      
+    
+
+    
+		    <span>Tags：</span>
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/AI/">AI</a>
+                    </i>
+                </span>
+            
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/技术/">技术</a>
+                    </i>
+                </span>
+            
+        
+            
+                <span>
+                    <i class="fa fa-tag" aria-hidden="true">
+                    <a href="/tags/洞察/">洞察</a>
+                    </i>
+                </span>
+            
+        
+    
+  </div>
+
+</div>
+
+<!-- content -->
+<div id="article-content">
+	<p><a target="_blank" rel="noopener" href="https://huggingface.co/">Huggingface</a>类似于大模型的<a target="_blank" rel="noopener" href="https://github.com/">Github</a>，托管了大量的模型。</p>
+<p>现在各个大模型厂家一般都会在Huggingface上托管模型的关键文档，包括模型架构说明、配置文件、权重文件等等。而把（开源）模型的详细的实现方案、架构、实测数据、调用代码等放到Github上。</p>
+<p>以DeepSeek V3为例，其Github链接<a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/DeepSeek-V3">→点我</a>，页面关于模型的下载（ModelDownload）也指向Huggingface链接<a target="_blank" rel="noopener" href="https://huggingface.co/deepseek-ai/DeepSeek-V3">点我</a>。</p>
+<hr>
+<h1 id="Huggingface模型页面"><a href="#Huggingface模型页面" class="headerlink" title="Huggingface模型页面"></a>Huggingface模型页面</h1><ol>
+<li>ModelCard：介绍模型的基本信息，一般与Github上相同。后台默认读取的是README.MD</li>
+<li>Files and versions：模型文件库，存放所有的模型相关文件，供下载。</li>
+<li>Community：团队内部的协作空间，同时可能对外部开发者开放及管控权限。</li>
+</ol>
+<hr>
+<h1 id="模型相关文件的内容"><a href="#模型相关文件的内容" class="headerlink" title="模型相关文件的内容"></a>模型相关文件的内容</h1><h1 id="Readme-md和README-WEIGHTS-MD说明文档"><a href="#Readme-md和README-WEIGHTS-MD说明文档" class="headerlink" title="Readme.md和README_WEIGHTS.MD说明文档"></a>Readme.md和README_WEIGHTS.MD说明文档</h1><ul>
+<li><p>README.MD：模型说明文件。</p>
+</li>
+<li><p>README_WEIGHTS.MD:模型权重变化调整的说明文件，介绍与前序版本的变化点，和模型架构、模块、层数等一些基本信息。介绍性，更容易阅读。</p>
+</li>
+</ul>
+<h1 id="config-json和configuration-deepseek-py"><a href="#config-json和configuration-deepseek-py" class="headerlink" title="config.json和configuration_deepseek.py"></a>config.json和configuration_deepseek.py</h1><ul>
+<li><p>Config.json：完整的模型配置文件，包含模型所有的架构、模块设计、层数、各层参数存放文件等信息。偏代码，需了解大模型各种参数的概念才好一一对应。</p>
+</li>
+<li><p>Configuration_deepseek.py：系统参数的类声明和参数定义程序文件，对所有类和参数进行实现。</p>
+</li>
+</ul>
+<p>Config.json和configuration_deepseek.py规定的模型部分指标说明如下表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">指标</th>
+<th align="left">含义说明</th>
+<th align="left">DeepSeek V3取值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">attention_bias</td>
+<td align="left">在注意力机制中不使用偏置项。在Transformer的注意力计算中，Q（查询）、K（键）、V（值）矩阵通常通过线性变换得到。线性变换公式一般是：y &#x3D; Wx + b，这里的 b 就是偏置项（bias）。现代Transformer架构中常见的设计选择，旨在保持性能的同时优化模型效率</td>
+<td align="left">false</td>
+</tr>
+<tr>
+<td align="left">attention_dropout</td>
+<td align="left">注注意力机制的dropout率（在训练过程中随机丢弃神经元的比例，用于防止过拟合），设置为0表示在注意力计算中不使用dropout正则化</td>
+<td align="left">0.0</td>
+</tr>
+<tr>
+<td align="left">ep_size</td>
+<td align="left">专家并行大小，设置为1表示不使用专家并行</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">first_k_dense_replace</td>
+<td align="left">前K层使用稠密层替换，具体替换策略的层数设置</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">hidden_act</td>
+<td align="left">隐藏层激活函数，SiLU（Sigmoid Linear Unit）是一种平滑且非单调的激活函数</td>
+<td align="left">“silu”</td>
+</tr>
+<tr>
+<td align="left">hidden_size</td>
+<td align="left">隐藏层维度大小，表示模型主干网络的宽度</td>
+<td align="left">7168</td>
+</tr>
+<tr>
+<td align="left">initializer_range</td>
+<td align="left">参数初始化范围，用于控制模型权重初始化的标准差</td>
+<td align="left">0.02</td>
+</tr>
+<tr>
+<td align="left">intermediate_size</td>
+<td align="left">前馈神经网络中间层维度大小，在Transformer块中的FFN层维度</td>
+<td align="left">18432</td>
+</tr>
+<tr>
+<td align="left">kv_lora_rank</td>
+<td align="left">Key-Value的LoRA（Low-Rank Adaptation）秩，用于KV投影的低秩适应矩阵的秩</td>
+<td align="left">512</td>
+</tr>
+<tr>
+<td align="left">max_position_embeddings</td>
+<td align="left">最大位置编码长度，支持的最大上下文长度</td>
+<td align="left">163840</td>
+</tr>
+<tr>
+<td align="left">model_type</td>
+<td align="left">模型类型标识，用于识别和加载对应的模型配置</td>
+<td align="left">“deepseek_v3”</td>
+</tr>
+<tr>
+<td align="left">moe_intermediate_size</td>
+<td align="left">MoE（专家混合）中间层维度大小，每个专家的FFN层维度</td>
+<td align="left">2048</td>
+</tr>
+<tr>
+<td align="left">moe_layer_freq</td>
+<td align="left">MoE层频率，每隔多少层放置一个MoE层</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">n_group</td>
+<td align="left">分组数量，用于专家选择的分组数</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">n_routed_experts</td>
+<td align="left">路由专家数量，MoE架构中可选择的专家总数</td>
+<td align="left">256</td>
+</tr>
+<tr>
+<td align="left">n_shared_experts</td>
+<td align="left">共享专家数量，MoE架构中共享的专家数</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">norm_topk_prob</td>
+<td align="left">是否对topk概率进行归一化，对专家选择概率进行标准化</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="left">num_attention_heads</td>
+<td align="left">注意力头数量，多头注意力机制中的头数</td>
+<td align="left">128</td>
+</tr>
+<tr>
+<td align="left">num_experts_per_tok</td>
+<td align="left">每个token使用的专家数量，每个输入token选择的专家数</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td align="left">num_hidden_layers</td>
+<td align="left">隐藏层数量，模型的总层数（Transformer块数量）</td>
+<td align="left">61</td>
+</tr>
+<tr>
+<td align="left">num_key_value_heads</td>
+<td align="left">Key-Value头数量，用于分组查询注意力的KV头数</td>
+<td align="left">128</td>
+</tr>
+<tr>
+<td align="left">num_nextn_predict_layers</td>
+<td align="left">下一词预测层数，用于预测的特定层数</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">q_lora_rank</td>
+<td align="left">Query的LoRA秩，用于Q投影的低秩适应矩阵的秩</td>
+<td align="left">1536</td>
+</tr>
+<tr>
+<td align="left">qk_nope_head_dim</td>
+<td align="left">无位置编码的QK头维度，不使用位置编码的注意力头维度</td>
+<td align="left">128</td>
+</tr>
+<tr>
+<td align="left">qk_rope_head_dim</td>
+<td align="left">旋转位置编码的QK头维度，使用RoPE的注意力头维度</td>
+<td align="left">64</td>
+</tr>
+<tr>
+<td align="left">scoring_func</td>
+<td align="left">评分函数类型，用于专家选择的得分计算函数</td>
+<td align="left">“sigmoid”</td>
+</tr>
+<tr>
+<td align="left">topk_group</td>
+<td align="left">TopK分组数，专家选择时的分组数量</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td align="left">topk_method</td>
+<td align="left">TopK选择方法，专家选择的具体算法</td>
+<td align="left">“noaux_tc”</td>
+</tr>
+<tr>
+<td align="left">torch_dtype</td>
+<td align="left">PyTorch数据类型，模型使用的精度格式</td>
+<td align="left">“bfloat16”</td>
+</tr>
+<tr>
+<td align="left">transformers_version</td>
+<td align="left">Transformers库版本，兼容的 transformers 版本号</td>
+<td align="left">“4.33.1”</td>
+</tr>
+<tr>
+<td align="left">use_cache</td>
+<td align="left">是否使用缓存，推理时是否缓存Key-Value值以加速</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="left">v_head_dim</td>
+<td align="left">Value头维度，注意力机制中Value投影的维度</td>
+<td align="left">128</td>
+</tr>
+<tr>
+<td align="left">vocab_size</td>
+<td align="left">词表大小，模型支持的token数量</td>
+<td align="left">129280</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="modeling-deepseek-py"><a href="#modeling-deepseek-py" class="headerlink" title="modeling_deepseek.py"></a>modeling_deepseek.py</h1><p>这个文件通过代码实现了DeepSeek V3从底层组件到完整模型的所有核心功能。分为几个大类：</p>
+<ol>
+<li><strong>模型核心架构</strong> - 最基础，定义了整个模型的骨架</li>
+<li><strong>注意力机制</strong> - Transformer的核心组件，决定模型性能关键</li>
+<li><strong>MoE系统</strong> - DeepSeek V3的特色架构，显著影响模型规模和效率</li>
+<li><strong>基础设施组件</strong> - 支撑模型运行的基础模块</li>
+<li><strong>位置编码系统</strong> - 相对独立的位置处理模块</li>
+<li><strong>文档支持系统</strong> - 辅助性的文档和说明功能</li>
+</ol>
+<p>详细内容如下：</p>
+<h2 id="模型核心架构实现"><a href="#模型核心架构实现" class="headerlink" title="模型核心架构实现"></a>模型核心架构实现</h2><table>
+<thead>
+<tr>
+<th align="left">模块名称</th>
+<th align="left">模块说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DeepseekV3DecoderLayer</td>
+<td align="left">Transformer解码器层，包含自注意力机制和前馈网络</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3Model</td>
+<td align="left">完整的Transformer模型架构，集成所有解码器层</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3ForCausalLM</td>
+<td align="left">因果语言建模任务的头部分类器</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3ForSequenceClassification</td>
+<td align="left">序列分类任务的头部分类器</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3PreTrainedModel</td>
+<td align="left">预训练模型基类，提供权重初始化等功能</td>
+</tr>
+</tbody></table>
+<h2 id="注意力机制优化"><a href="#注意力机制优化" class="headerlink" title="注意力机制优化"></a>注意力机制优化</h2><table>
+<thead>
+<tr>
+<th align="left">模块名称</th>
+<th align="left">模块说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DeepseekV3Attention</td>
+<td align="left">标准多头注意力实现，支持LoRA低秩适配</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3FlashAttention2</td>
+<td align="left">Flash Attention 2.0优化版本，提升计算效率</td>
+</tr>
+<tr>
+<td align="left">ATTENTION_CLASSES</td>
+<td align="left">注意力类映射字典，支持多种注意力后端</td>
+</tr>
+</tbody></table>
+<h2 id="MoE（专家混合）系统"><a href="#MoE（专家混合）系统" class="headerlink" title="MoE（专家混合）系统"></a>MoE（专家混合）系统</h2><table>
+<thead>
+<tr>
+<th align="left">模块名称</th>
+<th align="left">模块说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DeepseekV3MoE</td>
+<td align="left">核心MoE模块实现，包含256个路由专家</td>
+</tr>
+<tr>
+<td align="left">MoEGate</td>
+<td align="left">专家选择门控机制，实现top-k专家路由</td>
+</tr>
+<tr>
+<td align="left">moe_infer</td>
+<td align="left">MoE推理优化方法，支持分布式专家并行</td>
+</tr>
+</tbody></table>
+<h2 id="基础设施组件"><a href="#基础设施组件" class="headerlink" title="基础设施组件"></a>基础设施组件</h2><table>
+<thead>
+<tr>
+<th align="left">模块名称</th>
+<th align="left">模块说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DeepseekV3RMSNorm</td>
+<td align="left">优化的RMS归一化层</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3MLP</td>
+<td align="left">多层感知机前馈网络</td>
+</tr>
+<tr>
+<td align="left">_get_unpad_data</td>
+<td align="left">处理非填充数据的工具函数，用于Flash Attention</td>
+</tr>
+<tr>
+<td align="left">_flash_attention_forward</td>
+<td align="left">Flash Attention前向传播实现</td>
+</tr>
+<tr>
+<td align="left">_upad_input</td>
+<td align="left">Flash Attention中处理非填充输入的函数</td>
+</tr>
+<tr>
+<td align="left">repeat_kv</td>
+<td align="left">重复Key-Value状态，用于分组查询注意力</td>
+</tr>
+<tr>
+<td align="left">_prepare_4d_causal_attention_mask</td>
+<td align="left">准备4D因果注意力掩码的函数</td>
+</tr>
+<tr>
+<td align="left">_prepare_4d_attention_mask</td>
+<td align="left">准备4D注意力掩码的函数</td>
+</tr>
+</tbody></table>
+<h2 id="位置编码系统"><a href="#位置编码系统" class="headerlink" title="位置编码系统"></a>位置编码系统</h2><table>
+<thead>
+<tr>
+<th align="left">模块名称</th>
+<th align="left">模块说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DeepseekV3RotaryEmbedding</td>
+<td align="left">基础旋转位置编码实现</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3LinearScalingRotaryEmbedding</td>
+<td align="left">线性缩放旋转位置编码</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3DynamicNTKScalingRotaryEmbedding</td>
+<td align="left">动态NTK缩放旋转位置编码</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3YarnRotaryEmbedding</td>
+<td align="left">YaRN旋转位置编码，支持长上下文扩展</td>
+</tr>
+<tr>
+<td align="left">yarn_find_correction_dim</td>
+<td align="left">计算YaRN校正维度的辅助函数</td>
+</tr>
+<tr>
+<td align="left">yarn_find_correction_range</td>
+<td align="left">计算YaRN校正范围的辅助函数</td>
+</tr>
+<tr>
+<td align="left">yarn_get_mscale</td>
+<td align="left">计算YaRN缩放系数的辅助函数</td>
+</tr>
+<tr>
+<td align="left">yarn_linear_ramp_mask</td>
+<td align="left">生成YaRN线性斜坡掩码的辅助函数</td>
+</tr>
+<tr>
+<td align="left">apply_rotary_pos_emb</td>
+<td align="left">旋转位置编码应用函数</td>
+</tr>
+<tr>
+<td align="left">rotate_half</td>
+<td align="left">旋转半数的隐藏维度，用于旋转位置编码计算</td>
+</tr>
+</tbody></table>
+<h2 id="文档支持系统"><a href="#文档支持系统" class="headerlink" title="文档支持系统"></a>文档支持系统</h2><table>
+<thead>
+<tr>
+<th align="left">模块名称</th>
+<th align="left">模块说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DeepseekV3_START_DOCSTRING</td>
+<td align="left">模型基础文档字符串</td>
+</tr>
+<tr>
+<td align="left">DeepseekV3_INPUTS_DOCSTRING</td>
+<td align="left">模型输入文档字符串</td>
+</tr>
+<tr>
+<td align="left">add_start_docstrings</td>
+<td align="left">添加起始文档字符串的装饰器</td>
+</tr>
+<tr>
+<td align="left">add_start_docstrings_to_model_forward</td>
+<td align="left">为模型前向传播添加文档字符串的装饰器</td>
+</tr>
+<tr>
+<td align="left">replace_return_docstrings</td>
+<td align="left">替换返回文档字符串的装饰器</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="model-safetensors-index-json-和-model-00XXX-of-XXXXXX-safetensors"><a href="#model-safetensors-index-json-和-model-00XXX-of-XXXXXX-safetensors" class="headerlink" title="model.safetensors.index.json 和 model-00XXX-of-XXXXXX.safetensors"></a>model.safetensors.index.json 和 model-00XXX-of-XXXXXX.safetensors</h1><table>
+<thead>
+<tr>
+<th align="left">文件类型</th>
+<th align="left">作用</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">model.safetensors.index.json</td>
+<td align="left">索引文件</td>
+<td align="left">记录所有权重张量的元数据和分片位置信息</td>
+</tr>
+<tr>
+<td align="left">model-00XXX-of-XXXXXX.safetensors</td>
+<td align="left">数据文件</td>
+<td align="left">实际存储模型权重张量的二进制数据</td>
+</tr>
+</tbody></table>
+<p><img src="https://github.com/aTinyKalami/DailyBlog/blob/main/images/%E6%90%9E%E6%87%82%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB/%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E7%B4%A2%E5%BC%95%E4%B8%8E%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E6%96%87%E4%BB%B6%E5%85%B3%E7%B3%BB.jpg" alt="权重索引与权重文件关系"></p>
+<p>采用模型权重索引文件（model.safetensors.index.json）和模型权重文件（model-00XXX-of-XXXXXX.safetensors）分离的设计方式，特别适合大型语言模型。因为单个模型文件可能达到几十GB，分片存储和按需加载可以显著改善用户体验。优点：</p>
+<p>1.内存高效: 可以只加载当前推理需要的层，减少内存占用<br>2.加载快速: 并行加载多个分片，提高加载速度，避免一次性加载全部权重<br>3.存储优化: 支持模型权重分片存储，便于管理大模型<br>4.容错性好: 单个分片损坏不影响其他分片的使用</p>
+<ul>
+<li>model.safetensors.index.json 文件是 模型分片索引文件，主要作用：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">分片管理</td>
+<td align="left">记录模型权重如何分布在多个.safetensors分片文件中</td>
+</tr>
+<tr>
+<td align="left">权重映射</td>
+<td align="left">提供每个权重张量在哪个分片文件中的具体位置信息</td>
+</tr>
+<tr>
+<td align="left">元数据记录</td>
+<td align="left">包含每个张量的形状、数据类型等关键信息</td>
+</tr>
+<tr>
+<td align="left">加载优化</td>
+<td align="left">允许按需加载特定层或张量，减少内存占用</td>
+</tr>
+</tbody></table>
+<ul>
+<li>model-00XXX-of-XXXXXX.safetensors: 模型各层权重文件，供程序调用并分别加载到硬件中。</li>
+</ul>
+<p>程序通过model.safetensors.index.json 文件内部的 weight_map 字段来建立权重名称到分片文件的映射关系，运行时python程序通过解析索引文件后直接读取该字段，然后读取对应的权重文件。</p>
+<p>文件关联关系：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">model.safetensors.index.json</span><br><span class="line">    ├── 指向 model-00001-of-00010.safetensors</span><br><span class="line">    ├── 指向 model-00002-of-00010.safetensors  </span><br><span class="line">    ├── 指向 model-00003-of-00010.safetensors</span><br><span class="line">    └── ... (其他分片)</span><br></pre></td></tr></table></figure>
+
+<p>model.safetensors.index.json 的文件内部结构实现（部分）：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;metadata&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;total_size&quot;</span>: <span class="number">136000000000</span>,</span><br><span class="line">    <span class="string">&quot;format&quot;</span>: <span class="string">&quot;pt&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;weight_map&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;model.embed_tokens.weight&quot;</span>: <span class="string">&quot;model-00001-of-00062.safetensors&quot;</span>,</span><br><span class="line">    <span class="string">&quot;model.layers.0.input_layernorm.weight&quot;</span>: <span class="string">&quot;model-00001-of-00062.safetensors&quot;</span>,</span><br><span class="line">    <span class="string">&quot;model.layers.0.mlp.down_proj.weight&quot;</span>: <span class="string">&quot;model-00001-of-00062.safetensors&quot;</span>,</span><br><span class="line">    <span class="string">&quot;model.layers.0.mlp.gate_proj.weight&quot;</span>: <span class="string">&quot;model-00002-of-00062.safetensors&quot;</span>,</span><br><span class="line">    <span class="string">&quot;model.layers.0.mlp.up_proj.weight&quot;</span>: <span class="string">&quot;model-00002-of-00062.safetensors&quot;</span>,</span><br><span class="line">    <span class="string">&quot;model.layers.0.self_attn.kv_a_proj_with_mqa.weight&quot;</span>: <span class="string">&quot;model-00003-of-00062.safetensors&quot;</span>,</span><br><span class="line">    <span class="string">&quot;model.layers.1.input_layernorm.weight&quot;</span>: <span class="string">&quot;model-00004-of-00062.safetensors&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序实际工作流程：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">开始加载模型</span><br><span class="line">    ↓</span><br><span class="line">读取 model.safetensors.index.json</span><br><span class="line">    ↓</span><br><span class="line">解析权重映射关系 (weight_map)</span><br><span class="line">    ↓</span><br><span class="line">确定需要加载哪些分片文件</span><br><span class="line">    ↓</span><br><span class="line">逐个加载 model-00XXX-of-XXXXXX.safetensors 分片</span><br><span class="line">    ↓</span><br><span class="line">根据索引信息提取对应张量</span><br><span class="line">    ↓</span><br><span class="line">组装完整的模型权重字典</span><br><span class="line">    ↓</span><br><span class="line">完成模型加载</span><br></pre></td></tr></table></figure>
+<p>程序逻辑：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 读取索引文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;model.safetensors.index.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    index_data = json.load(f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 直接访问 weight_map 字段</span></span><br><span class="line">weight_map = index_data[<span class="string">&#x27;weight_map&#x27;</span>]  <span class="comment"># ← 这里获取 weight_map</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 使用 weight_map 查找权重对应的分片</span></span><br><span class="line"><span class="keyword">for</span> weight_name, shard_file <span class="keyword">in</span> weight_map.items():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;权重 <span class="subst">&#123;weight_name&#125;</span> 在分片 <span class="subst">&#123;shard_file&#125;</span> 中&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>详细的具体调用流程代码实现：</p>
+<p>步骤1: 加载索引文件</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取索引文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;model.safetensors.index.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    index_data = json.load(f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取权重映射信息</span></span><br><span class="line">weight_map = index_data[<span class="string">&#x27;weight_map&#x27;</span>]</span><br><span class="line"><span class="comment"># 示例: &#123;&#x27;model.layers.0.input_layernorm.weight&#x27;: &#x27;model-00001-of-00010.safetensors&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>步骤2: 按需加载分片</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> safetensors <span class="keyword">import</span> safe_open</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据需要的权重确定要加载的分片</span></span><br><span class="line">required_shards = <span class="built_in">set</span>()</span><br><span class="line"><span class="keyword">for</span> weight_name <span class="keyword">in</span> needed_weights:</span><br><span class="line">    shard_file = weight_map[weight_name]</span><br><span class="line">    required_shards.add(shard_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载所需分片</span></span><br><span class="line">shard_data = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> shard_file <span class="keyword">in</span> required_shards:</span><br><span class="line">    <span class="keyword">with</span> safe_open(shard_file, framework=<span class="string">&quot;pt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        shard_data[shard_file] = &#123;key: f.get_tensor(key) <span class="keyword">for</span> key <span class="keyword">in</span> f.keys()&#125;</span><br></pre></td></tr></table></figure>
+<p>步骤3: 组装模型权重</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model_weights = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> weight_name <span class="keyword">in</span> needed_weights:</span><br><span class="line">    shard_file = weight_map[weight_name]</span><br><span class="line">    tensor_data = shard_data[shard_file][weight_name]</span><br><span class="line">    model_weights[weight_name] = tensor_data</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="tokenizer-json和tokenizer-config-json"><a href="#tokenizer-json和tokenizer-config-json" class="headerlink" title="tokenizer.json和tokenizer_config.json"></a>tokenizer.json和tokenizer_config.json</h1><ul>
+<li>tokenizer.json “分词器的大脑”</li>
+</ul>
+<p>tokenizer.json 是分词器的完整实现文件,包含所有核心数据和算法，记录实际的分词逻辑和数据。提供了完整的分词能力，可以直接用于文本的tokenize和detokenize操作。</p>
+<table>
+<thead>
+<tr>
+<th align="left">内容</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">词汇表</td>
+<td align="left">token到ID的完整映射关系</td>
+</tr>
+<tr>
+<td align="left">合并规则</td>
+<td align="left">BPE算法中的合并规则和优先级</td>
+</tr>
+<tr>
+<td align="left">特殊token</td>
+<td align="left"><code>&lt;s&gt;</code>, <code>&lt;/s&gt;</code>, <code>&lt;pad&gt;</code>, <code>&lt;unk&gt;</code>等</td>
+</tr>
+<tr>
+<td align="left">分词模型</td>
+<td align="left">实际的分词算法实现逻辑</td>
+</tr>
+<tr>
+<td align="left">添加的token</td>
+<td align="left">额外添加的特殊token或词汇</td>
+</tr>
+</tbody></table>
+<ul>
+<li>tokenizer_config.json “分词器的说明书”</li>
+</ul>
+<p>tokenizer_config.json是分词器的配置文件。提供了配置和元数据信息，告诉Hugging Face库调用时如何正确初始化和使用分词器。</p>
+<table>
+<thead>
+<tr>
+<th align="left">内容</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">分词器类型</td>
+<td align="left"><code>LlamaTokenizer</code>或其他类型</td>
+</tr>
+<tr>
+<td align="left">特殊token映射</td>
+<td align="left"><code>bos_token</code>, <code>eos_token</code>, <code>pad_token</code>等</td>
+</tr>
+<tr>
+<td align="left">模型名称</td>
+<td align="left">关联的预训练模型名称</td>
+</tr>
+<tr>
+<td align="left">配置参数</td>
+<td align="left">如<code>clean_up_tokenization_spaces</code>等</td>
+</tr>
+<tr>
+<td align="left">文件依赖</td>
+<td align="left">指向<code>tokenizer.json</code>等数据文件</td>
+</tr>
+</tbody></table>
+<p>使用流程：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 加载分词器时的内部流程：</span></span><br><span class="line"><span class="number">1.</span> 读取 tokenizer_config.json → 确定分词器类型和配置</span><br><span class="line"><span class="number">2.</span> 根据配置找到 tokenizer.json → 加载词汇表和分词规则</span><br><span class="line"><span class="number">3.</span> 初始化分词器实例</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vc1yB8Ed8?t=82.1">10分钟带你彻底搞清大模型文件结构！</a></p>
+<hr>
+<p>（本文完）</p>
+
+</div>
+
+<!-- post-guide -->
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-03-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  多模态模型
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-02-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80%E3%80%91Tokenizer%E5%88%86%E8%AF%8D/">
+                基础知识 - Tokeniazer分词
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+<!-- comment - giscus -->
+
+
+<!-- comment - valine -->
+
+
+<script>
+	
+	
+</script>
+
+	</div>
+	<div id="footer">
+	<p>
+	©<span id="footerYear-start"></span>-<span id="footerYear-end"></span>
+
+	
+	    <a href="/">十二亚晖</a>
+	
+	
+	
+	<br>
+	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//wujun.me" target="_blank">Wu Jun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
+	</p>
+</div>
+
+
+<script type="text/javascript">
+	document.getElementById('footerYear-start').innerHTML = new Date().getFullYear() + '';
+</script>
+
+<script type="text/javascript">
+	document.getElementById('footerYear-end').innerHTML = new Date().getFullYear() + '';
+</script>
+
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
