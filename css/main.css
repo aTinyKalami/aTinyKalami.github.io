@@ -421,9 +421,18 @@ figure{
 	}
 }
 
-table, tbody, tr, td.code {
+/* 只针对代码块的表格，不影响其他表格 */
+figure.highlight table,
+figure.highlight tbody, 
+figure.highlight tr, 
+figure.highlight td.code {
   border: none !important;
   display: block !important;
+}
+
+/* 确保其他表格不受影响 */
+table:not(.highlight) {
+  display: table !important;
 }
 
 pre {
