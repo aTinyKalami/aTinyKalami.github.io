@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Etiketler</a>
+        <a href="/tags" class="menu-item-link">标签</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Kategoriler</a>
+        <a href="/categories" class="menu-item-link">分类</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
 		<div id="tree">
 			
 
@@ -718,12 +718,50 @@
 <li><p>模型结果输出和托管：硅基流动平台会自动将微调完成的模型结果及中间产生的Checkpoint模型文件部署到平台，并在模型调用的对话框加上这些模型。（我的微调实验就生成了1个结果模型和2个Checkpoint，都可以调用）</p>
 </li>
 </ol>
-<h2 id="4-模型验证："><a href="#4-模型验证：" class="headerlink" title="4. 模型验证："></a>4. 模型验证：</h2><ol>
-<li><p>首先要用<a target="_blank" rel="noopener" href="https://evalscope.readthedocs.io/zh-cn/latest/get_started/introduction.html">EvalScope</a>模型评测框架构建模型评测程序，使用数据集进行评测。</p>
-</li>
-<li><p>其次要在硅基流动平台中生成API Key，然后在评测程序中按照OpenAI接口调用语法，填写接口URL地址，调用模型名称，API Key。</p>
-</li>
+<h2 id="4-模型评测"><a href="#4-模型评测" class="headerlink" title="4. 模型评测"></a>4. 模型评测</h2><p>硅基流动的平台提供模型问答对比功能，可以在对话窗口同时拉起两个模型，可以直观的得到回答内容，通过人工进行对比。</p>
+<p>实测问答结果如下：</p>
+<p>[回答对比图]（链接待提供）</p>
+<p>另外，也可以尝试用<a target="_blank" rel="noopener" href="https://evalscope.readthedocs.io/zh-cn/latest/get_started/introduction.html">EvalScope</a>模型评测框架构建模型评测程序，使用数据集进行评测。</p>
+<p>4.1 <a target="_blank" rel="noopener" href="https://evalscope.readthedocs.io/zh-cn/latest/get_started/installation.html">Evalscope安装</a></p>
+<p>参见【环境配置】系统环境与工具软件配置篇 里的 Evalscope安装 <a target="_blank" rel="noopener" href="https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-02-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">→ 点我</a></p>
+<p>4.2 <a target="_blank" rel="noopener" href="https://evalscope.readthedocs.io/zh-cn/latest/get_started/basic_usage.html">模型评测</a></p>
+<p>然后通过python代码方式，在指定数据集上使用默认评测集进行模型评测。</p>
+<p>注意：这里评测的是在线模型API，而不是本地模型，需要在硅基流动的平台中生成API Key.</p>
+<p>EvalScope 支持评测兼容 OpenAI API 格式的模型服务。只需指定服务地址、API Key，并将 eval-type 设置为 openai_api。</p>
+<ol>
+<li>在线启动模型服务</li>
 </ol>
+<p>在线数据集评测，首先要，启动一个模型服务：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 首先安装 vLLM:</span></span><br><span class="line">pip install vllm</span><br><span class="line"><span class="comment"># vllm 参数配置</span></span><br><span class="line">export VLLM_USE_MODELSCOPE=<span class="literal">True</span></span><br><span class="line">python -m vllm.entrypoints.openai.api_server \</span><br><span class="line">  --model Qwen/Qwen2<span class="number">.5</span>-<span class="number">0.5</span>B-Instruct \</span><br><span class="line">  --served-model-name qwen2<span class="number">.5</span> \</span><br><span class="line">  --trust-remote-code \</span><br><span class="line">  --port <span class="number">8801</span></span><br></pre></td></tr></table></figure>
+<p>在线模型及数据集评测使用以下命令评测该 API 服务：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">evalscope <span class="built_in">eval</span> \</span><br><span class="line"> --model qwen2<span class="number">.5</span> \</span><br><span class="line"> --api-url http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8801</span>/v1 \</span><br><span class="line"> --api-key EMPTY \</span><br><span class="line"> --<span class="built_in">eval</span>-<span class="built_in">type</span> openai_api \</span><br><span class="line"> --datasets gsm8k \</span><br><span class="line"> --limit <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>基本参数说明:</p>
+<p>–model: 指定模型的 ModelScope ID (如 Qwen&#x2F;Qwen2.5-0.5B-Instruct) 或本地路径或云端模型名称。</p>
+<p>–datasets: 指定一个或多个数据集名称，以空格分隔。支持的数据集请参考数据集列表。</p>
+<p>–limit: 每个数据集最多评测的样本数，便于快速验证。若不设置，则评测全量数据。我们取50.</p>
+<ol start="2">
+<li>修改数据集格式（可选）</li>
+</ol>
+<p>我们可以使用前面从huggingface上下载到本地的数据集，但是需要将数据集的格式转换为EvalScope支持的 通用问答类数据集（General-QA）。</p>
+<p>或者选择提供的医疗类数据集（HealthBench），数据集名称: health_bench，数据集ID: openai-mirror&#x2F;healthbench</p>
+<p>3） 修改数据集地址</p>
+<p>如果采用转换的通用问答类数据集（General-QA）,那么评测数据集存在本地，参考官网运行离线评测部分的指导，要使用在线模型地址+离线数据集地址。</p>
+<p>命令为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">evalscope <span class="built_in">eval</span> \</span><br><span class="line"> --model ./model/qwen2<span class="number">.5</span> \</span><br><span class="line"> --datasets mmlu_pro \</span><br><span class="line"> --dataset-args <span class="string">&#x27;&#123;&quot;mmlu_pro&quot;: &#123;&quot;local_path&quot;: &quot;./data/mmlu_pro&quot;&#125;&#125;&#x27;</span> \</span><br><span class="line"> --limit <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>其中 mmlu_pro是数据集名称，.&#x2F;data&#x2F;mmlu_pro是本地数据集地址。</p>
+<p>如果采用上面的在线医疗数据集，则不需要进行数据集地址修改。</p>
+<p>3）申请API Key</p>
+<p>在硅基流动的网站上申请API Key，供EvalScope调用模型API对微调模型进行评测。</p>
+<p>硅基流动登录主页面 → 左侧账户管理 → API密钥 → 点击复制</p>
+<p>4）运行评测</p>
+<p>–model:我们实验的是：ft:Medical_Consultant_Model:Qwen&#x2F;Qwen2.5-7B-Instruct， 模型地址URL：<a target="_blank" rel="noopener" href="https://cloud.siliconflow.cn/me/account/ak">https://cloud.siliconflow.cn/me/account/ak</a> </p>
+<p>–datasets:我们采用医疗类数据集（HealthBench），数据集名称: health_bench，数据集ID: openai-mirror&#x2F;healthbench</p>
+<p>–limit: 每个数据集最多评测的样本数，我们取100。</p>
+<p>结合上面输入，操作代码为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 首先安装 vLLM:</span></span><br><span class="line">pip install vllm</span><br><span class="line"></span><br><span class="line"><span class="comment"># vllm 参数配置</span></span><br><span class="line">export VLLM_USE_MODELSCOPE=<span class="literal">True</span></span><br><span class="line">python -m vllm.entrypoints.openai.api_server \</span><br><span class="line">  --model ft:Medical_Consultant_Model:Qwen/Qwen2<span class="number">.5</span>-7B-Instruct \</span><br><span class="line">  --served-model-name qwen2<span class="number">.5</span> \</span><br><span class="line">  --trust-remote-code \</span><br><span class="line">  --port <span class="number">8801</span></span><br><span class="line"></span><br><span class="line">evalscope <span class="built_in">eval</span> \</span><br><span class="line"> --model ft:Medical_Consultant_Model:Qwen/Qwen2<span class="number">.5</span>-7B-Instruct \</span><br><span class="line"> --api-url https://cloud.siliconflow.cn/me/account/ak  \</span><br><span class="line"> --api-key （复制的API Key） \</span><br><span class="line"> --<span class="built_in">eval</span>-<span class="built_in">type</span> openai_api \</span><br><span class="line"> --datasets health_bench \</span><br><span class="line"> --limit <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+
+
 <hr>
 <h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s2AUe2EBq?t=739.4">B站视频介绍 → 低码微调模型</a>。</p>
 <hr>
@@ -744,8 +782,8 @@
         </div>
         <div class="item right">
             
-              <a href="/2025/10/02/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83/">
-                后训练 - 大模型后训练与微调
+              <a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3%E5%92%8CR1/">
+                DeepSeek V3和R1技术创新
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

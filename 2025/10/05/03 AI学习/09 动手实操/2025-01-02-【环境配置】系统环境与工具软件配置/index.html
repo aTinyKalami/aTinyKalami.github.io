@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Etiketler</a>
+        <a href="/tags" class="menu-item-link">标签</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Kategoriler</a>
+        <a href="/categories" class="menu-item-link">分类</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
 		<div id="tree">
 			
 
@@ -666,7 +666,20 @@
 
 <!-- content -->
 <div id="article-content">
-	<h1 id="1-Github-Desktop"><a href="#1-Github-Desktop" class="headerlink" title="1. Github Desktop"></a>1. Github Desktop</h1><p>Github代码库版本管理软件，用于本地代码库版本管理及与云端的同步。</p>
+	<hr>
+<h1 id="安装模型评估框架EvalScope"><a href="#安装模型评估框架EvalScope" class="headerlink" title="安装模型评估框架EvalScope"></a>安装模型评估框架EvalScope</h1><p>EvalScope安装指导可以参考官方指导页面 <a target="_blank" rel="noopener" href="https://evalscope.readthedocs.io/zh-cn/latest/get_started/installation.html">→ 点我</a>.</p>
+<p>使用conda来管理环境，并使用Python的pip安装依赖。（也可以使用git直接从社区安装代码库）</p>
+<p>1.创建conda环境 (可选，也可跳到下面直接pip安装)</p>
+<p>首先需要在系统中安装Python环境管理软件Anaconda <a href="%E9%93%BE%E6%8E%A5">→ 点我</a>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 建议使用 python 3.10</span></span><br><span class="line">conda create -n evalscope python=<span class="number">3.10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 激活conda环境</span></span><br><span class="line">conda activate evalscope</span><br></pre></td></tr></table></figure>
+<p>2.pip安装依赖</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install evalscope <span class="comment"># 让 EvalScope 自动处理依赖</span></span><br></pre></td></tr></table></figure>
+<p>3.安装额外依赖（可选）,此处我默认全装。也可以按照网页指导分开装</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install evalscope[<span class="built_in">all</span>]</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="1-Github-Desktop"><a href="#1-Github-Desktop" class="headerlink" title="1. Github Desktop"></a>1. Github Desktop</h1><p>Github代码库版本管理软件，用于本地代码库版本管理及与云端的同步。</p>
 <p>在本地离线编辑代码库中的文档后，可以通过Github Desktop将更新同步到云端。</p>
 <h1 id="2-XBox"><a href="#2-XBox" class="headerlink" title="2. XBox"></a>2. XBox</h1><p>加速代理，用于在中国通过代理加速实现Github代码库的登录和编辑。</p>
 <h1 id="Docker环境安装"><a href="#Docker环境安装" class="headerlink" title="Docker环境安装"></a>Docker环境安装</h1><p>网址：<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/setup/install/windows-install">https://docs.docker.com/desktop/setup/install/windows-install</a></p>
