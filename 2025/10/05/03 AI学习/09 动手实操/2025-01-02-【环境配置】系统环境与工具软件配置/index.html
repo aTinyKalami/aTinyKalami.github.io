@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">标签</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">分类</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -667,31 +667,28 @@
 <!-- content -->
 <div id="article-content">
 	<hr>
+<h1 id="安装Ubuntu-Linux环境"><a href="#安装Ubuntu-Linux环境" class="headerlink" title="安装Ubuntu Linux环境"></a>安装Ubuntu Linux环境</h1><p>我本机 Windows 版本太旧，不支持新版 WSL 命令。使用手动安装：</p>
+<p>1.打开 Microsoft Store</p>
+<p>2.搜索 “Ubuntu”</p>
+<p>3.选择 “Ubuntu 20.04 LTS” 或 “Ubuntu 22.04 LTS” 安装</p>
+<p>4.安装完成后从开始菜单启动 Ubuntu，会提示设置账号（全小写）和密码</p>
+<hr>
+<h1 id="安装vLLM"><a href="#安装vLLM" class="headerlink" title="安装vLLM"></a>安装vLLM</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install python3-pip -y</span><br><span class="line">pip3 install vllm</span><br></pre></td></tr></table></figure>
+<h2 id="安装过程中需要输入前面设置账号对应的密码。"><a href="#安装过程中需要输入前面设置账号对应的密码。" class="headerlink" title="安装过程中需要输入前面设置账号对应的密码。"></a>安装过程中需要输入前面设置账号对应的密码。</h2><hr>
 <h1 id="安装模型评估框架EvalScope"><a href="#安装模型评估框架EvalScope" class="headerlink" title="安装模型评估框架EvalScope"></a>安装模型评估框架EvalScope</h1><p>EvalScope安装指导可以参考官方指导页面 <a target="_blank" rel="noopener" href="https://evalscope.readthedocs.io/zh-cn/latest/get_started/installation.html">→ 点我</a>.</p>
-<p>使用conda来管理环境，并使用Python的pip安装依赖。（也可以使用git直接从社区安装代码库）</p>
-<p>1.创建conda环境 (可选，也可跳到下面直接pip安装)</p>
-<p>首先需要在系统中安装Python环境管理软件Anaconda <a href="%E9%93%BE%E6%8E%A5">→ 点我</a>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 建议使用 python 3.10</span></span><br><span class="line">conda create -n evalscope python=<span class="number">3.10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 激活conda环境</span></span><br><span class="line">conda activate evalscope</span><br></pre></td></tr></table></figure>
-<p>2.pip安装依赖</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install evalscope <span class="comment"># 让 EvalScope 自动处理依赖</span></span><br></pre></td></tr></table></figure>
-<p>3.安装额外依赖（可选）,此处我默认全装。也可以按照网页指导分开装</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install evalscope[<span class="built_in">all</span>]</span><br></pre></td></tr></table></figure>
+<p>实测我的电脑要在Linux WSL环境下安装才能成功。</p>
+<p>所以先操作下面的安装Ubuntu，然后安装vLLM，然后再安装EvalScope。</p>
+<p>安装命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/d/HandsOn/EvalScope</span><br><span class="line">pip install evalscope</span><br></pre></td></tr></table></figure>
 
 
 <hr>
-<h1 id="1-Github-Desktop"><a href="#1-Github-Desktop" class="headerlink" title="1. Github Desktop"></a>1. Github Desktop</h1><p>Github代码库版本管理软件，用于本地代码库版本管理及与云端的同步。</p>
+<h1 id="安装-Github-Desktop（实际用的不多）"><a href="#安装-Github-Desktop（实际用的不多）" class="headerlink" title="安装 Github Desktop（实际用的不多）"></a>安装 Github Desktop（实际用的不多）</h1><p>Github代码库版本管理软件，用于本地代码库版本管理及与云端的同步。</p>
 <p>在本地离线编辑代码库中的文档后，可以通过Github Desktop将更新同步到云端。</p>
-<h1 id="2-XBox"><a href="#2-XBox" class="headerlink" title="2. XBox"></a>2. XBox</h1><p>加速代理，用于在中国通过代理加速实现Github代码库的登录和编辑。</p>
-<h1 id="Docker环境安装"><a href="#Docker环境安装" class="headerlink" title="Docker环境安装"></a>Docker环境安装</h1><p>网址：<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/setup/install/windows-install">https://docs.docker.com/desktop/setup/install/windows-install</a></p>
-<h1 id="3-VSCode-和PyCharm-选哪个"><a href="#3-VSCode-和PyCharm-选哪个" class="headerlink" title="3. VSCode 和PyCharm 选哪个"></a>3. VSCode 和PyCharm 选哪个</h1><h1 id="4-Dify"><a href="#4-Dify" class="headerlink" title="4. Dify"></a>4. Dify</h1><h1 id="5-获取模型推理API-Key"><a href="#5-获取模型推理API-Key" class="headerlink" title="5. 获取模型推理API Key"></a>5. 获取模型推理API Key</h1><ol>
-<li>在海外，可以通过全球模型托管商OpenRouter.ai申请，有一些模型有Free的托管Token提供，不过SLA会较差。或者使用云厂商的付费Token.</li>
-<li>在国内，暂时没有找到免费方案，可以直接使用云厂商的付费Token。</li>
-<li>本机部署模型，提供API供实操调用，理论上是可行的。实际还有待在项目中验证。</li>
-</ol>
-<h1 id="1-Ollama"><a href="#1-Ollama" class="headerlink" title="1. Ollama"></a>1. Ollama</h1><p>Github代码库版本管理软件，用于本地代码库版本管理及与云端的同步。</p>
-<p>在本地离线编辑代码库中的文档后，可以通过Github Desktop将更新同步到云端。</p>
-<h1 id="2-LMStudio"><a href="#2-LMStudio" class="headerlink" title="2. LMStudio"></a>2. LMStudio</h1><p>加速代理，用于在中国通过代理加速实现Github代码库的登录和编辑。</p>
-<h1 id="3-Chatbox"><a href="#3-Chatbox" class="headerlink" title="3. Chatbox"></a>3. Chatbox</h1><hr>
+<h1 id="安装XBox"><a href="#安装XBox" class="headerlink" title="安装XBox"></a>安装XBox</h1><p>加速代理，用于在中国通过代理加速实现Github代码库的登录和编辑。</p>
+<h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><h1 id="安装VSCode"><a href="#安装VSCode" class="headerlink" title="安装VSCode"></a>安装VSCode</h1><h1 id="安装Docker环境"><a href="#安装Docker环境" class="headerlink" title="安装Docker环境"></a>安装Docker环境</h1><p>网址：<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/setup/install/windows-install">https://docs.docker.com/desktop/setup/install/windows-install</a></p>
+<h1 id="4-Dify"><a href="#4-Dify" class="headerlink" title="4. Dify"></a>4. Dify</h1><h1 id="5-获取模型推理API-Key"><a href="#5-获取模型推理API-Key" class="headerlink" title="5. 获取模型推理API Key"></a>5. 获取模型推理API Key</h1><h1 id="安装Ollama"><a href="#安装Ollama" class="headerlink" title="安装Ollama"></a>安装Ollama</h1><h1 id="安装-LMStudio"><a href="#安装-LMStudio" class="headerlink" title="安装 LMStudio"></a>安装 LMStudio</h1><p>加速代理，用于在中国通过代理加速实现Github代码库的登录和编辑。</p>
+<h1 id="安装-Chatbox"><a href="#安装-Chatbox" class="headerlink" title="安装 Chatbox"></a>安装 Chatbox</h1><hr>
 <p>（本文完）</p>
 
 </div>
@@ -701,16 +698,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-02-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  Huggingface平台的模型和数据集使用
+                  基础知识 - 大模型API接口调用参数说明
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-01-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E7%BA%BF%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%BE%AE%E8%B0%83/">
-                动手实操 - 在线大模型零代码微调
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
+                Huggingface平台的模型和数据集使用
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
