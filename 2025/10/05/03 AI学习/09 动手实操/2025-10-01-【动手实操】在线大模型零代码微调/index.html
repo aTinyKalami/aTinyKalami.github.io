@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">标签</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">分类</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -696,7 +696,7 @@
 <h3 id="3-3-数据集下载到本地后转换"><a href="#3-3-数据集下载到本地后转换" class="headerlink" title="3.3 数据集下载到本地后转换"></a>3.3 数据集下载到本地后转换</h3><p>也可以将数据集下载到本地，通过手工方式进行文本格式批处理替换的转换。</p>
 <p>将数据集下载到本地的操作可参考<a target="_blank" rel="noopener" href="https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">《Huggingface平台的模型和数据集使用》 。</a></p>
 <p>本地转换处理的工具待整理。</p>
-<h2 id="3-操作过程"><a href="#3-操作过程" class="headerlink" title="3. 操作过程"></a>3. 操作过程</h2><ol>
+<h2 id="3-微调操作过程"><a href="#3-微调操作过程" class="headerlink" title="3. 微调操作过程"></a>3. 微调操作过程</h2><ol>
 <li><p>登录硅基流动官网平台，系统默认进入模型广场。</p>
 </li>
 <li><p>左侧选择 模型微调 → 新建微调任务。</p>
@@ -717,8 +717,11 @@
 </li>
 <li><p>模型结果输出和托管：硅基流动平台会自动将微调完成的模型结果及中间产生的Checkpoint模型文件部署到平台，并在模型调用的对话框加上这些模型。（我的微调实验就生成了1个结果模型和2个Checkpoint，都可以调用）</p>
 </li>
-<li><p>模型验证：</p>
-<p>1）首先要用<a target="_blank" rel="noopener" href="https://evalscope.readthedocs.io/zh-cn/latest/get_started/introduction.html">EvalScope</a>模型评测框架构建模型评测程序，使用数据集进行评测。<br>2）其次要在硅基流动平台中生成API Key，然后在评测程序中按照OpenAI接口调用语法，填写接口URL地址，调用模型名称，API Key。</p>
+</ol>
+<h2 id="4-模型验证："><a href="#4-模型验证：" class="headerlink" title="4. 模型验证："></a>4. 模型验证：</h2><ol>
+<li><p>首先要用<a target="_blank" rel="noopener" href="https://evalscope.readthedocs.io/zh-cn/latest/get_started/introduction.html">EvalScope</a>模型评测框架构建模型评测程序，使用数据集进行评测。</p>
+</li>
+<li><p>其次要在硅基流动平台中生成API Key，然后在评测程序中按照OpenAI接口调用语法，填写接口URL地址，调用模型名称，API Key。</p>
 </li>
 </ol>
 <hr>
@@ -733,16 +736,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91GraphRAG%E6%96%B9%E6%A1%88/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-02-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  AI应用 - Graph RAG
+                  实操系统环境与工具软件配置
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-02-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">
-                实操系统环境与工具软件配置
+              <a href="/2025/10/02/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-04-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%90%8E%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%BE%AE%E8%B0%83/">
+                后训练 - 大模型后训练与微调
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
