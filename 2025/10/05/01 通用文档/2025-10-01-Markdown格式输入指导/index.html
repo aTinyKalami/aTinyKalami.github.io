@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Tags</a>
+        <a href="/tags" class="menu-item-link">标签</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Categories</a>
+        <a href="/categories" class="menu-item-link">分类</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
 		<div id="tree">
 			
 
@@ -739,7 +739,30 @@
 <h2 id="2-5-图片"><a href="#2-5-图片" class="headerlink" title="2.5 图片"></a>2.5 图片</h2><p>语法与链接几乎完全相同，也是使用 [] 和 () 字符,只是在最前面加一个 !。</p>
 <p>语法：<code>![图片替代文本](图片链接地址 &quot;可选的标题&quot;)</code></p>
 <p>例子： <img src="https://bkimg.cdn.bcebos.com/pic/a686c9177f3e6709c93df7f3269f883df8dcd100ff3d?x-bce-process=image/format,f_auto/quality,Q_70/resize,m_lfit,limit_1,w_536" alt="卡拉米" title="卡拉米"></p>
-<h2 id="2-6-引用"><a href="#2-6-引用" class="headerlink" title="2.6 引用"></a>2.6 引用</h2><p>要创建对一段文字块进行引用，要在文字段落前加上 <code>&gt;</code> 符号。</p>
+<h2 id="2-6-视频"><a href="#2-6-视频" class="headerlink" title="2.6 视频"></a>2.6 视频</h2><ol>
+<li>上传原始视频到图床：</li>
+</ol>
+<p>建议使用GitHub 图床，可以用PicHoro软件。首先把视频片段（建议小于 20MB）也上传到 GitHub 仓库。</p>
+<ol start="2">
+<li>获取 Github的视频文件URL地址：</li>
+</ol>
+<p>1） 使用和图床中的图片一样的 jsDelivr CDN 加速链接（强烈推荐）</p>
+<p>和图片加速一样，视频文件的CDN 地址可以在浏览器中播放，且速度极快。</p>
+<p>示例原始视频文件的展示地址： <a target="_blank" rel="noopener" href="https://github.com/yourgithub/Blog/main/image/1766832657767.mp4">https://github.com/yourgithub/Blog/main/image/1766832657767.mp4</a></p>
+<p>转换后的 CDN 地址： <a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/yourgithub/Blog@main/image/1766832657767.mp4">https://cdn.jsdelivr.net/gh/yourgithub/Blog@main/image/1766832657767.mp4</a></p>
+<p>2）获取 GitHub 官方 Raw 地址</p>
+<p>如果不想用 CDN，可以手动获取原始链接：</p>
+<p>在浏览器打开 GitHub 视频页面，点击页面上的 “Download” 按钮（或右键点击 “Download” 选复制链接）。</p>
+<p>得到的地址通常以 raw.githubusercontent.com 开头。</p>
+<p>例如：<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/aTinyKalami/DailyBlog/main/image/1766832657767.mp4">https://raw.githubusercontent.com/aTinyKalami/DailyBlog/main/image/1766832657767.mp4</a></p>
+<ol start="3">
+<li>编写和插入显示代码：</li>
+</ol>
+<p>Markdown 渲染器不支持直接解析视频文件的 URL。需要在博文中直接插入 HTML5 的 <video> 标签。</p>
+<p>需要使用下面的代码框架，替换视频文件并插入博客文章。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">&quot;100%&quot;</span> <span class="attr">height</span>=<span class="string">&quot;auto&quot;</span> <span class="attr">controls</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/gh/youblog/DailyBlog@main/image/1766832657767.mp4&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/mp4&quot;</span>&gt;</span></span></span><br><span class="line">  您的浏览器不支持 HTML5 视频播放，请<span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/gh/youblog/DailyBlog@main/image/1766832657767.mp4&quot;</span>&gt;</span></span>点击此处下载视频<span class="language-xml"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>。</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-7-引用"><a href="#2-7-引用" class="headerlink" title="2.7 引用"></a>2.7 引用</h2><p>要创建对一段文字块进行引用，要在文字段落前加上 <code>&gt;</code> 符号。</p>
 <p>引用显示效果是1）在文字段前有粗竖线分隔，2）文字字体为灰色。</p>
 <p>语法：</p>
 <p><code>&gt;我是一段引用文字段落块</code></p>
@@ -747,7 +770,7 @@
 <blockquote>
 <p>我是一段引用文字段落块</p>
 </blockquote>
-<h2 id="2-7-表格"><a href="#2-7-表格" class="headerlink" title="2.7 表格"></a>2.7 表格</h2><h3 id="2-7-1-表格语法"><a href="#2-7-1-表格语法" class="headerlink" title="2.7.1 表格语法"></a>2.7.1 表格语法</h3><p>管道符 | 是必须的，用于分隔列；分隔线 第二行必须包含，两个就可以，用于定义列对齐方式；空格 不影响渲染，主要用于提高可读性。</p>
+<h2 id="2-8-表格"><a href="#2-8-表格" class="headerlink" title="2.8 表格"></a>2.8 表格</h2><h3 id="2-8-1-表格语法"><a href="#2-8-1-表格语法" class="headerlink" title="2.8.1 表格语法"></a>2.8.1 表格语法</h3><p>管道符 | 是必须的，用于分隔列；分隔线 第二行必须包含，两个就可以，用于定义列对齐方式；空格 不影响渲染，主要用于提高可读性。</p>
 <p>基本表格语法示例：</p>
 <table>
 <thead>
@@ -795,7 +818,7 @@
 <td align="right">内容6</td>
 </tr>
 </tbody></table>
-<h3 id="2-7-2-表格中内容换行和加序号"><a href="#2-7-2-表格中内容换行和加序号" class="headerlink" title="2.7.2 表格中内容换行和加序号"></a>2.7.2 表格中内容换行和加序号</h3><p>可以使用 HTML 换行标签 <code>&lt;br&gt;</code>来进行换行，使用语法如下：</p>
+<h3 id="2-8-2-表格中内容换行和加序号"><a href="#2-8-2-表格中内容换行和加序号" class="headerlink" title="2.8.2 表格中内容换行和加序号"></a>2.8.2 表格中内容换行和加序号</h3><p>可以使用 HTML 换行标签 <code>&lt;br&gt;</code>来进行换行，使用语法如下：</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">| 项目 | 描述 |</span><br><span class="line">|:---|:---|</span><br><span class="line">| 任务清单 | 1. 完成需求分析<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span>2. 设计系统架构<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span>3. 编写代码 |</span><br><span class="line">| 注意事项 | • 注意安全性<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span>• 考虑性能优化<span class="language-xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span>• 做好测试 |</span><br></pre></td></tr></table></figure>
 <p>渲染效果：</p>
 <table>
@@ -814,7 +837,7 @@
 <td align="left">• 注意安全性<br>• 考虑性能优化<br>• 做好测试</td>
 </tr>
 </tbody></table>
-<h2 id="2-8-Pre-Code代码块"><a href="#2-8-Pre-Code代码块" class="headerlink" title="2.8 Pre Code代码块"></a>2.8 Pre Code代码块</h2><p> pre code 代码块，用来在页面中呈现独立代码块。</p>
+<h2 id="2-9-Pre-Code代码块"><a href="#2-9-Pre-Code代码块" class="headerlink" title="2.9 Pre Code代码块"></a>2.9 Pre Code代码块</h2><p> pre code 代码块，用来在页面中呈现独立代码块。</p>
 <pre><code>pre：预格式化文本，保持代码的缩进和换行
 
 code：表示代码内容
