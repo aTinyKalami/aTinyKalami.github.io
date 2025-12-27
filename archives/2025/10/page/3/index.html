@@ -89,13 +89,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Tags</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Categories</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -131,7 +131,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -469,6 +469,17 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2025/12/27/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-12-27-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E8%AE%AD%E7%BB%83%E4%B8%AD%E5%9B%BD%E5%90%8D%E8%91%97NanoGPT/">
+                     
+										    动手实操 - 在本地训练中国名著NanoGPT
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -702,14 +713,13 @@ Ope
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
+			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E5%AE%89%E8%A3%85Evalscope%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6/">
 				<h2 class="index-title">
-					Huggingface平台的模型和数据集使用
+					安装Evalscope模型评估框架
 				</h2>
 				<div class="index-brief">
-					HuggingFace 已成为 AI 开发者的必备工具，它提供了丰富的预训练模型、数据集等，帮助我们快速进行模型训练与推理。
-将HuggingFace的模型和数据集下载到本地经常会遇到需要将Huggingface上的模型或数据集下载到本地进行处理，或者再上传到其他平台的操作。
-将模型和数据集下载到本
+					安装EvalScope模型评测框架前置准备：创建一个干净的Linux环境从干净的WSL Ubuntu镜像（.tar文件）部署一个新Ubuntu Linux实例。
+# 导入名为 &quot;Evalscope_Test&quot; 的新实例# 确保 D:\WSL_Test 目录存在（如果不存在，请先运
 					...
 				</div>
 			</a>
@@ -730,13 +740,14 @@ Ope
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E5%AE%89%E8%A3%85Evalscope%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6/">
+			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91Huggingface%E7%9A%84%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AF%BC/">
 				<h2 class="index-title">
-					安装Evalscope模型评估框架
+					Huggingface平台的模型和数据集使用
 				</h2>
 				<div class="index-brief">
-					安装EvalScope模型评测框架前置准备：创建一个干净的Linux环境从干净的WSL Ubuntu镜像（.tar文件）部署一个新Ubuntu Linux实例。
-# 导入名为 &quot;Evalscope_Test&quot; 的新实例# 确保 D:\WSL_Test 目录存在（如果不存在，请先运
+					HuggingFace 已成为 AI 开发者的必备工具，它提供了丰富的预训练模型、数据集等，帮助我们快速进行模型训练与推理。
+将HuggingFace的模型和数据集下载到本地经常会遇到需要将Huggingface上的模型或数据集下载到本地进行处理，或者再上传到其他平台的操作。
+将模型和数据集下载到本
 					...
 				</div>
 			</a>
