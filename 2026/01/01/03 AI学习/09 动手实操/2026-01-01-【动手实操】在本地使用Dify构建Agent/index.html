@@ -710,28 +710,67 @@
 
 <!-- content -->
 <div id="article-content">
-	<h1 id="一-环境准备"><a href="#一-环境准备" class="headerlink" title="一. 环境准备"></a>一. 环境准备</h1><h2 id="安装要求说明"><a href="#安装要求说明" class="headerlink" title="安装要求说明"></a>安装要求说明</h2><p>最好使用社区编译过的开源Dify软件安装到Docker环境中，不建议使用开源社区Dify源码在本地进行安装，技术能力要求高。</p>
-<p>Docker环境构建有几种方式：</p>
-<p>1）在本机的Windows环境中通过WSL（Window Subsystem for Linux）环境安装Linux。这种方式依赖比较复杂，新手不太友好。</p>
-<p>我前期在做模型LoRA微调和模型评测的时候，安装魔搭社区模型评测工具Evalscope，已经折腾配置了很久WSL，基本问题都解决了，先尝试使用这种方法。</p>
-<p>2）在Linux系统中构建Docker环境，要求本机安装Linux OS，或者通过虚拟化（如VMware）构建虚机，即在本地安装VMware Workstation虚拟机环境，然后安装Ubuntu Linux OS，再通过虚拟机管理软件（视频教程博主用的是：宝塔）构建容器镜像，安装Dify。</p>
-<p>好处是虚拟机管理软件直接继承了Docker安装，并且在应用市场中集成了Dify的开源已发布版本。</p>
-<p>参考教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11ZBhBtEfR?t=1569.6">→ 点我</a>。</p>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>1.在本机安装Ubuntu Linux环境</p>
-<p>前期已经在本机安装Ubuntu，安装过程参见<a target="_blank" rel="noopener" href="https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-02-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/">→ 点我</a>.</p>
-<p>2.构建Dify实验Linux系统实例</p>
-<p>使用前期安装Ubntu时备份的干净的初始镜像，构建一个用于Dify实验的干净的Linux系统环境实例。</p>
-<p>3.在本机Ubuntu Linux环境中安装Dify</p>
+	<h1 id="一-环境准备"><a href="#一-环境准备" class="headerlink" title="一. 环境准备"></a>一. 环境准备</h1><h2 id="1-安装说明"><a href="#1-安装说明" class="headerlink" title="1. 安装说明"></a>1. 安装说明</h2><p>网上的各种教程指导Dify的本地安装一般有3中方式，个人推荐使用Docker Compse方式，因为这种方式是目前业界处理复杂 AI 应用的标准做法。掌握了这一套流程，以后在学习部署其他类似工具，如LangChain、LangGraph时，逻辑是完全相通的。</p>
+<p>三种方式的详细的对比如下：</p>
+<p>*** Dify 部署方式对比 ***</p>
+<table>
+<thead>
+<tr>
+<th align="left">维度</th>
+<th align="left"><strong>方式 A：克隆源码 (Docker Compose)</strong></th>
+<th align="left"><strong>方式 B：单镜像运行 (Docker Run)</strong></th>
+<th align="left"><strong>方式 C：第三方一键安装包</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>部署原理</strong></td>
+<td align="left">下载官方配置表，由 Docker 自动编排 10+ 个独立组件镜像。</td>
+<td align="left">将所有功能模块塞进一个巨大的单一镜像中（All-in-one）。</td>
+<td align="left">经过二次封装的 <code>.exe</code> 安装程序或第三方脚本。</td>
+</tr>
+<tr>
+<td align="left"><strong>稳定性</strong></td>
+<td align="left"><strong>最高</strong>。官方主推架构，数据库、Redis 等组件隔离运行，互不干扰。</td>
+<td align="left"><strong>中等</strong>。组件耦合严重，在高负载或持久化存储时容易报错。</td>
+<td align="left"><strong>最低</strong>。更新严重滞后，且容易报出非官方的奇葩环境错误。</td>
+</tr>
+<tr>
+<td align="left"><strong>安装难度</strong></td>
+<td align="left"><strong>极低</strong>。仅需 3 条标准命令，环境要求最纯粹。</td>
+<td align="left"><strong>极低</strong>。通常只需要 1 条超长命令即可启动。</td>
+<td align="left">看似简单，但出问题时由于是黑盒，极难排查。</td>
+</tr>
+<tr>
+<td align="left"><strong>学习价值</strong></td>
+<td align="left"><strong>完美</strong>。可深度配置 <code>.env</code> 环境变量，方便接入各种 LLM 和修改网络代理。</td>
+<td align="left"><strong>较差</strong>。修改配置极度不便，难以观察各组件间的协作逻辑。</td>
+<td align="left"><strong>差</strong>。完全隐藏了系统结构，不建议想要深入学习 Agent 的用户使用。</td>
+</tr>
+<tr>
+<td align="left"><strong>数据安全</strong></td>
+<td align="left"><strong>优秀</strong>。数据卷挂载清晰，备份和迁移本地文件夹即可。</td>
+<td align="left"><strong>一般</strong>。数据存储在单一容器内，误删容器风险较高。</td>
+<td align="left"><strong>未知</strong>。数据存储路径取决于封装者的设计。</td>
+</tr>
+</tbody></table>
+<h2 id="2-安装步骤"><a href="#2-安装步骤" class="headerlink" title="2.安装步骤"></a>2.安装步骤</h2><p>2.1 在本机安装Ubuntu Linux环境</p>
+<p>在本机的Windows环境中通过WSL（Window Subsystem for Linux）环境安装Linux。这种方式据说依赖比较复杂，新手不太友好。但我前期在做模型LoRA微调和模型评测的时候，安装魔搭社区模型评测工具Evalscope，已经折腾配置了很久WSL，基本问题都解决了，先尝试使用这种方法。</p>
+<p>前期已经在本机安装Ubuntu，使用前期构建的纯净镜像（ubuntu_evalscope_CLEAN），构建一个新的干净的Ubuntu Linux环境，用于Dify的动手实验。环境命名（ubuntu_dify），环境目录为(D:\HandsOn\Dify)。需要在本机的windows powershell环境中执行命令，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wsl --import ubuntu_dify  <span class="string">&quot;D:\HandsOn\Dify&quot;</span>  <span class="string">&quot;D:\WSL_Backups\ubuntu_evalscope_CLEAN.tar&quot;</span></span><br></pre></td></tr></table></figure>
+<p>安装完后，在powershell下使用下面 wsl -d 命令进入新创建的实例，检验创建是否成功:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wsl -d ubuntu_dify</span><br></pre></td></tr></table></figure>
+<p>如果成功进入，命令行提示符会变为类似 root@DESKTOP-2GVJQ09:&#x2F;mnt&#x2F;c&#x2F;Users&#x2F;Administrator# 。</p>
+<p>说明：也有博主建议在Linux系统中构建Docker环境，要求本机安装Linux OS，或者通过虚拟化（如VMware）构建虚机，即在本地安装VMware Workstation虚拟机环境，然后安装Ubuntu Linux OS，再通过虚拟机管理软件（视频教程博主用的是：宝塔）构建容器镜像，安装Dify。</p>
+<p>这种方式的好处是虚拟机管理软件直接集成了Docker安装，并且在应用市场中集成了Dify的开源已发布版本。</p>
+<p>这种方式的参考教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11ZBhBtEfR?t=1569.6">→ 点我</a>。</p>
+<p>2.2 在Linux环境基础上安装Docker</p>
+<p>2.3 在本机Ubuntu Linux环境中安装Dify</p>
 <p>Step1:在本机安装Ubuntu环境</p>
 <p>Step2:在Linux环境中安装Dify</p>
 <p>Ubuntu环境支持多个镜像，建议将Dify安装到独立镜像中，跟其他的实验镜像相互隔离，避免环境配置要求不同造成冲突。</p>
 <p>2.其他安装方法</p>
 <hr>
-<p>1.<a target="_blank" rel="noopener" href="https://www.stateof.ai/">Stat of AI Report</a>,对应文档<a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1xiLl0VdrlNMAei8pmaX4ojIOfej6lhvZbOIK7Z6C-Go/edit?pli=1&slide=id.g309a25a756d_0_85#slide=id.g309a25a756d_0_85">下载链接</a></p>
-<p>2.<a href="%E5%BE%85%E8%A1%A5%E5%85%85">斯坦福大学AI指数 AI Index</a></p>
-<ol start="3">
-<li></li>
-</ol>
+<p>1.<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qTBNBqEdn?t=191.7&p=2">在Linux中安装Docker和Dify</a></p>
 <hr>
 <p>（本文完）</p>
 
