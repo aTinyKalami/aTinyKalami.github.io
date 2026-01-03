@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Tags</a>
+        <a href="/tags" class="menu-item-link">标签</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Categories</a>
+        <a href="/categories" class="menu-item-link">分类</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
 		<div id="tree">
 			
 
@@ -482,6 +482,17 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2026/01/01/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2026-01-01-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8Dify%E6%9E%84%E5%BB%BAAgent/">
+                     
+										    动手实操 - 在本地使用Dify构建Agent
+                     
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -716,7 +727,44 @@
 <h2 id="部署-恢复Linux镜像"><a href="#部署-恢复Linux镜像" class="headerlink" title="部署&#x2F;恢复Linux镜像"></a>部署&#x2F;恢复Linux镜像</h2><p>WSL支持基于一个Linux镜像部署多个实例，并且通过命令窗口在多个实例环境中切换，从而避免Linux环境中的各种程序的各种依赖冲突。</p>
 <p>基于.tar文件在WSL中部署一个Linux实例的命令是： wsl –import。这个命令可以将 .tar 备份文件作为全新的、独立的 Linux 发行版导入到您的 Windows 系统中。</p>
 <p>需要在 Windows 命令行 (PowerShell 或 CMD) 中执行此命令。</p>
-<p>PowerShellwsl –import <DistributionName> <InstallLocation> <FileName></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">wsl <span class="literal">--import</span> &lt;DistributionName&gt; &lt;InstallLocation&gt; &lt;FileName&gt;</span><br><span class="line"><span class="comment">#wsl --import &lt;发行版名称&gt; &lt;安装路径&gt; &lt;源文件路径&gt; [选项]</span></span><br></pre></td></tr></table></figure>
+
+<p>参数要求详细介绍：</p>
+<h3 id="WSL-–import-命令参数详解"><a href="#WSL-–import-命令参数详解" class="headerlink" title="WSL –import 命令参数详解"></a>WSL –import 命令参数详解</h3><table>
+<thead>
+<tr>
+<th align="left">参数项</th>
+<th align="left">是否必选</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong><code>&lt;发行版名称&gt;</code></strong></td>
+<td align="left"><strong>必选</strong></td>
+<td align="left">为导入的系统起个名字（例如 <code>Ubuntu-Work</code>）。之后可通过 <code>wsl -d &lt;名称&gt;</code> 启动。</td>
+</tr>
+<tr>
+<td align="left"><strong><code>&lt;安装路径&gt;</code></strong></td>
+<td align="left"><strong>必选</strong></td>
+<td align="left">WSL 虚拟硬盘文件（<code>ext4.vhdx</code>）存放的<strong>目标文件夹</strong>。建议在执行命令前先手动创建该目录。</td>
+</tr>
+<tr>
+<td align="left"><strong><code>&lt;源文件路径&gt;</code></strong></td>
+<td align="left"><strong>必选</strong></td>
+<td align="left">之前导出的 <code>.tar</code> 备份文件或下载的 rootfs 压缩包的完整路径。</td>
+</tr>
+<tr>
+<td align="left"><strong><code>--version &lt;1/2&gt;</code></strong></td>
+<td align="left">可选</td>
+<td align="left">指定导入为 WSL 1 还是 WSL 2。如果不指定，将使用系统当前的全局默认版本。</td>
+</tr>
+<tr>
+<td align="left"><strong><code>--vhd</code></strong></td>
+<td align="left">可选</td>
+<td align="left">如果源文件本身就是 <code>.vhdx</code> 虚拟硬盘文件（而非 <code>.tar</code> 压缩包），则需带上此参数（仅限 WSL 2）。</td>
+</tr>
+</tbody></table>
+<p>具体使用举例：</p>
 <table>
 <thead>
 <tr>
@@ -914,6 +962,43 @@
 </li>
 </ol>
 <hr>
+<h1 id="使用PowerShell，或Windows-Terminal（终端）"><a href="#使用PowerShell，或Windows-Terminal（终端）" class="headerlink" title="使用PowerShell，或Windows Terminal（终端）"></a>使用PowerShell，或Windows Terminal（终端）</h1><p>在 Windows 环境下，PowerShell 不仅仅是启动 WSL 的“入口”，它更是管理、配置和跨系统协作的核心工具。</p>
+<p>你可以直接在Windows中启动Powershell。</p>
+<p>但是有时候需要在Powershell、CMD、Gitbash中切换时，可以使用由微软官方提供的命令行系统工具Windows Terminal（中文名称：终端），在Windows操作系统自带的软件商店中搜索名称就可以找到。</p>
+<p>Windows Terminal 是微软开发的现代终端工具，它最大的优势是能将 <strong>PowerShell、CMD、WSL (Linux)</strong> 以及 <strong>Git Bash</strong> 全部集成在一个窗口中，并支持多标签和高度自定义。</p>
+<p>使用起来这是一个简单的多任务&#x2F;实例管理工具，可以通过多窗口切换的方式同时操作多个环境，比如我本机管理员级的Powershell、CMD、Gitbash（需配置）和激活的各个不同的Linux镜像，如Evalscope等。</p>
+<ol>
+<li><p>下载安装：打开 Windows 自带的微软商店，搜索 <strong>“Windows Terminal”</strong>（或“终端”），点击获取即可。这种方式支持后台自动更新。</p>
+</li>
+<li><p>使用方法：</p>
+</li>
+</ol>
+<p>1） 快速启动与多标签</p>
+<ul>
+<li><strong>新建标签：</strong> 点击顶部栏的 <strong><code>+</code></strong> 号（默认打开 PowerShell）。</li>
+<li><strong>切换环境：</strong> 点击 <code>+</code> 号旁边的 <strong>下拉箭头</strong>，你可以直接选择进入 Ubuntu (WSL)、CMD 或 Git Bash（配置激活后）。</li>
+<li><strong>快捷键：</strong></li>
+<li><code>Ctrl + Shift + T</code>: 新建标签页。</li>
+<li><code>Ctrl + Shift + W</code>: 关闭当前标签页。</li>
+<li><code>Ctrl + ,</code>: 打开设置界面。</li>
+</ul>
+<p>2） 垂直&#x2F;水平分屏 (Panes)</p>
+<p>这是 Terminal 的神技，让你在一个窗口看多个屏幕：</p>
+<ul>
+<li><strong>自动分屏：</strong> <code>Alt + Shift + D</code></li>
+<li><strong>水平分屏：</strong> <code>Alt + Shift + -</code></li>
+<li><strong>垂直分屏：</strong> <code>Alt + Shift + +</code> (实际上是 <code>+</code> 号那个键)</li>
+</ul>
+<p>3）将 Git Bash 添加到列表</p>
+<p>默认情况下，Windows Terminal 可能不会自动识别 Git Bash。你可以手动添加它：</p>
+<ol>
+<li>按 <code>Ctrl + ,</code> 进入设置。</li>
+<li>点击左下角的 <strong>“打开 JSON 文件”</strong>（或者在 UI 界面点击“添加新配置文件”）。</li>
+<li>在 <code>profiles -&gt; list</code> 下面添加以下代码：</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;guid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&#123;00000000-0000-0000-ba54-000000000001&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Git Bash&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commandline&quot;</span><span class="punctuation">:</span> <span class="string">&quot;d:\\Program Files\\Git\\bash.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;icon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;d:\\Program Files\\Git\\mingw64\\share\\git\\git-for-windows.ico&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p><em>(注：上面是我的安装路径，请根据实际情况修改你的 Git 安装路径)</em></p>
+<hr>
 <h1 id="安装EvalScope模型评测框架"><a href="#安装EvalScope模型评测框架" class="headerlink" title="安装EvalScope模型评测框架"></a>安装EvalScope模型评测框架</h1><p><a href="%E9%93%BE%E6%8E%A5">参考专题文章 → 点我</a></p>
 <hr>
 <h1 id="安装vLLM"><a href="#安装vLLM" class="headerlink" title="安装vLLM"></a>安装vLLM</h1><hr>
@@ -932,16 +1017,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-01-01-%E3%80%90%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E3%80%91%E5%AE%89%E8%A3%85Evalscope%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%A1%86%E6%9E%B6/">
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-01-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E7%BA%BF%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%BE%AE%E8%B0%83/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  安装Evalscope模型评估框架
+                  动手实操 - 在线大模型零代码微调
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2025-10-01-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E7%BA%BF%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9B%B6%E4%BB%A3%E7%A0%81%E5%BE%AE%E8%B0%83/">
-                动手实操 - 在线大模型零代码微调
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91%E6%90%9E%E6%87%82%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/">
+                模型基础 - 搞懂大模型文件结构
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
