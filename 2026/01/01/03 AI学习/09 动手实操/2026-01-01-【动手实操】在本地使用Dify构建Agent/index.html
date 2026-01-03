@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Etiketler</a>
+        <a href="/tags" class="menu-item-link">Tags</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Kategoriler</a>
+        <a href="/categories" class="menu-item-link">Categories</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
+		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
 		<div id="tree">
 			
 
@@ -710,9 +710,9 @@
 
 <!-- content -->
 <div id="article-content">
-	<h1 id="一-环境准备"><a href="#一-环境准备" class="headerlink" title="一. 环境准备"></a>一. 环境准备</h1><h2 id="1-安装说明"><a href="#1-安装说明" class="headerlink" title="1. 安装说明"></a>1. 安装说明</h2><p>网上的各种教程指导Dify的本地安装一般有3中方式，个人推荐使用Docker Compse方式，因为这种方式是目前业界处理复杂 AI 应用的标准做法。掌握了这一套流程，以后在学习部署其他类似工具，如LangChain、LangGraph时，逻辑是完全相通的。</p>
+	<h1 id="一-环境准备（安装Linux、Docker和Dify）"><a href="#一-环境准备（安装Linux、Docker和Dify）" class="headerlink" title="一. 环境准备（安装Linux、Docker和Dify）"></a>一. 环境准备（安装Linux、Docker和Dify）</h1><h2 id="1-安装说明"><a href="#1-安装说明" class="headerlink" title="1. 安装说明"></a>1. 安装说明</h2><p>网上的各种教程指导Dify的本地安装一般有3中方式，个人推荐使用Docker Compse方式，因为这种方式是目前业界处理复杂 AI 应用的标准做法。掌握了这一套流程，以后在学习部署其他类似工具，如LangChain、LangGraph时，逻辑是完全相通的。</p>
 <p>三种方式的详细的对比如下：</p>
-<p>*** Dify 部署方式对比 ***</p>
+<p><strong>Dify 部署方式对比</strong></p>
 <table>
 <thead>
 <tr>
@@ -753,8 +753,7 @@
 <td align="left"><strong>未知</strong>。数据存储路径取决于封装者的设计。</td>
 </tr>
 </tbody></table>
-<h2 id="2-安装步骤"><a href="#2-安装步骤" class="headerlink" title="2.安装步骤"></a>2.安装步骤</h2><p>2.1 在本机安装Ubuntu Linux环境</p>
-<p>在本机的Windows环境中通过WSL（Window Subsystem for Linux）环境安装Linux。这种方式据说依赖比较复杂，新手不太友好。但我前期在做模型LoRA微调和模型评测的时候，安装魔搭社区模型评测工具Evalscope，已经折腾配置了很久WSL，基本问题都解决了，先尝试使用这种方法。</p>
+<h2 id="2-安装步骤"><a href="#2-安装步骤" class="headerlink" title="2.安装步骤"></a>2.安装步骤</h2><h3 id="2-1-在本机安装Ubuntu-Linux环境"><a href="#2-1-在本机安装Ubuntu-Linux环境" class="headerlink" title="2.1 在本机安装Ubuntu Linux环境"></a>2.1 在本机安装Ubuntu Linux环境</h3><p>在本机的Windows环境中通过WSL（Window Subsystem for Linux）环境安装Linux。这种方式据说依赖比较复杂，新手不太友好。但我前期在做模型LoRA微调和模型评测的时候，安装魔搭社区模型评测工具Evalscope，已经折腾配置了很久WSL，基本问题都解决了，先尝试使用这种方法。</p>
 <p>前期已经在本机安装Ubuntu，使用前期构建的纯净镜像（ubuntu_evalscope_CLEAN），构建一个新的干净的Ubuntu Linux环境，用于Dify的动手实验。环境命名（ubuntu_dify），环境目录为(D:\HandsOn\Dify)。需要在本机的windows powershell环境中执行命令，命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wsl --import ubuntu_dify  <span class="string">&quot;D:\HandsOn\Dify&quot;</span>  <span class="string">&quot;D:\WSL_Backups\ubuntu_evalscope_CLEAN.tar&quot;</span></span><br></pre></td></tr></table></figure>
 <p>安装完后，在powershell下使用下面 wsl -d 命令进入新创建的实例，检验创建是否成功:</p>
@@ -763,13 +762,123 @@
 <p>说明：也有博主建议在Linux系统中构建Docker环境，要求本机安装Linux OS，或者通过虚拟化（如VMware）构建虚机，即在本地安装VMware Workstation虚拟机环境，然后安装Ubuntu Linux OS，再通过虚拟机管理软件（视频教程博主用的是：宝塔）构建容器镜像，安装Dify。</p>
 <p>这种方式的好处是虚拟机管理软件直接集成了Docker安装，并且在应用市场中集成了Dify的开源已发布版本。</p>
 <p>这种方式的参考教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11ZBhBtEfR?t=1569.6">→ 点我</a>。</p>
-<p>2.2 在Linux环境基础上安装Docker</p>
-<p>2.3 在本机Ubuntu Linux环境中安装Dify</p>
-<p>Step1:在本机安装Ubuntu环境</p>
-<p>Step2:在Linux环境中安装Dify</p>
-<p>Ubuntu环境支持多个镜像，建议将Dify安装到独立镜像中，跟其他的实验镜像相互隔离，避免环境配置要求不同造成冲突。</p>
-<p>2.其他安装方法</p>
+<h3 id="2-2-在Linux环境基础上安装Docker"><a href="#2-2-在Linux环境基础上安装Docker" class="headerlink" title="2.2 在Linux环境基础上安装Docker"></a>2.2 在Linux环境基础上安装Docker</h3><h4 id="2-2-1-安装Docerk的2种方式"><a href="#2-2-1-安装Docerk的2种方式" class="headerlink" title="2.2.1 安装Docerk的2种方式"></a>2.2.1 安装Docerk的2种方式</h4><p>在这里有两种方式，1）可以在Windows中安装Docker_Desktop，通过独立的容器引擎进行环境管理。2）也可以在Linux镜像中单独安装Docker，单独进行管理。</p>
+<p>两种方式优劣对比如下：</p>
+<p><strong>Docker Desktop vs. Ubuntu 实例原生 Docker 深度对比</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">维度</th>
+<th align="left"><strong>方式 A：Docker Desktop (Windows 托管)</strong></th>
+<th align="left"><strong>方式 B：Ubuntu 实例内手动安装 (Linux 原生)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>安装难度</strong></td>
+<td align="left"><strong>极低</strong>。图形化安装包，一键式完成。</td>
+<td align="left"><strong>中等</strong>。需通过命令行添加仓库、密钥并手动安装依赖。</td>
+</tr>
+<tr>
+<td align="left"><strong>系统要求</strong></td>
+<td align="left"><strong>苛刻</strong>。对 Windows 版本号有硬性要求（需支持最新 WSL 接口）。</td>
+<td align="left"><strong>宽松</strong>。只要当前的 WSL 2 实例能跑起来，基本都能安装。</td>
+</tr>
+<tr>
+<td align="left"><strong>运行效率</strong></td>
+<td align="left"><strong>一般</strong>。由于包含图形化管理界面，后台常驻内存占用较高。</td>
+<td align="left"><strong>极高</strong>。原生 Linux 服务进程，无图形开销，资源分配更直接。</td>
+</tr>
+<tr>
+<td align="left"><strong>管理方式</strong></td>
+<td align="left"><strong>可视化</strong>。提供 GUI 界面，可通过鼠标查看日志、管理容器和镜像。</td>
+<td align="left"><strong>全命令行</strong>。依赖 <code>docker ps</code>、<code>docker logs</code> 等常用指令进行操作。</td>
+</tr>
+<tr>
+<td align="left"><strong>网络特性</strong></td>
+<td align="left"><strong>自动映射</strong>。<code>localhost</code> 访问非常稳定，支持与 Windows 代理自动同步。</td>
+<td align="left"><strong>手动配置</strong>。在某些网络环境下，需手动处理 WSL 与宿主机的 IP 映射。</td>
+</tr>
+<tr>
+<td align="left"><strong>启动方式</strong></td>
+<td align="left">随 Windows 自动启动，并能自动激活后端 WSL 引擎。</td>
+<td align="left">需手动执行 <code>sudo service docker start</code> 或自行编写启动脚本。</td>
+</tr>
+<tr>
+<td align="left"><strong>核心差异点 (数据管理)</strong></td>
+<td align="left"><strong>解耦管理</strong>。镜像与容器数据由 Docker 引擎统一管理，不受特定 Linux 实例删除的影响。</td>
+<td align="left"><strong>强绑定</strong>。镜像和数据完全存储在当前实例虚拟硬盘内，若卸载实例（unregister），数据将永久丢失。</td>
+</tr>
+</tbody></table>
+<h4 id="2-2-2-安装Docker-Desktop"><a href="#2-2-2-安装Docker-Desktop" class="headerlink" title="2.2.2 安装Docker Desktop"></a>2.2.2 安装Docker Desktop</h4><p>我使用在Windows中安装Docker_Desktop的方式。详细操作步骤：</p>
+<h5 id="1）第一步：安装-Docker-Desktop（在-Windows-上）"><a href="#1）第一步：安装-Docker-Desktop（在-Windows-上）" class="headerlink" title="1）第一步：安装 Docker Desktop（在 Windows 上）"></a>1）第一步：安装 Docker Desktop（在 Windows 上）</h5><p>访问 <a target="_blank" rel="noopener" href="https://www.docker.com/products/docker-desktop/">Docker 官网</a> ,点击Download Docker Desktop，选择 Download for Windows - AMD64，下载并安装。这个选项其实一样适用于Intel CPU。</p>
+<p>安装过程中，确保勾选 “Use the WSL 2 based engine”（默认通常是勾选的）。安装完成后，根据提示重启电脑。</p>
+<h5 id="2）第二步：（插曲，视个人电脑实际情况可选）Windows-OS版本升级"><a href="#2）第二步：（插曲，视个人电脑实际情况可选）Windows-OS版本升级" class="headerlink" title="2）第二步：（插曲，视个人电脑实际情况可选）Windows OS版本升级"></a>2）第二步：（插曲，视个人电脑实际情况可选）Windows OS版本升级</h5><p>中间我的电脑的Win10系统因为版本过旧，要求升级到22H2。</p>
+<p>按下快捷键 Win + R，输入 winver 并回车。查看弹出的窗口：Windows 10，查看内部版本号（Build）小于 19045，必需升级。否则Docker Desktop不支持。</p>
+<p>直接在操作系统的配置与更新中升级，升到96%后停滞一直没反应。改为 <a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10">下载win10易升</a>,这是个微软发布的单独的升级程序。下载后运行，等待升级完成后重启，即可安装。</p>
+<p>运行Docker Desktop安装程序时，务必勾选：“Use the WSL 2 based engine”。安装完成后，按系统要求重启，注册&#x2F;配置Docker账号。</p>
+<h5 id="3）第三步：（插曲，视个人电脑实际情况可选）升级WSL版本"><a href="#3）第三步：（插曲，视个人电脑实际情况可选）升级WSL版本" class="headerlink" title="3）第三步：（插曲，视个人电脑实际情况可选）升级WSL版本"></a>3）第三步：（插曲，视个人电脑实际情况可选）升级WSL版本</h5><p>进入Docker Desktop后，系统提示WSL版本过旧，打开 PowerShell（快捷键 Win+X，选择点击“以管理员身份运行”），输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wsl --update</span><br></pre></td></tr></table></figure>
+<p>然后重启 WSL 服务（或重启电脑），让 WSL 引擎重新加载。在PowerShell中输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wsl --shutdown</span><br></pre></td></tr></table></figure>
+<p>然后，重新进入 Docker Desktop，选择Restart。如果转圈很久，可以直接重启一次电脑。</p>
+<h5 id="4）第四步：开启-WSL-资源整合（必选，最关键的一步）："><a href="#4）第四步：开启-WSL-资源整合（必选，最关键的一步）：" class="headerlink" title="4）第四步：开启 WSL 资源整合（必选，最关键的一步）："></a>4）第四步：开启 WSL 资源整合（必选，最关键的一步）：</h5><p>再次启动 Docker Desktop，这个时候应该可以正常进入了。找到 Settings (齿轮图标) -&gt; Resources -&gt; WSL integration。会看到前面的 Ubuntu_Dify 实例，手动把它的开关打开。然后点击 Apply&amp;Restart。</p>
+<p>（这里如果看不到，可能是WSL的版本设成了1，而不是2。可以按照AI助手指导更改默认版本设置，并对实例版本进行转换。）</p>
+<p>Apply&amp;Restart完成后，右下角会变为仅显示Apply。</p>
+<h3 id="2-3-在Linux中安装Dify"><a href="#2-3-在Linux中安装Dify" class="headerlink" title="2.3 在Linux中安装Dify"></a>2.3 在Linux中安装Dify</h3><p>接下来就是进入Ubuntu实例，下载安装Dify。</p>
+<h5 id="1）第一步：进入-Ubuntu-实例"><a href="#1）第一步：进入-Ubuntu-实例" class="headerlink" title="1）第一步：进入 Ubuntu 实例"></a>1）第一步：进入 Ubuntu 实例</h5><p>通过 Windows Terminal 的下拉菜单选择 ubuntu_dify，或者直接在 PowerShell 里输入下面命令，启动实例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wsl -d ubuntu_dify</span><br></pre></td></tr></table></figure>
+<h4 id="2）第二步：验证-Docker-环境"><a href="#2）第二步：验证-Docker-环境" class="headerlink" title="2）第二步：验证 Docker 环境"></a>2）第二步：验证 Docker 环境</h4><p>在实例的窗口里，输入以下命令确认 Docker 是否真的“透传”进来了：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>正常结果： 应该能看到一行标题 CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES，下面是空的。只要没报错，就说明成功了。</p>
+<h4 id="3）第三步：下载并启动-Dify-官方推荐流程"><a href="#3）第三步：下载并启动-Dify-官方推荐流程" class="headerlink" title="3）第三步：下载并启动 Dify (官方推荐流程)"></a>3）第三步：下载并启动 Dify (官方推荐流程)</h4><p>依次复制并运行以下命令：</p>
+<ol>
+<li>克隆代码仓库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/langgenius/dify.git</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>进入部署目录</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> dify/docker</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>配置环境变量</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> .env.example .<span class="built_in">env</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>一键启动</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+
+<h4 id="4）第四步：访问-Dify"><a href="#4）第四步：访问-Dify" class="headerlink" title="4）第四步：访问 Dify"></a>4）第四步：访问 Dify</h4><p>启动后，需要等待大约 3-5 分钟（因为数据库、向量库等 10 多个组件需要初始化），等窗口中的各项Pulling的进度都完成（显示Pulled），并且回到命令提示符后，就可以通过浏览器访问Dify了。</p>
+<p>访问地址： 在 Windows 的浏览器地址栏直接输入 <a target="_blank" rel="noopener" href="http://localhost./">http://localhost。</a></p>
+<p>首次设置： 现在会看到设置管理员账户的页面。设置好邮箱和密码后，就可以开始搭建第一个 Agent 了。</p>
+<h2 id="2-4-后续日常使用与关闭"><a href="#2-4-后续日常使用与关闭" class="headerlink" title="2.4 后续日常使用与关闭"></a>2.4 后续日常使用与关闭</h2><h3 id="2-4-1-日常使用"><a href="#2-4-1-日常使用" class="headerlink" title="2.4.1 日常使用"></a>2.4.1 日常使用</h3><p>开机后打开Docker Desktop，等右下角的小鲸鱼图标停止晃动（显示已启动），直接在浏览器打开 <a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a> 即可。</p>
+<p>如果故障无法访问，则重新部署一下ubuntu_dify的实例，操作顺序如下：</p>
+<ol>
+<li><p>启动 Docker Desktop：确保右下角小鲸鱼状态正常。</p>
+</li>
+<li><p>打开终端：进入你的 ubuntu_dify 实例：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wsl -d ubuntu_dify</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>手动启动容器： 进入之前克隆代码的目录（这一步最重要）：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dify/docker</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+<p>系统会检查各个组件状态，已经运行的会跳过，没运行的会补齐。</p>
+<p>然后在浏览器打开 <a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a> 即可。</p>
+<h3 id="2-4-2-通过批处理脚本快速启动Dify"><a href="#2-4-2-通过批处理脚本快速启动Dify" class="headerlink" title="2.4.2 通过批处理脚本快速启动Dify"></a>2.4.2 通过批处理脚本快速启动Dify</h3><p>可以把Dify的启动命令写成一个简单的 Windows 批处理文件（.bat），放在桌面上，需要时直接运行即可：</p>
+<p>在桌面新建一个记事本，粘贴以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">wsl -d ubuntu_dify -u root -e sh -c <span class="string">&quot;cd /home/你的用户名/dify/docker &amp;&amp; docker compose up -d&quot;</span></span><br><span class="line"><span class="built_in">echo</span> Dify 正在后台启动，请稍后在浏览器访问 http://localhost</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<p>(注意：将 上面的用户名 换成在 Ubuntu 里的实际账户名称)</p>
+<p>重命名为 启动Dify.bat。以后开机点一下它就行了。</p>
+<h3 id="2-4-3-彻底关闭释放资源"><a href="#2-4-3-彻底关闭释放资源" class="headerlink" title="2.4.3 彻底关闭释放资源"></a>2.4.3 彻底关闭释放资源</h3><p>如果做完实验想把内存腾出来，彻底关闭 Dify释放资源。可以在 ubuntu_dify 终端中执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dify/docker</span><br><span class="line">docker compose stop  <span class="comment"># 停止运行，但保留容器，下次启动快</span></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">docker compose down  <span class="comment"># 彻底移除容器，下次启动会重新创建（数据不会丢，因为挂载了卷）</span></span><br></pre></td></tr></table></figure>
+
+
 <hr>
+<h1 id="二-使用Dify搭建Agent"><a href="#二-使用Dify搭建Agent" class="headerlink" title="二.使用Dify搭建Agent"></a>二.使用Dify搭建Agent</h1><hr>
+<p>【参考指导】</p>
 <p>1.<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qTBNBqEdn?t=191.7&p=2">在Linux中安装Docker和Dify</a></p>
 <hr>
 <p>（本文完）</p>
