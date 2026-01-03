@@ -89,13 +89,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">标签</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">分类</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -131,7 +131,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -651,17 +651,13 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91Transfomer%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/">
+			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-02-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80%E3%80%91Tokenizer%E5%88%86%E8%AF%8D/">
 				<h2 class="index-title">
-					Transformer模型架构基础
+					基础知识 - Tokeniazer分词
 				</h2>
 				<div class="index-brief">
-					标准Transformer模型架构标准模型架构包含Encoder和Decoder模块组成。
-Encoder Only模型架构Decoder Only 模型架构MoE模型架构
-
-
-
-
+					Tokenize，Tokenization 分词&#x2F;Tokenizer 分词器Tokenizer分词器,是将文本转化为模型可接受的数字化表示的工具。根据特定算法把输入、输出的内容进行分词，便于下一步模型进行向量化的处理。
+它的目的是将一个句子切割成更小的单元——tokens，这些tokens
 					...
 				</div>
 			</a>
@@ -682,24 +678,14 @@ Encoder Only模型架构Decoder Only 模型架构MoE模型架构
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
+			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">
 				<h2 class="index-title">
-					训推框架 - 大模型训练和推理流程与框架
+					模型训练 - 大模型训练超参设置与方法
 				</h2>
 				<div class="index-brief">
-					流程总览大模型从训练开发到推理部署使用，全流程整体分为2个阶段（训练、推理），3个环节（预训练、后训练、推理与部署优化），其中后训练又可以细分为 监督微调 和 对齐训练 。
-对齐训练根据不同技术方案有 构建奖励模型 和 无奖励模型 两大类。
-如下表：
-
-
-
-阶段
-训练
-训练
-训练
-训练
-推理
-
+					超参数：指在模型开始训练之前就需要手动设定或通过算法搜索确定的“配置开关”，而不是通过训练阶段让模型从数据中学到的神经网络参数。
+超参数的设置是大模型训练与微调的核心环节，直接影响模型性能、收敛速度和计算效率。
+一. 大模型训练核心超参数配置大模型预训练与全参数微调中的核心超参数配置与原则总览
 
 
 
@@ -751,14 +737,24 @@ Embedding 词嵌入 :指将信息（文本、图像、音频、视频等形式�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-02-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E8%B6%85%E5%8F%82%E8%AE%BE%E7%BD%AE%E4%B8%8E%E6%96%B9%E6%B3%95/">
+			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-03-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E3%80%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AE%AD%E6%8E%A8%E6%B5%81%E7%A8%8B%E4%B8%8E%E6%A1%86%E6%9E%B6/">
 				<h2 class="index-title">
-					模型训练 - 大模型训练超参设置与方法
+					训推框架 - 大模型训练和推理流程与框架
 				</h2>
 				<div class="index-brief">
-					超参数：指在模型开始训练之前就需要手动设定或通过算法搜索确定的“配置开关”，而不是通过训练阶段让模型从数据中学到的神经网络参数。
-超参数的设置是大模型训练与微调的核心环节，直接影响模型性能、收敛速度和计算效率。
-一. 大模型训练核心超参数配置大模型预训练与全参数微调中的核心超参数配置与原则总览
+					流程总览大模型从训练开发到推理部署使用，全流程整体分为2个阶段（训练、推理），3个环节（预训练、后训练、推理与部署优化），其中后训练又可以细分为 监督微调 和 对齐训练 。
+对齐训练根据不同技术方案有 构建奖励模型 和 无奖励模型 两大类。
+如下表：
+
+
+
+阶段
+训练
+训练
+训练
+训练
+推理
+
 
 
 
@@ -842,14 +838,13 @@ Ope
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91RAG%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90/">
+			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91GraphRAG%E6%96%B9%E6%A1%88/">
 				<h2 class="index-title">
-					AI应用 - RAG方案
+					AI应用 - Graph RAG
 				</h2>
 				<div class="index-brief">
-					RAG方案详细学习引用：一文看懂RAG的前世今生
-1.RAG全流程整体介绍，对RAG的数据索引（文档解析、分块chunking，Embedding），数据检索（混合检索，重排序），结果生成（模型选择，提示词工程）全过程详细介绍；
-2.RAG发展与各种方案，包含Vanilla RAG、Modular 
+					（本文未完成，框架已有，待后续细化）
+前置学习：RAG方案基础概念 [【 → 点我】]（https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-05-%E
 					...
 				</div>
 			</a>
@@ -870,13 +865,14 @@ Ope
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91GraphRAG%E6%96%B9%E6%A1%88/">
+			<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-10-04-%E3%80%90AI%E5%BA%94%E7%94%A8%E3%80%91RAG%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA%E7%94%9F%E6%88%90/">
 				<h2 class="index-title">
-					AI应用 - Graph RAG
+					AI应用 - RAG方案
 				</h2>
 				<div class="index-brief">
-					（本文未完成，框架已有，待后续细化）
-前置学习：RAG方案基础概念 [【 → 点我】]（https://atinykalami.github.io/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/05%20AI%E6%A8%A1%E5%9E%8B/2025-10-05-%E
+					RAG方案详细学习引用：一文看懂RAG的前世今生
+1.RAG全流程整体介绍，对RAG的数据索引（文档解析、分块chunking，Embedding），数据检索（混合检索，重排序），结果生成（模型选择，提示词工程）全过程详细介绍；
+2.RAG发展与各种方案，包含Vanilla RAG、Modular 
 					...
 				</div>
 			</a>
