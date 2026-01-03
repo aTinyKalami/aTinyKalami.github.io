@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">Tags</a>
+        <a href="/tags" class="menu-item-link">标签</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">Categories</a>
+        <a href="/categories" class="menu-item-link">分类</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
+		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
 		<div id="tree">
 			
 
@@ -869,7 +869,7 @@
 <p>然后在浏览器打开 <a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a> 即可。</p>
 <h3 id="2-4-2-通过批处理脚本快速启动Dify"><a href="#2-4-2-通过批处理脚本快速启动Dify" class="headerlink" title="2.4.2 通过批处理脚本快速启动Dify"></a>2.4.2 通过批处理脚本快速启动Dify</h3><p>可以把Dify的启动命令写成一个简单的 Windows 批处理文件（.bat），放在桌面上，需要时直接运行即可：</p>
 <p>在桌面新建一个记事本，粘贴以下内容：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">wsl -d ubuntu_dify -u root -e sh -c <span class="string">&quot;cd /home/你的用户名/dify/docker &amp;&amp; docker compose up -d&quot;</span></span><br><span class="line"><span class="built_in">echo</span> Dify 正在后台启动，请稍后在浏览器访问 http://localhost</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">:: 设置编码为UTF-8，解决乱码</span><br><span class="line">chcp 65001 &gt;nul</span><br><span class="line"><span class="built_in">echo</span> 正在请求 WSL 启动 Dify 容器组...</span><br><span class="line"></span><br><span class="line">:: 使用 root 用户的绝对路径进入目录并启动</span><br><span class="line">wsl -d ubuntu_dify -u root -e sh -c <span class="string">&quot;cd /root/dify/docker &amp;&amp; docker compose up -d&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line"><span class="built_in">echo</span> -------------------------------------------------------</span><br><span class="line"><span class="built_in">echo</span> Dify 启动指令已发送！</span><br><span class="line"><span class="built_in">echo</span> 请稍后在浏览器访问: http://localhost</span><br><span class="line"><span class="built_in">echo</span> -------------------------------------------------------</span><br><span class="line"><span class="built_in">echo</span>.</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
 <p>(注意：将 上面的用户名 换成在 Ubuntu 里的实际账户名称)</p>
 <p>重命名为 启动Dify.bat。以后开机点一下它就行了。</p>
 <h3 id="2-4-3-彻底关闭释放资源"><a href="#2-4-3-彻底关闭释放资源" class="headerlink" title="2.4.3 彻底关闭释放资源"></a>2.4.3 彻底关闭释放资源</h3><p>如果做完实验想把内存腾出来，彻底关闭 Dify释放资源。可以在 ubuntu_dify 终端中执行：</p>
@@ -877,7 +877,51 @@
 
 
 <hr>
-<h1 id="二-使用Dify搭建Agent"><a href="#二-使用Dify搭建Agent" class="headerlink" title="二.使用Dify搭建Agent"></a>二.使用Dify搭建Agent</h1><hr>
+<h1 id="二-使用Dify搭建Agent"><a href="#二-使用Dify搭建Agent" class="headerlink" title="二.使用Dify搭建Agent"></a>二.使用Dify搭建Agent</h1><p>任务 1：本地 RAG 实验——“私人学术&#x2F;技术大脑”<br>实验目标：解决大模型“幻觉”问题，让 AI 基于你本地的私有文档（如 PDF、Markdown）进行精准回答。</p>
+<p>准备工作：准备 3-5 份关于某个特定领域（如：Dify 官方文档、某医学论文、或你的个人工作周报）的文档。</p>
+<p>详细步骤：</p>
+<p>创建知识库：点击顶部【知识库】-&gt;【创建知识库】-&gt;【上传文本】。</p>
+<p>清洗与分段：选择**“高质量”**模式。在分段设置中，建议【最大分段长度】设为 500-800，【重叠长度】设为 50-100（防止语义断层）。</p>
+<p>索引方式：选择**“混合检索”**（结合向量检索和全文检索），这是目前 RAG 最稳健的方案。</p>
+<p>搭建应用：创建【聊天助手】，在右侧【上下文】中关联此知识库。</p>
+<p>提示词优化：</p>
+<p>“你是一个专业的知识助手。请严格根据上下文回答问题。如果文档中没有相关信息，请诚实告知用户你不知道，不要编造。”</p>
+<p>实验观测点：</p>
+<p>召回测试：提问文档中的冷门细节，查看【日志】里 AI 引用了哪一段文字。</p>
+<p>引用功能：在发布后，测试回答界面是否会出现数字下标，点击能否跳转到原文档对应位置。</p>
+<p>任务 2：多模态视觉实验——“检验报告医疗翻译官”<br>实验目标：利用视觉模型（如 GPT-4o 或 Claude 3.5 Sonnet）识别复杂图片，并结合专业逻辑输出诊断建议。</p>
+<p>准备工作：一张带有血常规或尿常规数据的化验单图片（可从网上找一张样本）。</p>
+<p>详细步骤：</p>
+<p>创建应用：选择【Agent】（智能体）模式。</p>
+<p>开启视觉：在左侧设置栏找到【图片上传】，选择【高分辨率】模式。</p>
+<p>Prompt 角色设定：</p>
+<p>Markdown</p>
+<h1 id="Role-资深医学检验科医生"><a href="#Role-资深医学检验科医生" class="headerlink" title="Role: 资深医学检验科医生"></a>Role: 资深医学检验科医生</h1><h1 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow:"></a>Workflow:</h1><ol>
+<li>识别图片中的所有化验项目、测量值及单位。</li>
+<li>自动筛选出超出参考范围（带有↑或↓符号）的异常指标。</li>
+<li>解释这些异常指标可能代表的生理或病理意义。</li>
+<li>提供针对性的生活建议或推荐挂号科室。</li>
+</ol>
+<h1 id="Safety-结尾必须强调“本分析仅为-AI-模拟，不代表临床诊断”。"><a href="#Safety-结尾必须强调“本分析仅为-AI-模拟，不代表临床诊断”。" class="headerlink" title="Safety: 结尾必须强调“本分析仅为 AI 模拟，不代表临床诊断”。"></a>Safety: 结尾必须强调“本分析仅为 AI 模拟，不代表临床诊断”。</h1><p>工具配置：如果有条件，可以接入一个 Google Search 工具，让 Agent 查一下最新的医学指标标准。</p>
+<p>实验观测点：</p>
+<p>OCR 准确率：检查模型是否把“8.5”错认成“8.6”。</p>
+<p>多模态推理：看模型能否理解“红细胞偏高”和“血红蛋白偏高”之间的关联性。</p>
+<p>任务 3：工作流（Workflow）实验——“电商智能自动客服”<br>实验目标：利用工作流逻辑（Workflow）实现意图识别、自动化分流和精准售后处理。</p>
+<p>准备工作：模拟几个常见的用户问题（例如：“我的快递到哪了？”、“我要退款”、“这件衣服什么材质？”）。</p>
+<p>详细步骤（节点配置）：</p>
+<p>开始节点：接收用户输入的 sys.query。</p>
+<p>意图分类（Question Classifier）：添加一个分类节点。</p>
+<p>类别 1：物流查询 -&gt; 连接到 Google Search 工具（模拟查快递）或知识库。</p>
+<p>类别 2：商品咨询 -&gt; 连接到【商品知识库】。</p>
+<p>类别 3：售后&#x2F;退款 -&gt; 连接到【大语言模型】。</p>
+<p>条件分支（IF&#x2F;ELSE）：</p>
+<p>如果是“退款”，先用 LLM 判断其语气。如果是“非常生气”，则输出话术 A（人工优先）；如果是“正常询问”，输出话术 B（流程指引）。</p>
+<p>知识库检索：如果是商品咨询，去搜你的【商品说明书知识库】。</p>
+<p>回答（Answer）：整合上述信息输出。</p>
+<p>实验观测点：</p>
+<p>分类准确度：提问“衣服会掉色吗？”，看工作流是否准确跑到了“商品咨询”的分支。</p>
+<p>变量传递：检查查询到的物流信息能否顺利传递到最终的文本回答节点中。</p>
+<hr>
 <p>【参考指导】</p>
 <p>1.<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qTBNBqEdn?t=191.7&p=2">在Linux中安装Docker和Dify</a></p>
 <hr>
