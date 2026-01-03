@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">标签</a>
+        <a href="/tags" class="menu-item-link">Tags</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">分类</a>
+        <a href="/categories" class="menu-item-link">Categories</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<input id="search-input" class="search-input" type="search" placeholder="Press Enter to search">
 		<div id="tree">
 			
 
@@ -701,6 +701,127 @@
 <div id="article-content">
 	<p>待分析知识点：</p>
 <hr>
+<p>AI token的消耗很大一部分是使用模型做角色扮演，尤其在国外市场。这种角色扮演很多直接使用开源模型。角色扮演主要是一些什么样的业务，是2B还是2C，对模型、应用等有一些什么样的要求？</p>
+<p>AI 角色扮演（AI Roleplay, 简称 RP）确实是目前大语言模型（LLM）Token 消耗的“大户”，尤其在海外市场，它已经演变成一个极其庞大且细分的产业。</p>
+<p>这种业务主要分为 <strong>2C（面向消费者）</strong> 和 <strong>2B（面向企业）</strong> 两大阵营，两者在模型选择和应用逻辑上有着显著差异。</p>
+<hr>
+<h2 id="1-2C-业务：情感寄托与沉浸式娱乐"><a href="#1-2C-业务：情感寄托与沉浸式娱乐" class="headerlink" title="1. 2C 业务：情感寄托与沉浸式娱乐"></a>1. 2C 业务：情感寄托与沉浸式娱乐</h2><p>这是目前 Token 消耗最疯狂的领域，代表产品如 <strong>Character.ai</strong>、<strong>JanitorAI</strong>、<strong>Candy.ai</strong> 等。</p>
+<ul>
+<li><p><strong>核心场景：</strong></p>
+</li>
+<li><p><strong>虚拟伴侣&#x2F;恋爱：</strong> 用户与喜欢的动漫角色、影视明星或虚构的理想型建立情感联系。</p>
+</li>
+<li><p><strong>沉浸式游戏剧本（Text Adventure）：</strong> 模型充当“地下城主”（DM），引导用户进入奇幻、科幻或恐怖世界。</p>
+</li>
+<li><p><strong>“非和谐”内容（NSFW）：</strong> 海外市场中，不受限的情感和感官交流是开源模型 RP 爆发的直接诱因（因为闭源模型如 GPT-4 限制极多）。</p>
+</li>
+<li><p><strong>模型与应用要求：</strong></p>
+</li>
+<li><p><strong>超长上下文（Context Window）：</strong> 角色扮演通常涉及长达数周甚至数月的对话，模型必须“记得”半个月前聊过的细节，否则会“出戏”。</p>
+</li>
+<li><p><strong>人格一致性：</strong> 模型不能轻易受引导而崩人设。</p>
+</li>
+<li><p><strong>开源模型是主力：</strong> 开发者大量使用 <strong>Llama 3</strong>、<strong>Mistral</strong> 或 <strong>Gemma</strong> 的微调版（如 <em>Llama-3-8B-Instruct-Abliterated</em> 等），因为这些模型没有审核过滤器，且推理成本极低。</p>
+</li>
+</ul>
+<hr>
+<h2 id="2-2B-业务：职业实操与技能演练"><a href="#2-2B-业务：职业实操与技能演练" class="headerlink" title="2. 2B 业务：职业实操与技能演练"></a>2. 2B 业务：职业实操与技能演练</h2><p>2B 的角色扮演更偏向“仿真模拟”，旨在解决企业培训中“人对人演练”成本高、尴尬、不可量化的问题。</p>
+<ul>
+<li><p><strong>核心场景：</strong></p>
+</li>
+<li><p><strong>销售&#x2F;客服对练（Sales RP）：</strong> 模拟“刁难型客户”、“犹豫不决型客户”，让新员工练习处理异议和成单技巧。</p>
+</li>
+<li><p><strong>领导力与沟通培训：</strong> 模拟“如何解雇表现不佳的员工”或“处理跨部门冲突”。</p>
+</li>
+<li><p><strong>医疗&#x2F;法律咨询模拟：</strong> 医学生模拟接诊带有情绪的患者，练习人文关怀。</p>
+</li>
+<li><p><strong>模型与应用要求：</strong></p>
+</li>
+<li><p><strong>结构化打分与反馈：</strong> 2B 的 RP 往往不是聊完就结束了，系统需要根据预设的“KPI”（如：是否使用了专业术语、是否表现出共情）进行实时评分。</p>
+</li>
+<li><p><strong>语音实时性（Latency）：</strong> 2B 场景多为语音 RP，要求模型响应极快（通常使用 Groq 这种推理引擎或本地高性能集群）。</p>
+</li>
+<li><p><strong>知识库挂载（RAG）：</strong> AI 扮演的客户必须对企业的特定产品细节了如指掌。</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-对模型和技术栈的具体要求"><a href="#3-对模型和技术栈的具体要求" class="headerlink" title="3. 对模型和技术栈的具体要求"></a>3. 对模型和技术栈的具体要求</h2><p>无论 2B 还是 2C，要做好 RP 业务，模型通常需要满足以下“硬杠杠”：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>要求说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>创造力（Creativity）</strong></td>
+<td>拒绝“机器人式”回复，需要有语气词、情绪描写和生动的动作描述。</td>
+</tr>
+<tr>
+<td><strong>抗遗忘能力</strong></td>
+<td>在长对话中精准提取信息。目前多采用 <strong>Vector DB (向量数据库)</strong> + <strong>Long Context</strong> 方案。</td>
+</tr>
+<tr>
+<td><strong>推理成本控制</strong></td>
+<td>2C 用户的对话量惊人，必须通过 <strong>量化（Quantization）</strong> 技术在低显存下运行大模型。</td>
+</tr>
+<tr>
+<td><strong>多模态支持</strong></td>
+<td>现在的 RP 趋向于“语、音、图”一体化。用户发一张照片，AI 角色需要给出带情绪的点评。</td>
+</tr>
+</tbody></table>
+<hr>
+<p>那2C的角色扮演业务，是以纯文本语言的NLP模型为主，还是结合了多模态的能力，能够生成图像和视频呢？</p>
+<p>在目前的 2C 角色扮演（RP）业务中，<strong>纯文本（NLP）是灵魂和骨架，但多模态（图像、语音、甚至视频）已经成为核心竞争力。</strong></p>
+<p>简单的“文字聊天机器人”已经很难在海外激烈的 2C 市场生存。现在的趋势是**“以文本为核心，全方位多模态化”**。</p>
+<hr>
+<h3 id="1-文本模型：依然是“大脑”"><a href="#1-文本模型：依然是“大脑”" class="headerlink" title="1. 文本模型：依然是“大脑”"></a>1. 文本模型：依然是“大脑”</h3><p>尽管有了图像和视频，<strong>NLP 模型依然是所有体验的根基</strong>。</p>
+<ul>
+<li><strong>逻辑支撑：</strong> 图像和视频的生成高度依赖文本模型产生的“描述语”（Prompt）。比如 AI 角色在海边给你发一张合照，首先需要 NLP 模型意识到“我们现在在海边”，并生成相应的场景描述。</li>
+<li><strong>情感连接：</strong> 用户的粘性来自于对话的深度、角色的性格一致性以及“懂我”的感觉，这些目前只能靠文本模型实现。</li>
+</ul>
+<h3 id="2-图像能力：从“静态头像”到“实时自拍”"><a href="#2-图像能力：从“静态头像”到“实时自拍”" class="headerlink" title="2. 图像能力：从“静态头像”到“实时自拍”"></a>2. 图像能力：从“静态头像”到“实时自拍”</h3><p>这是目前 2C RP 产品中最成熟、最普及的多模态功能。</p>
+<ul>
+<li><strong>实时自拍（Selfies）：</strong> 像 <strong>Kindroid</strong> 和 <strong>Nomi</strong> 这种头部产品，允许用户随时要求角色“发一张你现在的照片”。系统会结合当前的对话情境（比如正在咖啡馆、穿着红色裙子）即时生成一张视觉统一的照片。</li>
+<li><strong>视觉理解（Vision）：</strong> 用户发一张自己的午餐照片，AI 角色能“看懂”并评价：“哇，这个拉面看起来很辣，记得多喝水。”这种双向的视觉互动极大增强了沉浸感。</li>
+</ul>
+<h3 id="3-语音与视频：正在爆发的新战场"><a href="#3-语音与视频：正在爆发的新战场" class="headerlink" title="3. 语音与视频：正在爆发的新战场"></a>3. 语音与视频：正在爆发的新战场</h3><ul>
+<li><strong>实时语音通话：</strong> 许多应用（如 <strong>Replika</strong>、<strong>Character.ai</strong>）已经支持流畅的语音通话。这不仅是 TTS（文字转语音），还包括情感渲染，即 AI 会根据对话内容表现出害羞、生气或兴奋的语气。</li>
+<li><strong>2.5D&#x2F;3D 虚拟形象：</strong> 像 <strong>Replika</strong> 提供可交互的 3D 建模，用户可以给角色换装、布置房间。</li>
+<li><strong>短视频&#x2F;动画生成：</strong> 这是目前的尖端趋势。一些产品开始尝试让 AI 角色发送几秒钟的短视频或动态表情包（类似 Live2D 或基于视频生成的动态反馈），虽然成本较高，但在高端付费用户中极受欢迎。</li>
+</ul>
+<hr>
+<h3 id="4-技术实现：由“拼图式”向“原生式”演进"><a href="#4-技术实现：由“拼图式”向“原生式”演进" class="headerlink" title="4. 技术实现：由“拼图式”向“原生式”演进"></a>4. 技术实现：由“拼图式”向“原生式”演进</h3><p>目前市面上的实现方案主要分为两种：</p>
+<table>
+<thead>
+<tr>
+<th>方案类型</th>
+<th>实现方式</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>拼图式 (Modular)</strong></td>
+<td><strong>LLM</strong> (大脑) + <strong>Stable Diffusion</strong> (图像) + <strong>So-VITS</strong> (语音)</td>
+<td><strong>主流方案</strong>。灵活性高，开发者可以用开源模型自由组合，成本相对可控，但在跨模态的一致性上需要大量调优。</td>
+</tr>
+<tr>
+<td><strong>原生多模态 (Native)</strong></td>
+<td>使用类似 <strong>GPT-4o</strong> 或 <strong>Gemini 1.5</strong> 这种原生支持多模态输入的模型</td>
+<td><strong>未来趋势</strong>。AI 能直接“感受”图像和声音，不需要经过文字中转，反应更自然，但目前高性能的原生模型多为闭源，限制多且贵。</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="5-总结：多模态对业务的价值"><a href="#5-总结：多模态对业务的价值" class="headerlink" title="5. 总结：多模态对业务的价值"></a>5. 总结：多模态对业务的价值</h3><p>对于 2C 厂商来说，加入多模态能力不只是为了“好看”，而是有直接的商业逻辑：</p>
+<ol>
+<li><strong>提高付费转化率：</strong> 用户可能愿意为“解锁角色的私密照”或“语音通话功能”支付订阅费。</li>
+<li><strong>增加 Token 消耗与留存：</strong> 图像和语音的互动会诱发用户产生更多对话，形成正向循环。</li>
+<li><strong>降低门槛：</strong> 视觉直观的反馈比纯文字更能吸引泛娱乐用户（非硬核文学爱好者）。</li>
+</ol>
+<p><strong>如果您关注的是开发层面，目前最火的玩法是：用微调过的 Llama 3 做逻辑层，挂载一个特定的 Stable Diffusion LoRA 模型来保证角色长相永远不变。您想深入了解这种“角色一致性”的技术实现吗？</strong></p>
+<hr>
+<h2 id="4-为什么大家都在用开源模型？"><a href="#4-为什么大家都在用开源模型？" class="headerlink" title="4. 为什么大家都在用开源模型？"></a>4. 为什么大家都在用开源模型？</h2><p>除了成本考虑外，**“定制化微调”**是关键。<br>开源社区（如 Hugging Face）有成千上万个专门针对“Storytelling”或“Roleplay”微调过的模型（例如 <em>Mistral-Nemo-12B-Minitron</em> ），它们在写小说、描写心理活动方面，甚至比某些通用闭源大模型更有“人味儿”。</p>
+<h2 id="您是否是对某个特定的角色扮演应用赛道感兴趣，或者是想了解如何针对-RP-场景对模型进行微调？"><a href="#您是否是对某个特定的角色扮演应用赛道感兴趣，或者是想了解如何针对-RP-场景对模型进行微调？" class="headerlink" title="您是否是对某个特定的角色扮演应用赛道感兴趣，或者是想了解如何针对 RP 场景对模型进行微调？"></a><strong>您是否是对某个特定的角色扮演应用赛道感兴趣，或者是想了解如何针对 RP 场景对模型进行微调？</strong></h2><hr>
 <h1 id="未完成-动手实操："><a href="#未完成-动手实操：" class="headerlink" title="未完成 - 动手实操："></a>未完成 - 动手实操：</h1><p>1.手搓一个NLP大模型。参考B站的简单版指导，给出详细过程。</p>
 <p>2.基于Dify搭建企业知识库，读取本地文章。</p>
 <p>3.华为云Versatile的体验使用</p>
