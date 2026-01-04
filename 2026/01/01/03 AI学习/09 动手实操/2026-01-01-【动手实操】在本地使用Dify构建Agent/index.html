@@ -710,7 +710,7 @@
 
 <!-- content -->
 <div id="article-content">
-	<h1 id="一-环境准备（安装Linux、Docker和Dify）"><a href="#一-环境准备（安装Linux、Docker和Dify）" class="headerlink" title="一. 环境准备（安装Linux、Docker和Dify）"></a>一. 环境准备（安装Linux、Docker和Dify）</h1><h2 id="1-安装说明"><a href="#1-安装说明" class="headerlink" title="1. 安装说明"></a>1. 安装说明</h2><p>网上的各种教程指导Dify的本地安装一般有3中方式，个人推荐使用Docker Compse方式，因为这种方式是目前业界处理复杂 AI 应用的标准做法。掌握了这一套流程，以后在学习部署其他类似工具，如LangChain、LangGraph时，逻辑是完全相通的。</p>
+	<h1 id="一-环境准备-软件（Linux、Docker和Dify）安装"><a href="#一-环境准备-软件（Linux、Docker和Dify）安装" class="headerlink" title="一. 环境准备 - 软件（Linux、Docker和Dify）安装"></a>一. 环境准备 - 软件（Linux、Docker和Dify）安装</h1><h2 id="1-安装说明"><a href="#1-安装说明" class="headerlink" title="1. 安装说明"></a>1. 安装说明</h2><p>网上的各种教程指导Dify的本地安装一般有3中方式，个人推荐使用Docker Compse方式，因为这种方式是目前业界处理复杂 AI 应用的标准做法。掌握了这一套流程，以后在学习部署其他类似工具，如LangChain、LangGraph时，逻辑是完全相通的。</p>
 <p>三种方式的详细的对比如下：</p>
 <p><strong>Dify 部署方式对比</strong></p>
 <table>
@@ -873,11 +873,39 @@
 <p>(注意：将 上面的用户名 换成在 Ubuntu 里的实际账户名称)</p>
 <p>重命名为 启动Dify.bat。以后开机点一下它就行了。</p>
 <h3 id="2-4-3-彻底关闭释放资源"><a href="#2-4-3-彻底关闭释放资源" class="headerlink" title="2.4.3 彻底关闭释放资源"></a>2.4.3 彻底关闭释放资源</h3><p>如果做完实验想把内存腾出来，彻底关闭 Dify释放资源。可以在 ubuntu_dify 终端中执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dify/docker</span><br><span class="line">docker compose stop  <span class="comment"># 停止运行，但保留容器，下次启动快</span></span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">docker compose down  <span class="comment"># 彻底移除容器，下次启动会重新创建（数据不会丢，因为挂载了卷）</span></span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dify/docker</span><br><span class="line">docker compose stop  <span class="comment"># 停止运行，但保留容器，下次启动快</span></span><br></pre></td></tr></table></figure>
+<p>或者如果需要把环境关闭释放，然后重新拉起，可以用命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/dify/docker</span><br><span class="line">docker compose down  <span class="comment"># 彻底移除容器，下次启动会重新创建（数据不会丢，因为挂载了卷）</span></span><br></pre></td></tr></table></figure>
+<p>有时候刚开机，环境重新构建时，会出现容器比Posgret数据库拉起得快，系统没有读到历史数据就会误以为是全新件的系统。这个时候就可以彻底关闭一下环境，再重新启动重建。保证能够正确读取数据库的用户数据。</p>
 <hr>
-<h1 id="二-使用Dify搭建Agent"><a href="#二-使用Dify搭建Agent" class="headerlink" title="二.使用Dify搭建Agent"></a>二.使用Dify搭建Agent</h1><p>任务 1：本地 RAG 实验——“私人学术&#x2F;技术大脑”<br>实验目标：解决大模型“幻觉”问题，让 AI 基于你本地的私有文档（如 PDF、Markdown）进行精准回答。</p>
+<h1 id="二-环境准备-模型接入配置"><a href="#二-环境准备-模型接入配置" class="headerlink" title="二. 环境准备 - 模型接入配置"></a>二. 环境准备 - 模型接入配置</h1><h2 id="1-Dify所需要的模型说明"><a href="#1-Dify所需要的模型说明" class="headerlink" title="1. Dify所需要的模型说明"></a>1. Dify所需要的模型说明</h2><p>Dify的运行至少需要5种类型的模型：</p>
+<p>1）系统推理模型（核心）</p>
+<p>2）Embedding模型</p>
+<p>3）ReRanking模型</p>
+<p>4）ASR语音转文本模型</p>
+<p>5）TTS文本转语音模型</p>
+<p>此外还可能要用到Qwen VL这种视觉模型。</p>
+<p>即使在本机安装模型推理，实测在同时加在了3个模型后，系统的CPU基本跑满。所以必需采用本地+云端服务商的模式。</p>
+<p>考虑Embedding等模型的Token价格比实际推理要便宜且数据量小，考虑核心的系统推理模型采用本机，其他模型采用云服务商的模型。</p>
+<h2 id="2-接入本机已经部署的模型"><a href="#2-接入本机已经部署的模型" class="headerlink" title="2. 接入本机已经部署的模型"></a>2. 接入本机已经部署的模型</h2><h3 id="1-1-LM-Studio"><a href="#1-1-LM-Studio" class="headerlink" title="1.1 LM Studio"></a>1.1 LM Studio</h3><ol>
+<li>下载安装LM Studio及模型</li>
+</ol>
+<p>首先安装LM Studio并下载模型，安装很简单，后面有时间再写指导文档。</p>
+<p>我本机前面已经下载了LM Studio并下了4个模型（DeepSeek Qwen3 8B蒸馏版、Qwen3 4B Thinking模型 - 具备工具调用功能、Qwen2.5 VL 7B视觉模型 和Embedding模型）。</p>
+<p>在LM Studio的开发者窗口下，可以同时加在多个模型，并且同时在运行状态。而在对话窗口下，因为可以与模型直接聊天，所以每次限制智能加载1个模型。</p>
+<ol start="2">
+<li>把模型配置到Dify中</li>
+</ol>
+<p>首先在LM Studio的开发者Tab下，点Server Setting，打开“在网络中提供服务”选项，并且记下自己本机的LM Studio的端口号。</p>
+<p>然后在Dify主界面中 点击右边圆的用户头像 → 设置 → 模型供应商 → 安装模型供应商 → LM Studio。</p>
+<p>这里安装的都是Dify的系统插件，安装后可以让Dify可以连通本地的模型通讯端口，或者调用各种云侧的模型供应商对应的API。</p>
+<p>安装完插件后刷新一下，在模型供应商中就可以看到LM Studio了。然后点添加模型，在插件中配置模型，其他都简单。在配置地址的地方，需要本机IP，可以在任意命令行窗口中 ipconfig一下。</p>
+<p>地址这行填： http:&#x2F;&#x2F;本机IP地址:LM Studio端口号，如<a target="_blank" rel="noopener" href="http://172.21.160.1:1234/">http://172.21.160.1:1234</a> 即可。</p>
+<h3 id="1-2-Ollama"><a href="#1-2-Ollama" class="headerlink" title="1.2 Ollama"></a>1.2 Ollama</h3><p>类似方式添加，但是既然LM Studio的开发者模式下可以双模型，就不需要两个软件同时开启两个模型了。CPU占用是一样的。</p>
+<p>对比Ollama，我个人更喜欢用LM Studio，直接集成了对话窗口，并且模型可选择性更强。</p>
+<h2 id="2-接入网上的Token服务"><a href="#2-接入网上的Token服务" class="headerlink" title="2. 接入网上的Token服务"></a>2. 接入网上的Token服务</h2><h3 id="2-1-安装硅基流动模型服务"><a href="#2-1-安装硅基流动模型服务" class="headerlink" title="2.1 安装硅基流动模型服务"></a>2.1 安装硅基流动模型服务</h3><p>类似上面，先安装硅基流动的模型服务插件。在插件安装好后，进行模型配置。</p>
+<p>轨迹流动可以找到一些免费的模型。如多语言嵌入模型 BGE m3 和中文嵌入模型BGE-large-zh-v1.5，及英文嵌入模型等。</p>
+<h1 id="三-动手实操-搭建Agent"><a href="#三-动手实操-搭建Agent" class="headerlink" title="三. 动手实操 - 搭建Agent"></a>三. 动手实操 - 搭建Agent</h1><h2 id="1-任务-1：构建RAG知识管理方案"><a href="#1-任务-1：构建RAG知识管理方案" class="headerlink" title="1. 任务 1：构建RAG知识管理方案"></a>1. 任务 1：构建RAG知识管理方案</h2><p>实验目标：解决大模型“幻觉”问题，让 AI 基于你本地的私有文档（如 PDF、Markdown）进行精准回答。</p>
 <p>准备工作：准备 3-5 份关于某个特定领域（如：Dify 官方文档、某医学论文、或你的个人工作周报）的文档。</p>
 <p>详细步骤：</p>
 <p>创建知识库：点击顶部【知识库】-&gt;【创建知识库】-&gt;【上传文本】。</p>
@@ -889,24 +917,24 @@
 <p>实验观测点：</p>
 <p>召回测试：提问文档中的冷门细节，查看【日志】里 AI 引用了哪一段文字。</p>
 <p>引用功能：在发布后，测试回答界面是否会出现数字下标，点击能否跳转到原文档对应位置。</p>
-<p>任务 2：多模态视觉实验——“检验报告医疗翻译官”<br>实验目标：利用视觉模型（如 GPT-4o 或 Claude 3.5 Sonnet）识别复杂图片，并结合专业逻辑输出诊断建议。</p>
+<h2 id="2-任务-2：多模态视觉实验——“检验报告医疗翻译官”"><a href="#2-任务-2：多模态视觉实验——“检验报告医疗翻译官”" class="headerlink" title="2. 任务 2：多模态视觉实验——“检验报告医疗翻译官”"></a>2. 任务 2：多模态视觉实验——“检验报告医疗翻译官”</h2><p>实验目标：利用视觉模型（如 GPT-4o 或 Claude 3.5 Sonnet）识别复杂图片，并结合专业逻辑输出诊断建议。</p>
 <p>准备工作：一张带有血常规或尿常规数据的化验单图片（可从网上找一张样本）。</p>
 <p>详细步骤：</p>
 <p>创建应用：选择【Agent】（智能体）模式。</p>
 <p>开启视觉：在左侧设置栏找到【图片上传】，选择【高分辨率】模式。</p>
 <p>Prompt 角色设定：</p>
 <p>Markdown</p>
-<h1 id="Role-资深医学检验科医生"><a href="#Role-资深医学检验科医生" class="headerlink" title="Role: 资深医学检验科医生"></a>Role: 资深医学检验科医生</h1><h1 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow:"></a>Workflow:</h1><ol>
+<p> Role: 资深医学检验科医生<br> Workflow:</p>
+<ol>
 <li>识别图片中的所有化验项目、测量值及单位。</li>
 <li>自动筛选出超出参考范围（带有↑或↓符号）的异常指标。</li>
 <li>解释这些异常指标可能代表的生理或病理意义。</li>
-<li>提供针对性的生活建议或推荐挂号科室。</li>
+<li>提供针对性的生活建议或推荐挂号科室。<br> Safety: 结尾必须强调“本分析仅为 AI 模拟，不代表临床诊断”。<br>工具配置：如果有条件，可以接入一个 Google Search 工具，让 Agent 查一下最新的医学指标标准。</li>
 </ol>
-<h1 id="Safety-结尾必须强调“本分析仅为-AI-模拟，不代表临床诊断”。"><a href="#Safety-结尾必须强调“本分析仅为-AI-模拟，不代表临床诊断”。" class="headerlink" title="Safety: 结尾必须强调“本分析仅为 AI 模拟，不代表临床诊断”。"></a>Safety: 结尾必须强调“本分析仅为 AI 模拟，不代表临床诊断”。</h1><p>工具配置：如果有条件，可以接入一个 Google Search 工具，让 Agent 查一下最新的医学指标标准。</p>
 <p>实验观测点：</p>
 <p>OCR 准确率：检查模型是否把“8.5”错认成“8.6”。</p>
 <p>多模态推理：看模型能否理解“红细胞偏高”和“血红蛋白偏高”之间的关联性。</p>
-<p>任务 3：工作流（Workflow）实验——“电商智能自动客服”<br>实验目标：利用工作流逻辑（Workflow）实现意图识别、自动化分流和精准售后处理。</p>
+<h2 id="3-任务-3：工作流（Workflow）实验——“电商智能自动客服”"><a href="#3-任务-3：工作流（Workflow）实验——“电商智能自动客服”" class="headerlink" title="3. 任务 3：工作流（Workflow）实验——“电商智能自动客服”"></a>3. 任务 3：工作流（Workflow）实验——“电商智能自动客服”</h2><p>实验目标：利用工作流逻辑（Workflow）实现意图识别、自动化分流和精准售后处理。</p>
 <p>准备工作：模拟几个常见的用户问题（例如：“我的快递到哪了？”、“我要退款”、“这件衣服什么材质？”）。</p>
 <p>详细步骤（节点配置）：</p>
 <p>开始节点：接收用户输入的 sys.query。</p>
