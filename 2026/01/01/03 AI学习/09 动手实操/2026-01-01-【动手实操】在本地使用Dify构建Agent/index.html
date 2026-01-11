@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">标签</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">分类</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -495,9 +495,9 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2026-01-10-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8ComfyUI%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87/">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2026-01-10-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%92%8C%E4%BA%91%E4%B8%8A%E4%BD%BF%E7%94%A8ComfyUI%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87/">
                      
-										    动手实操 - 在本地通过ComfyUI生成图片
+										    动手实操 - 在本地和云端通过ComfyUI生成图片和视频
                      
 									</a>
 								</li>
@@ -916,14 +916,14 @@
 <p>对比Ollama，我个人更喜欢用LM Studio，直接集成了对话窗口，并且模型可选择性更强。</p>
 <h2 id="2-接入网上的Token服务"><a href="#2-接入网上的Token服务" class="headerlink" title="2. 接入网上的Token服务"></a>2. 接入网上的Token服务</h2><h3 id="2-1-安装硅基流动模型服务"><a href="#2-1-安装硅基流动模型服务" class="headerlink" title="2.1 安装硅基流动模型服务"></a>2.1 安装硅基流动模型服务</h3><p>类似上面，先安装硅基流动的模型服务插件。在插件安装好后，进行模型配置。</p>
 <p>轨迹流动可以找到一些免费的模型。如多语言嵌入模型 BGE m3 和中文嵌入模型BGE-large-zh-v1.5，及英文嵌入模型等。</p>
+<p>在Dify上配置云厂商的API Key后，这个云厂商的所有可选模型的token服务默认会全部开启，可以在 账户 -》设置 -》模型供应商 中进行开关设置。</p>
 <h1 id="三-动手实操-搭建Agent"><a href="#三-动手实操-搭建Agent" class="headerlink" title="三. 动手实操 - 搭建Agent"></a>三. 动手实操 - 搭建Agent</h1><h2 id="1-任务-1：构建RAG知识管理方案"><a href="#1-任务-1：构建RAG知识管理方案" class="headerlink" title="1. 任务 1：构建RAG知识管理方案"></a>1. 任务 1：构建RAG知识管理方案</h2><p>实验目标：解决大模型“幻觉”问题，让 AI 基于你本地的私有文档（如 PDF、Markdown）进行精准回答。</p>
-<p>准备工作：准备 3-5 份关于某个特定领域（如：Dify 官方文档、某医学论文、或你的个人工作周报）的文档。</p>
-<p>详细步骤：</p>
-<p>创建知识库：点击顶部【知识库】-&gt;【创建知识库】-&gt;【上传文本】。</p>
-<p>清洗与分段：选择**“高质量”**模式。在分段设置中，建议【最大分段长度】设为 500-800，【重叠长度】设为 50-100（防止语义断层）。</p>
-<p>索引方式：选择**“混合检索”**（结合向量检索和全文检索），这是目前 RAG 最稳健的方案。</p>
-<p>搭建应用：创建【聊天助手】，在右侧【上下文】中关联此知识库。</p>
-<p>提示词优化：</p>
+<p>准备工作：准备 几 份关于某个特定领域的文档，我前期在用LM Studio和oLLama在本地安装模型的实验中，让本地安装的DeepSeek蒸馏Qwen8B版本根据我的要求写了一篇长篇小说，用在这里做本地文档。</p>
+<h3 id="构建操作步骤："><a href="#构建操作步骤：" class="headerlink" title="构建操作步骤："></a>构建操作步骤：</h3><h3 id="1-创建知识库："><a href="#1-创建知识库：" class="headerlink" title="1.创建知识库："></a>1.创建知识库：</h3><p>1）上传文本：点击顶部【知识库】-&gt;【创建知识库】-&gt;【上传文本】。</p>
+<p>2）清洗与分段：选择**“高质量”**模式。在分段设置中，建议【最大分段长度】设为 500-800，【重叠长度】设为 50-100（防止语义断层）。</p>
+<p>3）索引方式：选择**“混合检索”**（结合向量检索和全文检索），这是目前 RAG 推荐的方案。</p>
+<p>注意：这里选择Embedding模型和Reranking模型，如果选的是硅基流动的免费模型，处理时间SLA会比较差，要等待大概1个多小时才能完成知识库的内容构建。</p>
+<h3 id="2-搭建应用：创建【聊天助手】，在右侧【上下文】中关联此知识库。"><a href="#2-搭建应用：创建【聊天助手】，在右侧【上下文】中关联此知识库。" class="headerlink" title="2.搭建应用：创建【聊天助手】，在右侧【上下文】中关联此知识库。"></a>2.搭建应用：创建【聊天助手】，在右侧【上下文】中关联此知识库。</h3><p>提示词优化：</p>
 <p>“你是一个专业的知识助手。请严格根据上下文回答问题。如果文档中没有相关信息，请诚实告知用户你不知道，不要编造。”</p>
 <p>实验观测点：</p>
 <p>召回测试：提问文档中的冷门细节，查看【日志】里 AI 引用了哪一段文字。</p>

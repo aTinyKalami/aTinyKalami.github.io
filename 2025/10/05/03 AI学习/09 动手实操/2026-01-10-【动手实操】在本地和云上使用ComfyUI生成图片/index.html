@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		动手实操 - 在本地通过ComfyUI生成图片 | 
+		动手实操 - 在本地和云端通过ComfyUI生成图片和视频 | 
 	 
 	十二亚晖的个人空间
 	</title>
@@ -19,7 +19,7 @@
 		<meta name="keywords" content="给时光以生命" />
 	
 	
-		<meta name="description" content="本地安装ComfyUI，配置工作流，通过StableDiffusion模型生成图片" />
+		<meta name="description" content="本地及云端安装ComfyUI，配置工作流，通过StableDiffusion模型生成图片" />
 	
 
 	<!-- favicon -->
@@ -91,13 +91,13 @@
 
     
       <li class="menu-item">
-        <a href="/tags" class="menu-item-link">标签</a>
+        <a href="/tags" class="menu-item-link">Etiketler</a>
       </li>
     
 
     
       <li class="menu-item">
-        <a href="/categories" class="menu-item-link">分类</a>
+        <a href="/categories" class="menu-item-link">Kategoriler</a>
       </li>
     
 
@@ -133,7 +133,7 @@
 	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
 	
 	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
+		<input id="search-input" class="search-input" type="search" placeholder="Aramak için Enter&#39;a basın">
 		<div id="tree">
 			
 
@@ -495,9 +495,9 @@
 			
 							<ul>
 								<li class="file active">
-									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2026-01-10-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8ComfyUI%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87/">
+									<a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/09%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D/2026-01-10-%E3%80%90%E5%8A%A8%E6%89%8B%E5%AE%9E%E6%93%8D%E3%80%91%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%92%8C%E4%BA%91%E4%B8%8A%E4%BD%BF%E7%94%A8ComfyUI%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87/">
                      
-										    动手实操 - 在本地通过ComfyUI生成图片
+										    动手实操 - 在本地和云端通过ComfyUI生成图片和视频
                      
 									</a>
 								</li>
@@ -662,7 +662,7 @@
 	<!-- 引入正文 -->
 	<div id="content" class="content">
 		<h1 id="article-title">
-	动手实操 - 在本地通过ComfyUI生成图片
+	动手实操 - 在本地和云端通过ComfyUI生成图片和视频
 </h1>
 
 <!-- meta -->
@@ -721,84 +721,29 @@
 
 <!-- content -->
 <div id="article-content">
-	<p>这份实操文档专为你的 <strong>T1000 (1GB 显存)</strong> 硬件环境优化，旨在帮助你从零构建一个性能稳定、具备电影感画质的 AI 创作站。</p>
-<hr>
-<h2 id="第一阶段：环境搭建（Stability-Matrix-与-ComfyUI）"><a href="#第一阶段：环境搭建（Stability-Matrix-与-ComfyUI）" class="headerlink" title="第一阶段：环境搭建（Stability Matrix 与 ComfyUI）"></a>第一阶段：环境搭建（Stability Matrix 与 ComfyUI）</h2><h3 id="1-安装管理大本营：Stability-Matrix"><a href="#1-安装管理大本营：Stability-Matrix" class="headerlink" title="1. 安装管理大本营：Stability Matrix"></a>1. 安装管理大本营：Stability Matrix</h3><ul>
-<li><strong>下载与放置</strong>：将 <code>StabilityMatrix-win-x64.zip</code> 解压到一个<strong>空间充足的非系统盘</strong>（如 D 盘）。</li>
-<li><strong>启动</strong>：运行 <code>StabilityMatrix.exe</code>，它会自动检测环境（Git、Python 等）并帮你安装好基础组件。</li>
-</ul>
-<h3 id="2-安装-ComfyUI-软件包"><a href="#2-安装-ComfyUI-软件包" class="headerlink" title="2. 安装 ComfyUI 软件包"></a>2. 安装 ComfyUI 软件包</h3><ul>
-<li>在 Stability Matrix 左侧点击 <strong>Packages</strong>（软件包）。</li>
-<li>点击 <strong>Add Package</strong>，选择 <strong>ComfyUI</strong> 进行安装。<blockquote>
-<p><strong>提示</strong>：安装完成后，Stability Matrix 会帮你管理所有复杂的路径，你只需要点击“运行”即可。</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="第二阶段：模型下载与归类"><a href="#第二阶段：模型下载与归类" class="headerlink" title="第二阶段：模型下载与归类"></a>第二阶段：模型下载与归类</h2><p>为了实现写实风格，你需要下载以下三类文件。请在 <strong>Model Browser</strong> 中勾选 <strong>SD 1.5</strong> 标签后搜索：</p>
+	<h1 id="一、在本地环境安装CompyUI，学习SD模型生成图片"><a href="#一、在本地环境安装CompyUI，学习SD模型生成图片" class="headerlink" title="一、在本地环境安装CompyUI，学习SD模型生成图片"></a>一、在本地环境安装CompyUI，学习SD模型生成图片</h1><p>本地机器显存有限（1GB），仅能用来学习基础的软件操作、工作流编辑，以及生成512X512大小以下的图片。</p>
+<h2 id="第一阶段：环境搭建（Stability-Matrix-与-ComfyUI）"><a href="#第一阶段：环境搭建（Stability-Matrix-与-ComfyUI）" class="headerlink" title="第一阶段：环境搭建（Stability Matrix 与 ComfyUI）"></a>第一阶段：环境搭建（Stability Matrix 与 ComfyUI）</h2><h3 id="1-安装管理大本营：Stability-Matrix"><a href="#1-安装管理大本营：Stability-Matrix" class="headerlink" title="1. 安装管理大本营：Stability Matrix"></a>1. 安装管理大本营：Stability Matrix</h3><p>下载 StabilityMatrix-win-x64.zip，解压并运行 StabilityMatrix.exe，它会自动检测环境（Git、Python 等）并帮你安装好基础组件。</p>
+<h3 id="2-安装-ComfyUI-软件包"><a href="#2-安装-ComfyUI-软件包" class="headerlink" title="2. 安装 ComfyUI 软件包"></a>2. 安装 ComfyUI 软件包</h3><p>在 Stability Matrix 左侧点击 <strong>Packages</strong>（软件包）。<br>点击 <strong>Add Package</strong>，选择 <strong>ComfyUI</strong> 进行安装。<br>安装完成后点击Launch。</p>
+<h2 id="第二阶段：模型下载与归类"><a href="#第二阶段：模型下载与归类" class="headerlink" title="第二阶段：模型下载与归类"></a>第二阶段：模型下载与归类</h2><p>为了实现写实风格，需要下载以下三类文件。在 <strong>Model Browser</strong> 中勾选 <strong>SD 1.5</strong> 标签后搜索：</p>
 <ol>
-<li><strong>大模型 (Checkpoint)</strong>：搜索 <code>Realistic Vision</code> 或 <code>EpicRealism</code>。</li>
+<li><p><strong>大模型 (Checkpoint)</strong>：搜索 <code>Realistic Vision</code> 或 <code>EpicRealism</code>。<br><em>存放路径</em>：<code>Data\Models\Checkpoints</code></p>
+</li>
+<li><p><strong>色彩修复 (VAE)</strong>：搜索 <code>vae-ft-mse-840000-ema-pruned</code>。<br><em>存放路径</em>：<code>Data\Models\VAE</code></p>
+</li>
+<li><p><strong>细节插件 (LoRA)</strong>：搜索 <code>More Details</code> 或 <code>Detail Tweaker</code>。<br><em>存放路径</em>：<code>Data\Models\Loras</code></p>
+</li>
 </ol>
-<ul>
-<li><em>存放路径</em>：<code>Data\Models\Checkpoints</code></li>
-</ul>
-<ol start="2">
-<li><strong>色彩修复 (VAE)</strong>：搜索 <code>vae-ft-mse-840000-ema-pruned</code>。</li>
-</ol>
-<ul>
-<li><em>存放路径</em>：<code>Data\Models\VAE</code></li>
-</ul>
-<ol start="3">
-<li><strong>细节插件 (LoRA)</strong>：搜索 <code>More Details</code> 或 <code>Detail Tweaker</code>。</li>
-</ol>
-<ul>
-<li><em>存放路径</em>：<code>Data\Models\Loras</code></li>
-</ul>
-<hr>
-<h2 id="第三阶段：构建“电影感”进阶工作流"><a href="#第三阶段：构建“电影感”进阶工作流" class="headerlink" title="第三阶段：构建“电影感”进阶工作流"></a>第三阶段：构建“电影感”进阶工作流</h2><p>请按照以下顺序在 ComfyUI 画布上连接节点，这是针对 1GB 显存最稳妥的方案：</p>
-<h3 id="1-核心链路-Checkpoint-LoRA-Sampler"><a href="#1-核心链路-Checkpoint-LoRA-Sampler" class="headerlink" title="1. 核心链路 (Checkpoint -&gt; LoRA -&gt; Sampler)"></a>1. 核心链路 (Checkpoint -&gt; LoRA -&gt; Sampler)</h3><ul>
-<li><p><strong>Load Checkpoint</strong>：选择你的写实大模型。</p>
-</li>
-<li><p><strong>Load LoRA</strong>：</p>
-</li>
-<li><p><code>MODEL</code> 接 Checkpoint 的 <code>MODEL</code>；<code>CLIP</code> 接 Checkpoint 的 <code>CLIP</code>。</p>
-</li>
-<li><p>强度（strength）建议设为 <strong>0.6</strong>。</p>
-</li>
-<li><p><strong>KSampler (关键参数)</strong>：</p>
-</li>
-<li><p><code>model</code> 接 LoRA 的 <code>MODEL</code>。</p>
-</li>
-<li><p><strong>cfg</strong>: <strong>7.0</strong>（切记不要设太高或太低）。</p>
-</li>
-<li><p><strong>sampler</strong>: <code>dpmpp_2m</code> &#x2F; <strong>scheduler</strong>: <code>karras</code>。</p>
-</li>
-<li><p><strong>steps</strong>: 20-25 步。</p>
-</li>
-</ul>
-<h3 id="2-提示词链路-CLIP-Text-Encode"><a href="#2-提示词链路-CLIP-Text-Encode" class="headerlink" title="2. 提示词链路 (CLIP -&gt; Text Encode)"></a>2. 提示词链路 (CLIP -&gt; Text Encode)</h3><ul>
-<li><strong>正向提示词</strong>：从 LoRA 的 <code>CLIP</code> 出口连接。输入：<code>portrait of a woman, cinematic lighting, 8k, highly detailed skin</code>。</li>
-<li><strong>负向提示词</strong>：同样从 LoRA 的 <code>CLIP</code> 出口连接。输入：<code>bad anatomy, blurry, cartoon, lowres</code>。</li>
-</ul>
-<h3 id="3-色彩解码链路-VAE-Image"><a href="#3-色彩解码链路-VAE-Image" class="headerlink" title="3. 色彩解码链路 (VAE -&gt; Image)"></a>3. 色彩解码链路 (VAE -&gt; Image)</h3><ul>
-<li><p><strong>Load VAE</strong>：选择下载的 <code>840000</code> 修复模型。</p>
-</li>
-<li><p><strong>VAE Decode</strong>：</p>
-</li>
-<li><p><code>samples</code> 接采样器的 <code>LATENT</code>。</p>
-</li>
-<li><p><strong><code>vae</code> 必须接 Load VAE 节点的输出</strong>（不要接大模型自带的 VAE）。</p>
-</li>
-<li><p><strong>Save Image</strong>：查看最终成品。</p>
-</li>
-</ul>
-<hr>
+<h2 id="第三阶段：构建“电影感”进阶工作流"><a href="#第三阶段：构建“电影感”进阶工作流" class="headerlink" title="第三阶段：构建“电影感”进阶工作流"></a>第三阶段：构建“电影感”进阶工作流</h2><p>按照以下顺序在 ComfyUI 画布上连接节点：</p>
+<h3 id="1-核心链路-Checkpoint-LoRA-Sampler"><a href="#1-核心链路-Checkpoint-LoRA-Sampler" class="headerlink" title="1. 核心链路 (Checkpoint -&gt; LoRA -&gt; Sampler)"></a>1. 核心链路 (Checkpoint -&gt; LoRA -&gt; Sampler)</h3><p><strong>Load Checkpoint</strong>：选择你的写实大模型。<br><strong>Load LoRA</strong>：根据不同目标，加载不同的LoRA效果模型。<br>MODEL 接 Checkpoint 的 MODEL；CLIP接 Checkpoint 的 CLIP。<br>强度（strength）建议设为 0.6。</p>
+<p><strong>KSampler (关键参数)</strong>：<br>model 接 LoRA 的 MODEL。<br><strong>cfg</strong>: <strong>7.0</strong>（切记不要设太高或太低）。<br><strong>sampler</strong>: <code>dpmpp_2m</code> &#x2F; <strong>scheduler</strong>: <code>karras</code>。<br><strong>steps</strong>: 20-25 步。</p>
+<h3 id="2-提示词链路-CLIP-Text-Encode"><a href="#2-提示词链路-CLIP-Text-Encode" class="headerlink" title="2. 提示词链路 (CLIP -&gt; Text Encode)"></a>2. 提示词链路 (CLIP -&gt; Text Encode)</h3><p><strong>正向提示词</strong>：从 LoRA 的 <code>CLIP</code> 出口连接。输入：<code>portrait of a woman, cinematic lighting, 8k, highly detailed skin</code>。<br><strong>负向提示词</strong>：同样从 LoRA 的 <code>CLIP</code> 出口连接。输入：<code>bad anatomy, blurry, cartoon, lowres</code>。</p>
+<h3 id="3-色彩解码链路-VAE-Image"><a href="#3-色彩解码链路-VAE-Image" class="headerlink" title="3. 色彩解码链路 (VAE -&gt; Image)"></a>3. 色彩解码链路 (VAE -&gt; Image)</h3><p><strong>Load VAE</strong>：选择下载的 <code>840000</code> 修复模型。<br><strong>VAE Decode</strong>：<br> <code>samples</code> 接采样器的 <code>LATENT</code>。<br><strong><code>vae</code> 必须接 Load VAE 节点的输出</strong>（不要接大模型自带的 VAE）。</p>
+<p><strong>Save Image</strong>：查看最终成品。</p>
 <h2 id="第四阶段：1GB-显存避坑守则"><a href="#第四阶段：1GB-显存避坑守则" class="headerlink" title="第四阶段：1GB 显存避坑守则"></a>第四阶段：1GB 显存避坑守则</h2><ul>
 <li><strong>尺寸控制</strong>：始终保持在 <strong>512x512</strong>。</li>
 <li><strong>显存优化</strong>：在 Stability Matrix 的 ComfyUI 设置中，勾选 <strong><code>--lowvram</code></strong> 启动参数。</li>
 <li><strong>模型选择</strong>：<strong>严禁</strong>加载 SDXL 或 Flux 模型，否则会瞬间崩溃。</li>
 </ul>
-<hr>
 <h2 id="第五阶段：二次启动操作手册（电脑关机后如何重开）"><a href="#第五阶段：二次启动操作手册（电脑关机后如何重开）" class="headerlink" title="第五阶段：二次启动操作手册（电脑关机后如何重开）"></a>第五阶段：二次启动操作手册（电脑关机后如何重开）</h2><p>当你下次打开电脑，想要继续创作时，请严格执行以下步骤：</p>
 <ol>
 <li><strong>第一步：启动管理器</strong></li>
@@ -834,6 +779,132 @@
 <li>如果没有，你可以直接将上次生成的<strong>图片文件</strong>拖入浏览器窗口，ComfyUI 会自动还原当时所有的节点和参数。</li>
 </ul>
 <hr>
+<h1 id="二、利用云侧算力平台，进行图像和视频生成"><a href="#二、利用云侧算力平台，进行图像和视频生成" class="headerlink" title="二、利用云侧算力平台，进行图像和视频生成"></a>二、利用云侧算力平台，进行图像和视频生成</h1><p>既然你已经有了一台 1GB 显存的本地电脑，最聪明的办法是**“本地设计，云端渲染”**：</p>
+<p>本地构思：在本地打开 ComfyUI，虽然不出图，但可以把所有的节点（Load Checkpoint, KSampler, AnimateDiff 等）连好。</p>
+<p>导出 JSON：点击右侧菜单的 「Save」，导出一个小小的 .json 工作流文件。</p>
+<p>上云开机：在 AutoDL 租一台 RTX 3090（大约一两块钱一小时）。</p>
+<p>上传并运行：通过浏览器把你的 JSON 文件拖进云端的 ComfyUI。</p>
+<p>关机释放：视频生成完后，把结果下载回本地，立刻关机（释放实例），这样你可能只花了 5 毛钱就完成了本地电脑一辈子也跑不出来的视频。</p>
+<p>在 AutoDL 中，你创建的每一个“实例”（也就是那台云电脑）都有两种状态：<br>状态<br>显卡 (GPU)计费适用场景正常开机处于激活状态全额扣费 (如 ￥1.5&#x2F;时)跑图、生成视频、高负载测试。<br>无卡模式开机暂时移除 GPU极低扣费 (约 ￥0.1&#x2F;时)开发工作流、整理模型文件、写代码。</p>
+<p>第一阶段：本地预研 (￥0)<br>在你自己的 T1000 本地电脑上打开 ComfyUI。</p>
+<p>尽管它跑不动，但你可以把节点先摆好、线连好。</p>
+<p>点击 Save 导出工作流 JSON 文件。</p>
+<p>第二阶段：云端无卡部署 (约 ￥0.1&#x2F;时)<br>在 AutoDL 选择 「无卡模式」 启动你的实例。</p>
+<p>打开云端的 ComfyUI 界面。</p>
+<p>主要任务：上传你的 JSON 文件，并利用云端的高速带宽把工作流需要的 Checkpoint、LoRA、ControlNet 模型全部下载好。</p>
+<p>这个阶段你不需要显卡，每小时只要一毛钱。</p>
+<p>第三阶段：关机切换，瞬间超频 (开始扣全额)<br>在 AutoDL 控制台先 「关机」。</p>
+<p>选择 「切换镜像&#x2F;硬件」，把模式换成 「正常开机」（这时会带上 3090&#x2F;4090 显卡）。</p>
+<p>点击 Queue Prompt：让显卡全力输出，生成视频。</p>
+<p>这个阶段按全额计费，但因为你已经提前准备好了，显卡一上来就干活，不浪费一秒钟。</p>
+<p>第四阶段：成果回收<br>视频生成完后，通过文件管理器把视频下载到本地。</p>
+<p>立刻点击「关机并释放」（如果不释放，硬盘存储可能还会产生微量费用）。</p>
+<ol start="3">
+<li>特别提醒：别忘了「释放」<br>很多新手最容易踩的坑是：关机不等于停止扣费。</li>
+</ol>
+<p>关机 (Shutdown)：停止计算计费，但会保留你的硬盘数据，系统会收取少量的硬盘存储费。</p>
+<p>释放 (Terminate&#x2F;Release)：彻底删除这台机器，停止所有扣费（但你的数据也没了，下次用要重装）。</p>
+<hr>
+<h1 id="三、ComfyUI的使用学习"><a href="#三、ComfyUI的使用学习" class="headerlink" title="三、ComfyUI的使用学习"></a>三、ComfyUI的使用学习</h1><p>可以在<a target="_blank" rel="noopener" href="https://comfyui-wiki.com/zh">ComfyUI Wiki网站</a>学习相关节点的功能。</p>
+<p>ComfyUI 核心节点速查手册 (初学者必藏)</p>
+<h3 id="1-加载类-Loaders"><a href="#1-加载类-Loaders" class="headerlink" title="1. 加载类 (Loaders)"></a>1. 加载类 (Loaders)</h3><table>
+<thead>
+<tr>
+<th align="left">节点名称</th>
+<th align="left">功能说明</th>
+<th align="left">核心参数&#x2F;注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Load Checkpoint</strong></td>
+<td align="left">加载大模型 (Base Model)</td>
+<td align="left">所有工作流起点，输出 MODEL, CLIP, VAE。</td>
+</tr>
+<tr>
+<td align="left"><strong>Load VAE</strong></td>
+<td align="left">加载色彩修复模型</td>
+<td align="left">解决图片发灰问题（如 840000 模型）。</td>
+</tr>
+<tr>
+<td align="left"><strong>Load LoRA</strong></td>
+<td align="left">加载风格&#x2F;人物模型</td>
+<td align="left">用于固定特定人物或画风。</td>
+</tr>
+</tbody></table>
+<h3 id="2-编码类-Encoding"><a href="#2-编码类-Encoding" class="headerlink" title="2. 编码类 (Encoding)"></a>2. 编码类 (Encoding)</h3><table>
+<thead>
+<tr>
+<th align="left">节点名称</th>
+<th align="left">功能说明</th>
+<th align="left">核心参数&#x2F;注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>CLIP Text Encode</strong></td>
+<td align="left">提示词输入框</td>
+<td align="left">分为 Positive (正向) 和 Negative (负向)。</td>
+</tr>
+<tr>
+<td align="left"><strong>VAE Encode</strong></td>
+<td align="left">像素转潜空间 (图生图)</td>
+<td align="left">将已有图片转为 AI 可处理的 Latent 数据。</td>
+</tr>
+</tbody></table>
+<h3 id="3-采样与解码-Sampling-Decoding"><a href="#3-采样与解码-Sampling-Decoding" class="headerlink" title="3. 采样与解码 (Sampling &amp; Decoding)"></a>3. 采样与解码 (Sampling &amp; Decoding)</h3><table>
+<thead>
+<tr>
+<th align="left">节点名称</th>
+<th align="left">功能说明</th>
+<th align="left">核心参数&#x2F;注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>KSampler</strong></td>
+<td align="left"><strong>核心大脑 (采样器)</strong></td>
+<td align="left">控制步数 (steps)、引导系数 (cfg) 和算法。</td>
+</tr>
+<tr>
+<td align="left"><strong>VAE Decode</strong></td>
+<td align="left">潜空间转像素</td>
+<td align="left">将 AI 的计算结果还原成肉眼可见的图像。</td>
+</tr>
+<tr>
+<td align="left"><strong>VAE Decode (Tiled)</strong></td>
+<td align="left"><strong>分块解码 (低显存必选)</strong></td>
+<td align="left"><strong>(1GB显存推荐)</strong> 防止大图生成时显存溢出。</td>
+</tr>
+</tbody></table>
+<h3 id="4-图像处理-Image"><a href="#4-图像处理-Image" class="headerlink" title="4. 图像处理 (Image)"></a>4. 图像处理 (Image)</h3><table>
+<thead>
+<tr>
+<th align="left">节点名称</th>
+<th align="left">功能说明</th>
+<th align="left">核心参数&#x2F;注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Save Image</strong></td>
+<td align="left">最终导出</td>
+<td align="left">保存图片至 <code>output</code> 文件夹。</td>
+</tr>
+<tr>
+<td align="left"><strong>Upscale Image</strong></td>
+<td align="left">图像放大</td>
+<td align="left">提升分辨率，通常接在 VAE 解码之后。</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-颜色连线规则"><a href="#💡-颜色连线规则" class="headerlink" title="💡 颜色连线规则"></a>💡 颜色连线规则</h3><ul>
+<li><strong>紫色 (MODEL)</strong>: 传导模型权重</li>
+<li><strong>黄色 (CONDITIONING)</strong>: 传导提示词&#x2F;控制信息</li>
+<li><strong>粉色 (LATENT)</strong>: 传导 AI 潜空间数据（看不见的图）</li>
+<li><strong>青色 (IMAGE)</strong>: 传导像素级图片（看得见的图）</li>
+<li><strong>红色 (VAE)</strong>: 传导编解码器信息</li>
+</ul>
+<p>连线逻辑小贴士 (Tips)<br>颜色对应：ComfyUI 遵循“颜色匹配”原则。紫色接紫色 (MODEL)，黄色接黄色 (CONDITIONING)，青色接青色 (IMAGE)，红色接红色 (VAE)。</p>
+<p>潜空间 (Latent)：看到粉色的连线 (LATENT) 代表数据还在 AI 的“脑子里”，必须经过 VAE Decode 转换成青色连线 (IMAGE) 你才能看到图。</p>
+<p>右键万能：如果你找不到某个节点，在画布空白处双击左键，直接输入中文或英文关键词搜索即可。</p>
+<hr>
 <p>（本文完）</p>
 
 </div>
@@ -851,8 +922,8 @@
         </div>
         <div class="item right">
             
-              <a href="/2025/10/05/08%20%E4%B8%9A%E7%95%8C%E5%8E%82%E5%95%86/DeepSeek/2025-10-07-%E3%80%90AI%E6%A8%A1%E5%9E%8B%E3%80%91DeepSeek%20V3%E5%92%8CR1/">
-                DeepSeek V3和R1技术创新
+              <a href="/2025/10/05/03%20AI%E5%AD%A6%E4%B9%A0/04%20AI%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%BA%94%E7%94%A8/2025-01-01-%E3%80%90%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E3%80%91%E6%90%9E%E6%87%82%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/">
+                模型基础 - 搞懂大模型文件结构
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
